@@ -1,0 +1,32 @@
+{
+  "name": "ScrapKart",
+  "short_name": "ScrapKart",
+  "description": "B2B Industrial Scrap Marketplace — Connect waste producers with recyclers.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#001C30",
+  "theme_color": "#64CCC5",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["business", "utilities"],
+  "screenshots": []
+}
