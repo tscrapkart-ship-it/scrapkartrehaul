@@ -9,6 +9,7 @@ import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { GoogleAuthButton } from "@/components/auth/google-auth-button";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -112,6 +113,15 @@ export default function LoginPage() {
             {loading ? "Signing in..." : "Sign In"}
           </Button>
         </form>
+
+        <div className="mt-6 space-y-4">
+          <div className="flex items-center gap-3">
+            <div className="h-px flex-1 bg-white/[0.06]" />
+            <span className="text-xs text-white/25">or</span>
+            <div className="h-px flex-1 bg-white/[0.06]" />
+          </div>
+          <GoogleAuthButton label="Sign in with Google" />
+        </div>
 
         <p className="mt-6 text-center text-sm text-white/40">
           Don&apos;t have an account?{" "}

@@ -19,7 +19,7 @@ The user is **vibe coding** this entire project — building it end-to-end throu
 
 ## Project Status
 
-**Phases 1–7 + Supabase setup + full UI/UX overhaul complete.** The app is live against a real Supabase project. Auth (signup + login) is tested and working end-to-end. Full product context, domain model, user journeys, and feature scope are documented in `SCRAPKART.md`.
+**All phases complete including admin dashboard and seed data. App is live on Vercel.** Full product context, domain model, user journeys, and feature scope are documented in `SCRAPKART.md`.
 
 ### What's been built
 | Phase | Scope | Status |
@@ -33,11 +33,19 @@ The user is **vibe coding** this entire project — building it end-to-end throu
 | 7 | Landing page — hero, stats, how-it-works, categories, features, testimonials, CTA, footer | ✅ Done |
 | Supabase | Schema + RLS + storage buckets applied to live project via MCP | ✅ Done |
 | UI/UX | Full frontend overhaul — dark theme, brand colors, all 35+ screens polished | ✅ Done |
-| 8 | PWA (next-pwa, manifest.json, icons) + Vercel deploy | ⏳ Next |
+| 8 | PWA (`@ducanh2912/next-pwa`, `manifest.json`, icons) + Vercel deploy | ✅ Done |
+| 9 | Admin dashboard — `/admin/*` route, all 5 pages, admin role + RLS | ✅ Done |
+| 10 | Seed/test data — 5 test accounts live in Supabase with companies, listings, bookings, messages | ✅ Done |
 
-### What's next (in order)
-1. **Phase 8 — PWA + Deploy**: `next-pwa` setup, `manifest.json`, app icons, Vercel deploy
-2. **Update Supabase Site URL**: After Vercel deploy, update the Supabase Auth Site URL to the Vercel domain so email confirmation links work from any device (currently points to `localhost:3000`)
+### GitHub & Deployment
+- **GitHub:** `https://github.com/tscrapkart-ship-it/scrapkartrehaul.git` (branch: `master`)
+- **Deployed:** Vercel (connected to GitHub repo — auto-deploys on push to `master`)
+- **Build command:** `next build --webpack` (required for `next-pwa` service worker generation — Turbopack is incompatible with PWA webpack plugins)
+
+### What's next
+1. **Replace PWA icons** — `public/icons/icon-192x192.png` and `icon-512x512.png` are currently copies of the white logo. Replace with properly sized 192×192 and 512×512 PNGs for full PWA installability (use realfavicongenerator.net)
+2. **Push latest changes to GitHub** — admin dashboard, seed data fixes, middleware updates, and performance fixes have not been committed/pushed yet
+3. **Admin: suspend/activate users** — the users table has no `suspended` column yet; admin users page shows all users but the suspend action is not yet wired up
 
 ### Installed Animation Libraries (2026-03-26)
 - `gsap` + `@gsap/react` — used for hero entrance animations and stat count-up on landing page
@@ -88,7 +96,7 @@ The Supabase MCP server is authenticated and operational when using Claude Code 
 - **Schema:** All 5 tables live with RLS enabled: `users`, `companies`, `scraps`, `bookings`, `messages`
 - **Storage:** `company-logos` and `scrap-images` buckets created (public)
 - **Realtime:** Enabled on `messages` table
-- **Auth:** Email + password. Signup sends confirmation email. Confirmation link currently points to `localhost:3000` — will update to Vercel URL after deploy.
+- **Auth:** Email + password. Signup sends confirmation email. Confirmation links point to `https://scrapkartrehaul.vercel.app` — updated in Supabase dashboard → Auth → URL Configuration.
 - **Auth bug fixed (2026-03-26):** Signup now shows "check your email" screen instead of prematurely redirecting to `/role-select` before email is confirmed.
 
 ### Mock Data Mode
@@ -99,8 +107,8 @@ The app is currently connected to real Supabase — mock mode is inactive. Mock 
 ## Commands
 
 ```bash
-npm run dev       # Start development server (localhost:3000)
-npm run build     # Production build
+npm run dev       # Start development server (localhost:3000) — Turbopack, PWA disabled
+npm run build     # Production build (runs next build --webpack — required for next-pwa)
 npm run lint      # ESLint
 npm run typecheck # tsc --noEmit
 ```
@@ -154,7 +162,7 @@ src/
 
 ### Domain Models
 Five core entities (see `SCRAPKART.md` §5 for full field list):
-- **User** — role: `recycler` | `waste_producer`
+- **User** — role: `recycler` | `waste_producer` | `admin`
 - **Company** — owned by waste producer (ownerId)
 - **Scrap** — status: `available` | `booked` | `collected`; categories: Metal, E-waste, Plastic, Paper, Glass, Mixed Scrap
 - **Booking** — links recycler + waste producer + scrap
@@ -171,9 +179,11 @@ Five core entities (see `SCRAPKART.md` §5 for full field list):
 Configure these in `tailwind.config.ts` under `theme.extend.colors`. Target aesthetic: Stripe Dashboard / Linear.
 
 ### Auth Pattern
-- Supabase Auth with role stored in user metadata or a `users` table
-- Two separate authenticated route groups: `(buyer)/` and `(seller)/`
-- Middleware (`middleware.ts`) guards routes by role and auth state
+- Supabase Auth with role stored in `users` table (`recycler` | `waste_producer` | `admin`)
+- Three separate authenticated route groups: `(buyer)/`, `(seller)/`, and `src/app/admin/`
+- Middleware (`src/lib/supabase/middleware.ts`) guards all routes by role and auth state
+- **Admin route** is `src/app/admin/` (NOT a route group) — using `(admin)/` caused path conflicts with buyer routes like `/bookings` and `/companies`
+- **Landing page `/`** is always visible — authenticated users with a role are redirected to their dashboard, but users without a role see the landing page (not forced to `/role-select`)
 
 ### Supabase Conventions
 - Use server-side Supabase client in Server Components and API routes
@@ -188,6 +198,7 @@ These are the access rules to enforce when writing RLS policies:
 - **Bookings:** readable and writable only by the buyer or seller involved in that booking (`buyerId = auth.uid() OR sellerId = auth.uid()`)
 - **Messages:** readable and writable only by participants of the linked booking — enforce via join to bookings table, not just sender/receiver fields
 - **Users table:** users can read/update only their own row
+- **Admin:** full read/write on all 5 tables via `public.is_admin()` SECURITY DEFINER function — avoids infinite recursion that would occur if the policy queried `users` directly
 
 ### V1 Scope Boundaries
 Know what is real vs placeholder in V1, and don't over-engineer the placeholder parts:
@@ -205,7 +216,7 @@ Know what is real vs placeholder in V1, and don't over-engineer the placeholder 
 | Notifications | Not in V1 |
 | Pickup scheduling | Not in V1 |
 | Ratings & reputation | Not in V1 |
-| Admin dashboard | Not in V1 |
+| Admin dashboard | ✅ Live — `/admin/*`, 5 pages, role-gated |
 
 ### Fonts
 **Inter** is the active font, loaded via `next/font/google` in `src/app/layout.tsx` with variable `--font-inter`. Lexend Giga files still exist in `Fonts/Lexend_Giga/` and `src/fonts/` but are no longer used.
@@ -219,3 +230,21 @@ Logo variants are in `Logos/` and mirrored in `public/logos/` — white, black, 
 - **Supabase foreign key joins** use explicit key syntax: `users!bookings_seller_id_fkey(name)`
 - **Seller routes** use `/seller-bookings` prefix to avoid conflict with buyer `/bookings`
 - **All server pages** dynamically import Supabase server client: `await import("@/lib/supabase/server")` — this avoids build-time errors when env vars are missing
+- **PWA + Turbopack incompatible**: `@ducanh2912/next-pwa` injects webpack plugins. Next.js 16 defaults to Turbopack. Build script uses `--webpack` to force webpack mode. Do NOT remove this flag or the service worker won't generate.
+- **Generated PWA files** (`public/sw.js`, `public/workbox-*.js`, `public/swe-worker-*.js`) are gitignored — they're regenerated on every Vercel build automatically.
+- **Turbopack webpack config error (Next.js 16)**: `next.config.ts` must include `turbopack: {}` in `nextConfig` — without it, the dev server crashes immediately with a hard error about webpack/Turbopack conflict.
+- **Admin route is NOT a route group**: Admin pages live at `src/app/admin/` (a real path segment), NOT `src/app/(admin)/`. Using `(admin)/` causes Next.js path conflicts with buyer routes `/bookings` and `/companies` since route groups don't add URL segments.
+- **Admin RLS — no recursive queries on `users` table**: Use `public.is_admin()` SECURITY DEFINER function. Never write a policy on `users` that SELECTs from `users` — it causes infinite recursion.
+- **Manually inserted auth.users rows**: When inserting test users directly into `auth.users` via SQL, all string columns must be set to `''` (empty string) not NULL — e.g. `email_change`, `confirmation_token`, `recovery_token`, etc. Also set `instance_id = '00000000-0000-0000-0000-000000000000'`. Missing these causes "Database error querying schema" on login.
+- **Marketplace filter performance**: Category/sort filters use URL params + server re-render (SSR). `useTransition` in `marketplace-filters.tsx` + `loading.tsx` skeleton eliminate the frozen UI feeling. Do NOT switch to client-side filtering — SSR is intentional for SEO.
+
+### Test Accounts (live in production Supabase)
+All created directly in `auth.users` + `public.users` via SQL. Seeded with companies, listings, bookings, and messages.
+
+| Email | Password | Role | Details |
+|---|---|---|---|
+| `admin@scrapkart.test` | `Admin@ScrapKart#2024` | admin | Full admin dashboard access |
+| `seller1@scrapkart.test` | `Test@1234` | waste_producer | Iron & Steel Co. — Metal + Mixed Scrap listings |
+| `seller2@scrapkart.test` | `Test@1234` | waste_producer | EcoRecycle Ltd. — E-waste, Plastic, Paper listings |
+| `buyer1@scrapkart.test` | `Test@1234` | recycler | Has 2 bookings (1 confirmed with chat, 1 pending) |
+| `buyer2@scrapkart.test` | `Test@1234` | recycler | Fresh account, no bookings |

@@ -1,4 +1,4 @@
-export type UserRole = "recycler" | "waste_producer";
+export type UserRole = "recycler" | "waste_producer" | "admin";
 
 export type ScrapStatus = "available" | "booked" | "collected";
 
