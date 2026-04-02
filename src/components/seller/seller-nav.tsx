@@ -5,13 +5,14 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
-import { LayoutDashboard, Building2, Package, CalendarDays, LogOut } from "lucide-react";
+import { LayoutDashboard, Building2, Package, Gavel, ArrowLeftRight, LogOut } from "lucide-react";
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/company", label: "Company", icon: Building2 },
   { href: "/scraps", label: "Listings", icon: Package },
-  { href: "/seller-bookings", label: "Bookings", icon: CalendarDays },
+  { href: "/seller-bookings", label: "Bids", icon: Gavel },
+  { href: "/transactions", label: "Deals", icon: ArrowLeftRight },
 ];
 
 export function SellerNav({ userName }: { userName: string }) {

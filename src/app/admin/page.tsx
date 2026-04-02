@@ -1,4 +1,4 @@
-import { Users, Package, CalendarDays, Building2, TrendingUp } from "lucide-react";
+import { Users, Package, Gavel, ArrowLeftRight, Building2, Clock, TrendingUp } from "lucide-react";
 
 async function getStats() {
   const { createClient } = await import("@/lib/supabase/server");
@@ -6,39 +6,39 @@ async function getStats() {
 
   const [
     { count: totalUsers },
-    { count: totalSellers },
-    { count: totalBuyers },
+    { count: pendingApproval },
     { count: totalListings },
-    { count: availableListings },
-    { count: bookedListings },
-    { count: totalBookings },
-    { count: pendingBookings },
-    { count: confirmedBookings },
+    { count: liveListings },
+    { count: totalBids },
+    { count: pendingBids },
+    { count: totalTransactions },
+    { count: completedTransactions },
     { count: totalCompanies },
+    { count: pendingRecyclers },
   ] = await Promise.all([
-    supabase.from("users").select("*", { count: "exact", head: true }),
-    supabase.from("users").select("*", { count: "exact", head: true }).eq("role", "waste_producer"),
-    supabase.from("users").select("*", { count: "exact", head: true }).eq("role", "recycler"),
+    supabase.from("users").select("*", { count: "exact", head: true }).neq("role", "admin"),
+    supabase.from("users").select("*", { count: "exact", head: true }).eq("is_approved", false).neq("role", "admin").not("role", "is", null),
     supabase.from("scraps").select("*", { count: "exact", head: true }),
-    supabase.from("scraps").select("*", { count: "exact", head: true }).eq("status", "available"),
-    supabase.from("scraps").select("*", { count: "exact", head: true }).eq("status", "booked"),
-    supabase.from("bookings").select("*", { count: "exact", head: true }),
-    supabase.from("bookings").select("*", { count: "exact", head: true }).eq("status", "pending"),
-    supabase.from("bookings").select("*", { count: "exact", head: true }).eq("status", "confirmed"),
+    supabase.from("scraps").select("*", { count: "exact", head: true }).eq("status", "live"),
+    supabase.from("listing_bids").select("*", { count: "exact", head: true }),
+    supabase.from("listing_bids").select("*", { count: "exact", head: true }).eq("status", "pending"),
+    supabase.from("transactions").select("*", { count: "exact", head: true }),
+    supabase.from("transactions").select("*", { count: "exact", head: true }).eq("status", "completed"),
     supabase.from("companies").select("*", { count: "exact", head: true }),
+    supabase.from("recycler_profiles").select("*", { count: "exact", head: true }).eq("verification_status", "pending"),
   ]);
 
   return {
     totalUsers: totalUsers ?? 0,
-    totalSellers: totalSellers ?? 0,
-    totalBuyers: totalBuyers ?? 0,
+    pendingApproval: pendingApproval ?? 0,
     totalListings: totalListings ?? 0,
-    availableListings: availableListings ?? 0,
-    bookedListings: bookedListings ?? 0,
-    totalBookings: totalBookings ?? 0,
-    pendingBookings: pendingBookings ?? 0,
-    confirmedBookings: confirmedBookings ?? 0,
+    liveListings: liveListings ?? 0,
+    totalBids: totalBids ?? 0,
+    pendingBids: pendingBids ?? 0,
+    totalTransactions: totalTransactions ?? 0,
+    completedTransactions: completedTransactions ?? 0,
     totalCompanies: totalCompanies ?? 0,
+    pendingRecyclers: pendingRecyclers ?? 0,
   };
 }
 
@@ -46,11 +46,11 @@ async function getRecentActivity() {
   const { createClient } = await import("@/lib/supabase/server");
   const supabase = await createClient();
 
-  const [{ data: recentUsers }, { data: recentListings }, { data: recentBookings }] =
+  const [{ data: recentUsers }, { data: recentListings }, { data: recentBids }] =
     await Promise.all([
       supabase
         .from("users")
-        .select("id, name, email, role, created_at")
+        .select("id, name, email, role, is_approved, created_at")
         .neq("role", "admin")
         .order("created_at", { ascending: false })
         .limit(5),
@@ -60,8 +60,8 @@ async function getRecentActivity() {
         .order("created_at", { ascending: false })
         .limit(5),
       supabase
-        .from("bookings")
-        .select("id, status, created_at, scraps(title), buyer:users!bookings_buyer_id_fkey(name)")
+        .from("listing_bids")
+        .select("id, offered_price, status, created_at, scraps(title), users!listing_bids_recycler_id_fkey(name)")
         .order("created_at", { ascending: false })
         .limit(5),
     ]);
@@ -69,20 +69,21 @@ async function getRecentActivity() {
   return {
     recentUsers: recentUsers ?? [],
     recentListings: recentListings ?? [],
-    recentBookings: recentBookings ?? [],
+    recentBids: recentBids ?? [],
   };
 }
 
 const roleLabel: Record<string, string> = {
-  recycler: "Buyer",
-  waste_producer: "Seller",
+  recycler: "Recycler",
+  waste_producer: "Producer",
+  both: "Both",
 };
 
-const bookingStatusColor: Record<string, string> = {
+const bidStatusColor: Record<string, string> = {
   pending: "bg-yellow-500/10 text-yellow-400",
-  confirmed: "bg-green-500/10 text-green-400",
-  collected: "bg-brand-accent/10 text-brand-accent",
-  cancelled: "bg-red-500/10 text-red-400",
+  accepted: "bg-green-500/10 text-green-400",
+  rejected: "bg-red-500/10 text-red-400",
+  withdrawn: "bg-white/10 text-white/40",
 };
 
 export default async function AdminOverviewPage() {
@@ -92,34 +93,56 @@ export default async function AdminOverviewPage() {
     {
       label: "Total Users",
       value: stats.totalUsers,
-      sub: `${stats.totalSellers} sellers · ${stats.totalBuyers} buyers`,
+      sub: stats.pendingApproval > 0 ? `${stats.pendingApproval} pending approval` : "All approved",
       icon: Users,
-      color: "text-blue-400",
-      bg: "bg-blue-400/10",
+      color: stats.pendingApproval > 0 ? "text-yellow-400" : "text-blue-400",
+      bg: stats.pendingApproval > 0 ? "bg-yellow-400/10" : "bg-blue-400/10",
+      href: stats.pendingApproval > 0 ? "/admin/users?filter=pending" : "/admin/users",
     },
     {
       label: "Scrap Listings",
       value: stats.totalListings,
-      sub: `${stats.availableListings} available · ${stats.bookedListings} booked`,
+      sub: `${stats.liveListings} live and accepting bids`,
       icon: Package,
       color: "text-brand-accent",
       bg: "bg-brand-accent/10",
+      href: "/admin/listings",
     },
     {
-      label: "Bookings",
-      value: stats.totalBookings,
-      sub: `${stats.pendingBookings} pending · ${stats.confirmedBookings} confirmed`,
-      icon: CalendarDays,
-      color: "text-purple-400",
-      bg: "bg-purple-400/10",
+      label: "Total Bids",
+      value: stats.totalBids,
+      sub: `${stats.pendingBids} pending response`,
+      icon: Gavel,
+      color: stats.pendingBids > 0 ? "text-yellow-400" : "text-purple-400",
+      bg: stats.pendingBids > 0 ? "bg-yellow-400/10" : "bg-purple-400/10",
+      href: "/admin/bids",
     },
     {
-      label: "Companies",
+      label: "Deals",
+      value: stats.totalTransactions,
+      sub: `${stats.completedTransactions} completed`,
+      icon: ArrowLeftRight,
+      color: "text-green-400",
+      bg: "bg-green-400/10",
+      href: "/admin/transactions",
+    },
+    {
+      label: "Producer Profiles",
       value: stats.totalCompanies,
-      sub: "Registered seller companies",
+      sub: "Registered producer companies",
       icon: Building2,
       color: "text-orange-400",
       bg: "bg-orange-400/10",
+      href: "/admin/companies",
+    },
+    {
+      label: "Recycler Verifications",
+      value: stats.pendingRecyclers,
+      sub: "Awaiting compliance review",
+      icon: Clock,
+      color: stats.pendingRecyclers > 0 ? "text-yellow-400" : "text-white/40",
+      bg: stats.pendingRecyclers > 0 ? "bg-yellow-400/10" : "bg-white/[0.06]",
+      href: "/admin/recyclers",
     },
   ];
 
@@ -130,24 +153,22 @@ export default async function AdminOverviewPage() {
         <p className="mt-1 text-sm text-white/40">Platform-wide activity at a glance</p>
       </div>
 
-      {/* Stat cards */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {statCards.map((card) => {
           const Icon = card.icon;
           return (
-            <div
-              key={card.label}
-              className="rounded-xl border border-white/[0.06] bg-[#002a47] p-5"
-            >
-              <div className="flex items-center justify-between">
-                <p className="text-sm text-white/50">{card.label}</p>
-                <div className={`rounded-lg p-2 ${card.bg}`}>
-                  <Icon className={`h-4 w-4 ${card.color}`} />
+            <a key={card.label} href={card.href} className="group">
+              <div className="rounded-xl border border-white/[0.06] bg-[#002a47] p-5 transition-colors hover:border-white/[0.12]">
+                <div className="flex items-center justify-between">
+                  <p className="text-sm text-white/50">{card.label}</p>
+                  <div className={`rounded-lg p-2 ${card.bg}`}>
+                    <Icon className={`h-4 w-4 ${card.color}`} />
+                  </div>
                 </div>
+                <p className="mt-3 text-3xl font-bold text-white">{card.value}</p>
+                <p className="mt-1 text-xs text-white/30">{card.sub}</p>
               </div>
-              <p className="mt-3 text-3xl font-bold text-white">{card.value}</p>
-              <p className="mt-1 text-xs text-white/30">{card.sub}</p>
-            </div>
+            </a>
           );
         })}
       </div>
@@ -166,13 +187,18 @@ export default async function AdminOverviewPage() {
             )}
             {activity.recentUsers.map((u: any) => (
               <div key={u.id} className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-white">{u.name}</p>
-                  <p className="text-xs text-white/40">{u.email}</p>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm text-white truncate">{u.name}</p>
+                  <p className="text-xs text-white/40 truncate">{u.email}</p>
                 </div>
-                <span className="rounded-full bg-white/[0.06] px-2 py-0.5 text-xs text-white/50">
-                  {roleLabel[u.role] ?? u.role}
-                </span>
+                <div className="flex items-center gap-2 ml-2 shrink-0">
+                  {!u.is_approved && u.role && (
+                    <span className="rounded-full bg-yellow-500/10 px-2 py-0.5 text-xs text-yellow-400">pending</span>
+                  )}
+                  <span className="rounded-full bg-white/[0.06] px-2 py-0.5 text-xs text-white/50">
+                    {roleLabel[u.role] ?? u.role ?? "—"}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
@@ -194,31 +220,32 @@ export default async function AdminOverviewPage() {
                   <p className="truncate text-sm text-white">{s.title}</p>
                   <p className="text-xs text-white/40">{(s.companies as any)?.name ?? "—"}</p>
                 </div>
-                <span className="ml-2 shrink-0 rounded-full bg-white/[0.06] px-2 py-0.5 text-xs text-white/50">
-                  {s.category}
-                </span>
+                <div className="flex gap-1.5 ml-2 shrink-0">
+                  <span className="rounded-full bg-white/[0.06] px-2 py-0.5 text-xs text-white/50">{s.category}</span>
+                  <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${s.status === "live" ? "bg-green-500/10 text-green-400" : "bg-white/[0.06] text-white/40"}`}>{s.status}</span>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Recent bookings */}
+        {/* Recent bids */}
         <div className="rounded-xl border border-white/[0.06] bg-[#002a47] p-5">
           <div className="mb-4 flex items-center gap-2">
-            <CalendarDays className="h-4 w-4 text-brand-accent" />
-            <h2 className="text-sm font-semibold text-white">Recent Bookings</h2>
+            <Gavel className="h-4 w-4 text-brand-accent" />
+            <h2 className="text-sm font-semibold text-white">Recent Bids</h2>
           </div>
           <div className="space-y-3">
-            {activity.recentBookings.length === 0 && (
-              <p className="text-xs text-white/30">No bookings yet</p>
+            {activity.recentBids.length === 0 && (
+              <p className="text-xs text-white/30">No bids yet</p>
             )}
-            {activity.recentBookings.map((b: any) => (
+            {activity.recentBids.map((b: any) => (
               <div key={b.id} className="flex items-center justify-between">
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm text-white">{(b.scraps as any)?.title ?? "—"}</p>
-                  <p className="text-xs text-white/40">by {(b.buyer as any)?.name ?? "—"}</p>
+                  <p className="text-xs text-white/40">by {(b.users as any)?.name ?? "—"} · ₹{b.offered_price?.toLocaleString("en-IN")}</p>
                 </div>
-                <span className={`ml-2 shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ${bookingStatusColor[b.status]}`}>
+                <span className={`ml-2 shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ${bidStatusColor[b.status]}`}>
                   {b.status}
                 </span>
               </div>

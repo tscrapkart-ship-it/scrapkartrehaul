@@ -42,7 +42,7 @@ export function ScrapCard({
         >
           {scrap.category}
         </span>
-        {scrap.status && scrap.status !== "available" && (
+        {scrap.status && scrap.status !== "live" && (
           <span className="absolute right-3 top-3 rounded-full bg-white/10 px-2.5 py-0.5 text-xs font-medium capitalize text-white/60 backdrop-blur-sm">
             {scrap.status}
           </span>

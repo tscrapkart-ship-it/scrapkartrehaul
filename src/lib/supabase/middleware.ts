@@ -35,40 +35,50 @@ export async function updateSession(request: NextRequest) {
 
   const path = request.nextUrl.pathname;
 
-  // Public routes that don't require auth
-  const publicRoutes = ["/", "/login", "/signup", "/auth/callback"];
-  const isPublicRoute = publicRoutes.some(
-    (route) => path === route || path.startsWith("/auth/")
-  );
+  // Public routes — always accessible
+  const publicRoutes = [
+    "/",
+    "/login",
+    "/signup",
+    "/auth/callback",
+    "/contact",
+    "/blogs",
+    "/pending-approval",
+  ];
+  const isPublicRoute =
+    publicRoutes.some((route) => path === route) ||
+    path.startsWith("/auth/") ||
+    path.startsWith("/blogs/");
 
-  // If not authenticated and trying to access protected route
+  // Unauthenticated: redirect to login for protected routes
   if (!user && !isPublicRoute) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
-  // If authenticated, check role-based routing
   if (user) {
     const { data: profile } = await supabase
       .from("users")
-      .select("role")
+      .select("role, is_approved, onboarding_completed")
       .eq("id", user.id)
       .single();
 
     const role = profile?.role;
+    const isApproved = profile?.is_approved ?? false;
+    const onboardingCompleted = profile?.onboarding_completed ?? false;
 
-    // Redirect authenticated users away from auth pages and landing page
+    // Already authenticated — redirect away from auth/landing pages
     if (path === "/login" || path === "/signup" || path === "/") {
-      if (!role) return supabaseResponse; // no role yet — let them see the page
+      if (!role) return supabaseResponse;
       const url = request.nextUrl.clone();
       if (role === "admin") url.pathname = "/admin";
-      else if (role === "waste_producer") url.pathname = "/dashboard";
+      else if (role === "waste_producer" || role === "both") url.pathname = "/dashboard";
       else url.pathname = "/marketplace";
       return NextResponse.redirect(url);
     }
 
-    // Admin: lock to /admin/* only
+    // Admin: only /admin/* paths
     if (role === "admin") {
       if (!path.startsWith("/admin")) {
         const url = request.nextUrl.clone();
@@ -85,14 +95,67 @@ export async function updateSession(request: NextRequest) {
       return NextResponse.redirect(url);
     }
 
-    // User needs to select role — but don't interrupt public pages like the landing page
+    // No role yet — must select role first
     if (!role && path !== "/role-select" && !isPublicRoute) {
       const url = request.nextUrl.clone();
       url.pathname = "/role-select";
       return NextResponse.redirect(url);
     }
 
-    // Role-based route protection
+    // Redirect away from /role-select if role already set
+    if (role && path === "/role-select") {
+      const url = request.nextUrl.clone();
+      if (!onboardingCompleted) {
+        url.pathname =
+          role === "recycler"
+            ? "/onboarding/recycler"
+            : "/onboarding/producer";
+      } else if (!isApproved) {
+        url.pathname = "/pending-approval";
+      } else if (role === "waste_producer" || role === "both") {
+        url.pathname = "/dashboard";
+      } else {
+        url.pathname = "/marketplace";
+      }
+      return NextResponse.redirect(url);
+    }
+
+    // Has role but not onboarded — send to onboarding
+    if (
+      role &&
+      !onboardingCompleted &&
+      !path.startsWith("/onboarding") &&
+      !isPublicRoute
+    ) {
+      const url = request.nextUrl.clone();
+      url.pathname =
+        role === "recycler" ? "/onboarding/recycler" : "/onboarding/producer";
+      return NextResponse.redirect(url);
+    }
+
+    // Onboarded but not approved — send to pending-approval
+    if (
+      role &&
+      onboardingCompleted &&
+      !isApproved &&
+      path !== "/pending-approval" &&
+      !isPublicRoute &&
+      !path.startsWith("/onboarding")
+    ) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/pending-approval";
+      return NextResponse.redirect(url);
+    }
+
+    // Approved users: redirect away from pending-approval
+    if (isApproved && path === "/pending-approval") {
+      const url = request.nextUrl.clone();
+      url.pathname = role === "waste_producer" || role === "both" ? "/dashboard" : "/marketplace";
+      return NextResponse.redirect(url);
+    }
+
+    // Role-based route protection (approved + onboarded users)
+    // "both" can access everything — no restrictions needed
     if (role === "recycler" && path.startsWith("/dashboard")) {
       const url = request.nextUrl.clone();
       url.pathname = "/marketplace";
@@ -102,13 +165,6 @@ export async function updateSession(request: NextRequest) {
     if (role === "waste_producer" && path.startsWith("/marketplace")) {
       const url = request.nextUrl.clone();
       url.pathname = "/dashboard";
-      return NextResponse.redirect(url);
-    }
-
-    // Redirect from role-select if already has role
-    if (role && path === "/role-select") {
-      const url = request.nextUrl.clone();
-      url.pathname = role === "waste_producer" ? "/dashboard" : "/marketplace";
       return NextResponse.redirect(url);
     }
   }

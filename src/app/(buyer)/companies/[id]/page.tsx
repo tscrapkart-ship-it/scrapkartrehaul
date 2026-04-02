@@ -11,7 +11,7 @@ async function getCompanyWithScraps(id: string) {
     const company = mockCompanies.find((c) => c.id === id);
     if (!company) return null;
     const scraps = mockScraps.filter(
-      (s) => s.company_id === id && s.status === "available"
+      (s) => s.company_id === id && s.status === "live"
     );
     return { company, scraps };
   }

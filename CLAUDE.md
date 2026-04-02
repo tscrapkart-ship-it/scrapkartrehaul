@@ -36,6 +36,7 @@ The user is **vibe coding** this entire project — building it end-to-end throu
 | 8 | PWA (`@ducanh2912/next-pwa`, `manifest.json`, icons) + Vercel deploy | ✅ Done |
 | 9 | Admin dashboard — `/admin/*` route, all 5 pages, admin role + RLS | ✅ Done |
 | 10 | Seed/test data — 5 test accounts live in Supabase with companies, listings, bookings, messages | ✅ Done |
+| 11 | Google OAuth — Sign in/up with Google on login + signup pages, DB trigger, smart callback routing | ✅ Done |
 
 ### GitHub & Deployment
 - **GitHub:** `https://github.com/tscrapkart-ship-it/scrapkartrehaul.git` (branch: `master`)
@@ -44,8 +45,8 @@ The user is **vibe coding** this entire project — building it end-to-end throu
 
 ### What's next
 1. **Replace PWA icons** — `public/icons/icon-192x192.png` and `icon-512x512.png` are currently copies of the white logo. Replace with properly sized 192×192 and 512×512 PNGs for full PWA installability (use realfavicongenerator.net)
-2. **Push latest changes to GitHub** — admin dashboard, seed data fixes, middleware updates, and performance fixes have not been committed/pushed yet
-3. **Admin: suspend/activate users** — the users table has no `suspended` column yet; admin users page shows all users but the suspend action is not yet wired up
+2. **Admin: suspend/activate users** — the users table has no `suspended` column yet; admin users page shows all users but the suspend action is not yet wired up
+3. **Google OAuth — publish consent screen** — currently in test mode (only added test users can sign in via Google). Before public launch, go to Google Cloud Console → OAuth consent screen → Publish App
 
 ### Installed Animation Libraries (2026-03-26)
 - `gsap` + `@gsap/react` — used for hero entrance animations and stat count-up on landing page
@@ -98,6 +99,8 @@ The Supabase MCP server is authenticated and operational when using Claude Code 
 - **Realtime:** Enabled on `messages` table
 - **Auth:** Email + password. Signup sends confirmation email. Confirmation links point to `https://scrapkartrehaul.vercel.app` — updated in Supabase dashboard → Auth → URL Configuration.
 - **Auth bug fixed (2026-03-26):** Signup now shows "check your email" screen instead of prematurely redirecting to `/role-select` before email is confirmed.
+- **Google OAuth (2026-03-29):** Enabled in Supabase. Google Cloud project: `scrapkart-491711`. OAuth client credentials stored in Supabase Auth → Providers → Google. `public.users.role` is nullable to support new OAuth users who haven't picked a role yet. DB trigger `handle_new_user()` auto-inserts into `public.users` on every new auth signup (email or OAuth).
+- **Auth callback (`src/app/auth/callback/route.ts`):** After OAuth, checks user's role and routes to `/admin`, `/dashboard`, `/marketplace`, or `/role-select` as appropriate.
 
 ### Mock Data Mode
 The app is currently connected to real Supabase — mock mode is inactive. Mock mode still exists as a fallback: `isMockMode()` in `src/lib/mock-data.ts` detects a placeholder Supabase URL and switches all data fetching to local fixtures. If `.env.local` is ever reset to placeholder values, mock mode re-activates automatically.
@@ -236,6 +239,11 @@ Logo variants are in `Logos/` and mirrored in `public/logos/` — white, black, 
 - **Admin route is NOT a route group**: Admin pages live at `src/app/admin/` (a real path segment), NOT `src/app/(admin)/`. Using `(admin)/` causes Next.js path conflicts with buyer routes `/bookings` and `/companies` since route groups don't add URL segments.
 - **Admin RLS — no recursive queries on `users` table**: Use `public.is_admin()` SECURITY DEFINER function. Never write a policy on `users` that SELECTs from `users` — it causes infinite recursion.
 - **Manually inserted auth.users rows**: When inserting test users directly into `auth.users` via SQL, all string columns must be set to `''` (empty string) not NULL — e.g. `email_change`, `confirmation_token`, `recovery_token`, etc. Also set `instance_id = '00000000-0000-0000-0000-000000000000'`. Missing these causes "Database error querying schema" on login.
+- **Google OAuth — `invalid_client` error**: The Google Cloud Console popup shows the client secret in a font where uppercase `I` looks like lowercase `l`. Always use the downloaded JSON file (`client_secret` field) for the exact value, never copy from the UI popup.
+- **Google OAuth flow**: `signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.origin + '/auth/callback' } })` → Google → Supabase → `/auth/callback` → role-based redirect. New users land on `/role-select`. Returning users go straight to their dashboard.
+- **`public.users.role` is nullable**: Required for Google OAuth — new users don't have a role until they complete `/role-select`. The check constraint still enforces valid values when role IS set.
+- **DB trigger `handle_new_user()`**: Fires on every `auth.users` INSERT. Auto-inserts into `public.users` with name from Google metadata and `role = NULL`. Uses `ON CONFLICT (id) DO NOTHING` so it's safe for all signup methods.
+- **Google OAuth consent screen is in TEST MODE**: Only whitelisted test users can sign in via Google. Must publish the app in Google Cloud Console before public launch.
 - **Marketplace filter performance**: Category/sort filters use URL params + server re-render (SSR). `useTransition` in `marketplace-filters.tsx` + `loading.tsx` skeleton eliminate the frozen UI feeling. Do NOT switch to client-side filtering — SSR is intentional for SEO.
 
 ### Test Accounts (live in production Supabase)

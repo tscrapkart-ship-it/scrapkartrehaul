@@ -24,7 +24,7 @@ export default async function SellerLayout({
       .eq("id", user.id)
       .single();
 
-    if (!profile || profile.role !== "waste_producer") redirect("/marketplace");
+    if (!profile || (profile.role !== "waste_producer" && profile.role !== "both")) redirect("/marketplace");
     userName = profile.name;
   }
 

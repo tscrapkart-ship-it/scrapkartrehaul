@@ -9,7 +9,7 @@ async function getScraps(params: {
   search?: string;
 }) {
   if (isMockMode()) {
-    let results = mockScraps.filter((s) => s.status === "available");
+    let results = mockScraps.filter((s) => s.status === "live");
     if (params.category && params.category !== "All") {
       results = results.filter((s) => s.category === params.category);
     }
@@ -31,7 +31,7 @@ async function getScraps(params: {
   let query = supabase
     .from("scraps")
     .select("*, companies(name, logo_url)")
-    .eq("status", "available");
+    .eq("status", "live");
 
   if (params.category && params.category !== "All") {
     query = query.eq("category", params.category as ScrapCategory);

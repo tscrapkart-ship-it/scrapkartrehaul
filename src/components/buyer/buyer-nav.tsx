@@ -5,12 +5,13 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, Building2, CalendarDays, User, LogOut } from "lucide-react";
+import { ShoppingBag, Building2, Gavel, ArrowLeftRight, User, LogOut } from "lucide-react";
 
 const navItems = [
   { href: "/marketplace", label: "Marketplace", icon: ShoppingBag },
   { href: "/companies", label: "Companies", icon: Building2 },
-  { href: "/bookings", label: "Bookings", icon: CalendarDays },
+  { href: "/bookings", label: "My Bids", icon: Gavel },
+  { href: "/transactions", label: "Deals", icon: ArrowLeftRight },
   { href: "/profile", label: "Profile", icon: User },
 ];
 
@@ -95,7 +96,7 @@ export function BuyerNav({ userName }: { userName: string }) {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex flex-col items-center gap-0.5 px-3 py-1 text-xs transition-colors ${
+                className={`flex flex-col items-center gap-0.5 px-2 py-1 text-xs transition-colors ${
                   isActive ? "text-brand-accent" : "text-white/40"
                 }`}
               >

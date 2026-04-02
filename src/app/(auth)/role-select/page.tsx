@@ -3,10 +3,39 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Factory, Recycle, Check, ArrowRight } from "lucide-react";
+import { Factory, Recycle, Layers2, Check, ArrowRight } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import type { UserRole } from "@/types";
+
+const roles: {
+  value: UserRole;
+  title: string;
+  description: string;
+  icon: typeof Factory;
+}[] = [
+  {
+    value: "waste_producer",
+    title: "Waste Producer",
+    description:
+      "I generate industrial scrap. I want to list materials and receive bids from recyclers.",
+    icon: Factory,
+  },
+  {
+    value: "recycler",
+    title: "Recycler / Aggregator",
+    description:
+      "I process and recycle scrap. I want to browse listings and place competitive bids.",
+    icon: Recycle,
+  },
+  {
+    value: "both",
+    title: "Both",
+    description:
+      "I generate scrap and also process it. I need access to both producer and recycler tools.",
+    icon: Layers2,
+  },
+];
 
 export default function RoleSelectPage() {
   const router = useRouter();
@@ -30,56 +59,46 @@ export default function RoleSelectPage() {
       return;
     }
 
-    const { error } = await supabase.from("users").upsert({
+    const { error: upsertError } = await supabase.from("users").upsert({
       id: user.id,
       email: user.email!,
       name: user.user_metadata?.name || "User",
       role: selected,
+      onboarding_completed: false,
+      is_approved: false,
     });
 
-    if (error) {
-      setError(error.message);
+    if (upsertError) {
+      setError(upsertError.message);
       setLoading(false);
       return;
     }
 
-    router.push(selected === "waste_producer" ? "/dashboard" : "/marketplace");
+    // Redirect to role-specific onboarding
+    if (selected === "recycler") {
+      router.push("/onboarding/recycler");
+    } else {
+      // waste_producer and both both start with producer onboarding
+      router.push("/onboarding/producer");
+    }
     router.refresh();
   }
-
-  const roles: {
-    value: UserRole;
-    title: string;
-    description: string;
-    icon: typeof Factory;
-  }[] = [
-    {
-      value: "waste_producer",
-      title: "Waste Producer",
-      description:
-        "I have industrial scrap to sell. I want to list materials and connect with recyclers.",
-      icon: Factory,
-    },
-    {
-      value: "recycler",
-      title: "Recycler",
-      description:
-        "I buy and recycle scrap materials. I want to browse listings and book pickups.",
-      icon: Recycle,
-    },
-  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.1 },
+      transition: { staggerChildren: 0.1, delayChildren: 0.05 },
     },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4, ease: "easeOut" as const },
+    },
   };
 
   return (
@@ -95,12 +114,12 @@ export default function RoleSelectPage() {
           Choose Your Role
         </h1>
         <p className="text-sm text-white/40">
-          Select how you&apos;ll use ScrapKart. This determines your experience.
+          This determines your experience and onboarding. You can always contact support to change it.
         </p>
       </motion.div>
 
       {/* Role cards */}
-      <div className="space-y-4">
+      <div className="space-y-3">
         {roles.map((role) => {
           const isSelected = selected === role.value;
           const Icon = role.icon;
@@ -110,37 +129,34 @@ export default function RoleSelectPage() {
               <button
                 type="button"
                 onClick={() => setSelected(role.value)}
-                className={`w-full text-left rounded-2xl border p-6 transition-all duration-300 ${
+                className={`w-full text-left rounded-2xl border p-5 transition-all duration-300 ${
                   isSelected
                     ? "border-[#64CCC5]/50 bg-[#64CCC5]/[0.06] shadow-lg shadow-[#64CCC5]/5"
                     : "border-white/[0.06] bg-white/[0.03] hover:border-white/[0.12] hover:bg-white/[0.05]"
                 }`}
               >
                 <div className="flex items-start gap-4">
-                  {/* Icon */}
                   <div
-                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-all duration-300 ${
+                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-all duration-300 ${
                       isSelected
                         ? "bg-[#64CCC5]/15 border border-[#64CCC5]/30"
                         : "bg-white/[0.04] border border-white/[0.08]"
                     }`}
                   >
                     <Icon
-                      className={`h-6 w-6 transition-colors duration-300 ${
+                      className={`h-5 w-5 transition-colors duration-300 ${
                         isSelected ? "text-[#64CCC5]" : "text-white/40"
                       }`}
                     />
                   </div>
 
-                  {/* Text */}
-                  <div className="flex-1 space-y-1">
+                  <div className="flex-1 space-y-0.5">
                     <h3 className="font-semibold text-white">{role.title}</h3>
                     <p className="text-sm text-white/40 leading-relaxed">
                       {role.description}
                     </p>
                   </div>
 
-                  {/* Checkmark */}
                   <div
                     className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
                       isSelected
@@ -165,7 +181,6 @@ export default function RoleSelectPage() {
         })}
       </div>
 
-      {/* Error */}
       {error && (
         <motion.p
           initial={{ opacity: 0, y: -4 }}
@@ -176,7 +191,6 @@ export default function RoleSelectPage() {
         </motion.p>
       )}
 
-      {/* Continue button */}
       <motion.div variants={itemVariants}>
         <Button
           onClick={handleConfirm}

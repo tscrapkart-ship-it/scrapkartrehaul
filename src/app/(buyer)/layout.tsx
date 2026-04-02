@@ -24,7 +24,7 @@ export default async function BuyerLayout({
       .eq("id", user.id)
       .single();
 
-    if (!profile || profile.role !== "recycler") redirect("/dashboard");
+    if (!profile || (profile.role !== "recycler" && profile.role !== "both")) redirect("/dashboard");
     userName = profile.name;
   }
 

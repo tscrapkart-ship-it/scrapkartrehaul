@@ -16,6 +16,8 @@ const mockProfile: User = {
   name: "Demo User",
   phone: "+91 98765 43210",
   role: "recycler",
+  is_approved: true,
+  onboarding_completed: true,
   created_at: "2026-01-01T00:00:00Z",
 };
 

@@ -17,17 +17,34 @@ export async function GET(request: Request) {
       if (user) {
         const { data: profile } = await supabase
           .from("users")
-          .select("role")
+          .select("role, is_approved, onboarding_completed")
           .eq("id", user.id)
           .single();
 
         const role = profile?.role;
+        const isApproved = profile?.is_approved ?? false;
+        const onboardingCompleted = profile?.onboarding_completed ?? false;
+
         if (role === "admin") return NextResponse.redirect(`${origin}/admin`);
-        if (role === "waste_producer") return NextResponse.redirect(`${origin}/dashboard`);
-        if (role === "recycler") return NextResponse.redirect(`${origin}/marketplace`);
+
+        if (role && !onboardingCompleted) {
+          const dest = role === "recycler" ? "/onboarding/recycler" : "/onboarding/producer";
+          return NextResponse.redirect(`${origin}${dest}`);
+        }
+
+        if (role && onboardingCompleted && !isApproved) {
+          return NextResponse.redirect(`${origin}/pending-approval`);
+        }
+
+        if (role === "waste_producer" || role === "both") {
+          return NextResponse.redirect(`${origin}/dashboard`);
+        }
+        if (role === "recycler") {
+          return NextResponse.redirect(`${origin}/marketplace`);
+        }
       }
 
-      // No role yet (new Google user) — send to role selection
+      // New Google user — no role yet
       return NextResponse.redirect(`${origin}/role-select`);
     }
   }

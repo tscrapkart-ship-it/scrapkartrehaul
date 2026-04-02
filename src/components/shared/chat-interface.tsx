@@ -9,14 +9,18 @@ import { MessageSquare, Loader2 } from "lucide-react";
 
 export function ChatInterface({
   bookingId,
+  transactionId,
   currentUserId,
   otherUserId,
 }: {
-  bookingId: string;
+  bookingId?: string;
+  transactionId?: string;
   currentUserId: string;
   otherUserId: string;
 }) {
-  const { messages, loading, sendMessage } = useRealtimeMessages(bookingId);
+  const threadId = transactionId ?? bookingId ?? "";
+  const threadType = transactionId ? "transaction" : "booking";
+  const { messages, loading, sendMessage } = useRealtimeMessages(threadId, threadType as "booking" | "transaction");
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
