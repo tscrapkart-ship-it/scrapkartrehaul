@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { UserPlus, Mail, Lock, User } from "lucide-react";
+import { UserPlus, Mail, Lock, User, Loader2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -205,7 +205,7 @@ export default function SignupPage() {
               className="w-full h-11 rounded-xl bg-[#10B981] hover:bg-[#059669] text-black font-semibold transition-all duration-300"
               disabled={loading}
             >
-              {loading ? "Creating account..." : "Sign Up"}
+              {loading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Creating account...</> : "Sign Up"}
             </Button>
           </form>
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -12,6 +13,7 @@ import {
   ArrowLeftRight,
   User,
   LogOut,
+  Loader2,
   ChevronDown,
 } from "lucide-react";
 
@@ -26,8 +28,10 @@ const navItems = [
 export function BuyerNav({ userName }: { userName: string }) {
   const pathname = usePathname();
   const router = useRouter();
+  const [loggingOut, setLoggingOut] = useState(false);
 
   async function handleLogout() {
+    setLoggingOut(true);
     const supabase = createClient();
     await supabase.auth.signOut();
     router.push("/login");
@@ -93,9 +97,10 @@ export function BuyerNav({ userName }: { userName: string }) {
               variant="ghost"
               size="sm"
               onClick={handleLogout}
+              disabled={loggingOut}
               className="h-9 w-9 rounded-lg text-[#A3A3A3] hover:bg-[#1A1A1A] hover:text-white"
             >
-              <LogOut className="h-4 w-4" />
+              {loggingOut ? <Loader2 className="h-4 w-4 animate-spin" /> : <LogOut className="h-4 w-4" />}
             </Button>
           </div>
         </div>

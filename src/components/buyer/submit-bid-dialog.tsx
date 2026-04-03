@@ -13,7 +13,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Gavel, CheckCircle, IndianRupee, CalendarDays, MessageSquare } from "lucide-react";
+import { Gavel, CheckCircle, IndianRupee, CalendarDays, MessageSquare, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
 interface SubmitBidDialogProps {
@@ -38,6 +38,7 @@ export function SubmitBidDialog({
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [withdrawing, setWithdrawing] = useState(false);
   const [success, setSuccess] = useState(false);
   const [offeredPrice, setOfferedPrice] = useState(
     existingBid?.offered_price?.toString() ?? ""
@@ -93,7 +94,7 @@ export function SubmitBidDialog({
 
   async function handleWithdraw() {
     if (!existingBid) return;
-    setLoading(true);
+    setWithdrawing(true);
 
     const supabase = createClient();
     const { error } = await supabase
@@ -101,7 +102,7 @@ export function SubmitBidDialog({
       .update({ status: "withdrawn", updated_at: new Date().toISOString() })
       .eq("id", existingBid.id);
 
-    setLoading(false);
+    setWithdrawing(false);
 
     if (error) {
       toast.error(error.message);
@@ -245,18 +246,27 @@ export function SubmitBidDialog({
                   type="button"
                   variant="outline"
                   onClick={handleWithdraw}
-                  disabled={loading}
+                  disabled={loading || withdrawing}
                   className="border-red-500/30 text-red-400 hover:bg-red-500/10 hover:border-red-500/50"
                 >
-                  Withdraw
+                  {withdrawing ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    "Withdraw"
+                  )}
                 </Button>
               )}
               <Button
                 type="submit"
-                disabled={loading || !offeredPrice}
+                disabled={loading || withdrawing || !offeredPrice}
                 className="flex-1 bg-brand-accent text-brand-dark font-semibold hover:bg-brand-accent/90 disabled:opacity-40"
               >
-                {loading ? "Submitting..." : hasPendingBid ? "Update Bid" : "Submit Bid"}
+                {loading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Submitting...
+                  </>
+                ) : hasPendingBid ? "Update Bid" : "Submit Bid"}
               </Button>
             </div>
           </form>

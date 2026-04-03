@@ -25,6 +25,7 @@ export default function EditScrapPage() {
   const params = useParams();
   const [scrap, setScrap] = useState<Scrap | null>(null);
   const [loading, setLoading] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [fetching, setFetching] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [images, setImages] = useState<string[]>([]);
@@ -87,10 +88,15 @@ export default function EditScrapPage() {
 
   async function handleDelete() {
     if (!scrap || !confirm("Delete this listing?")) return;
-    const supabase = createClient();
-    await supabase.from("scraps").delete().eq("id", scrap.id);
-    router.push("/scraps");
-    router.refresh();
+    setDeleting(true);
+    try {
+      const supabase = createClient();
+      await supabase.from("scraps").delete().eq("id", scrap.id);
+      router.push("/scraps");
+      router.refresh();
+    } finally {
+      setDeleting(false);
+    }
   }
 
   if (fetching) {
@@ -126,10 +132,20 @@ export default function EditScrapPage() {
           variant="destructive"
           size="sm"
           onClick={handleDelete}
+          disabled={deleting}
           className="shrink-0 bg-red-500/10 text-red-400 hover:bg-red-500/20 border border-red-500/20"
         >
-          <Trash2 className="mr-2 h-4 w-4" />
-          Delete
+          {deleting ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Deleting...
+            </>
+          ) : (
+            <>
+              <Trash2 className="mr-2 h-4 w-4" />
+              Delete
+            </>
+          )}
         </Button>
       </div>
 

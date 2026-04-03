@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { LogIn, Mail, Lock } from "lucide-react";
+import { LogIn, Mail, Lock, Loader2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -112,7 +112,7 @@ export default function LoginPage() {
             className="w-full h-11 rounded-xl bg-[#10B981] hover:bg-[#059669] text-black font-semibold transition-all duration-300"
             disabled={loading}
           >
-            {loading ? "Signing in..." : "Sign In"}
+            {loading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Signing in...</> : "Sign In"}
           </Button>
         </form>
 

@@ -3,7 +3,7 @@
 import { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import { uploadImage, deleteImage } from "@/lib/supabase/storage";
-import { Upload, X } from "lucide-react";
+import { Upload, X, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -156,7 +156,11 @@ export function ImageUpload({
             disabled={uploading}
             className="flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-white/10 bg-brand-dark px-6 py-8 transition-colors hover:border-brand-accent/30 hover:bg-brand-dark/80 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            <Upload className="h-6 w-6 text-white/30" />
+            {uploading ? (
+              <Loader2 className="h-6 w-6 text-brand-accent animate-spin" />
+            ) : (
+              <Upload className="h-6 w-6 text-white/30" />
+            )}
             <span className="text-sm text-white/40">
               {uploading ? "Uploading..." : "Click or drag images here"}
             </span>

@@ -15,7 +15,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { ShoppingBag, Info } from "lucide-react";
+import { ShoppingBag, Info, Loader2 } from "lucide-react";
 
 export function BookScrapDialog({
   scrapId,
@@ -97,7 +97,14 @@ export function BookScrapDialog({
             disabled={loading}
             className="bg-brand-accent text-brand-dark hover:bg-brand-accent/80"
           >
-            {loading ? "Booking..." : "Confirm Booking"}
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Booking...
+              </>
+            ) : (
+              "Confirm Booking"
+            )}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

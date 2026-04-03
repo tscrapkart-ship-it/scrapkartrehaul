@@ -263,8 +263,14 @@ export function BidsList({
                       disabled={actionLoading === bid.id}
                       className="flex-1 border-red-500/25 text-red-400 hover:bg-red-500/10"
                     >
-                      <X className="h-3.5 w-3.5 mr-1" />
-                      Decline
+                      {actionLoading === bid.id ? (
+                        <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                      ) : (
+                        <>
+                          <X className="h-3.5 w-3.5 mr-1" />
+                          Decline
+                        </>
+                      )}
                     </Button>
                   </div>
                 )}
