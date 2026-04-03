@@ -103,7 +103,7 @@ export default function RecyclerOnboardingPage() {
 
     if (userError) { setError(userError.message); setLoading(false); return; }
 
-    router.push("/pending-approval");
+    router.push("/marketplace");
     router.refresh();
   }
 

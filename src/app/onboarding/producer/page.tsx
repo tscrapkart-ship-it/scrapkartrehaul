@@ -136,7 +136,8 @@ export default function ProducerOnboardingPage() {
 
     if (userError) { setError(userError.message); setLoading(false); return; }
 
-    router.push("/pending-approval");
+    const dest = userRole === "waste_producer" || userRole === "both" ? "/dashboard" : "/marketplace";
+    router.push(dest);
     router.refresh();
   }
 

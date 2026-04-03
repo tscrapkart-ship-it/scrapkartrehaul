@@ -120,8 +120,6 @@ export async function updateSession(request: NextRequest) {
           role === "recycler"
             ? "/onboarding/recycler"
             : "/onboarding/producer";
-      } else if (!isApproved) {
-        url.pathname = "/pending-approval";
       } else if (role === "waste_producer" || role === "both") {
         url.pathname = "/dashboard";
       } else {
@@ -143,22 +141,8 @@ export async function updateSession(request: NextRequest) {
       return NextResponse.redirect(url);
     }
 
-    // Onboarded but not approved — send to pending-approval
-    if (
-      role &&
-      onboardingCompleted &&
-      !isApproved &&
-      path !== "/pending-approval" &&
-      !isPublicRoute &&
-      !path.startsWith("/onboarding")
-    ) {
-      const url = request.nextUrl.clone();
-      url.pathname = "/pending-approval";
-      return NextResponse.redirect(url);
-    }
-
-    // Approved users: redirect away from pending-approval
-    if (isApproved && path === "/pending-approval") {
+    // Redirect away from pending-approval — approval gate removed
+    if (path === "/pending-approval") {
       const url = request.nextUrl.clone();
       url.pathname = role === "waste_producer" || role === "both" ? "/dashboard" : "/marketplace";
       return NextResponse.redirect(url);
