@@ -115,7 +115,7 @@ export default function NewScrapPage() {
       <div className="mx-auto max-w-2xl animate-fade-in">
         <div className="rounded-xl border border-[#262626] bg-[#141414] p-8 flex items-center justify-center gap-3">
           <Loader2 className="h-5 w-5 animate-spin text-[#10B981]" />
-          <p className="text-[#737373]">Loading company info...</p>
+          <p className="text-[#737373] text-base">Loading company info...</p>
         </div>
       </div>
     );
@@ -125,8 +125,8 @@ export default function NewScrapPage() {
     return (
       <div className="mx-auto max-w-2xl animate-fade-in">
         <div className="rounded-xl border border-yellow-500/20 bg-yellow-500/[0.04] p-8 text-center">
-          <p className="text-yellow-400 font-semibold">Company profile required</p>
-          <p className="text-sm text-[#737373] mt-1">Set up your company before posting listings.</p>
+          <p className="text-yellow-400 font-semibold text-lg">Company profile required</p>
+          <p className="text-base text-[#737373] mt-1">Set up your company before posting listings.</p>
         </div>
       </div>
     );
@@ -140,8 +140,8 @@ export default function NewScrapPage() {
           <PackagePlus className="h-5 w-5 text-[#10B981]" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold text-white">New Scrap Listing</h1>
-          <p className="text-sm text-[#737373]">Recyclers will bid on your listing.</p>
+          <h1 className="text-3xl font-bold text-white">New Scrap Listing</h1>
+          <p className="text-base text-[#737373]">Recyclers will bid on your listing.</p>
         </div>
       </div>
 
@@ -155,7 +155,7 @@ export default function NewScrapPage() {
 
             {/* Title */}
             <div className="space-y-2">
-              <Label htmlFor="title" className="text-[#A3A3A3] text-sm">Listing Title *</Label>
+              <Label htmlFor="title" className="text-[#A3A3A3] text-base">Listing Title *</Label>
               <Input
                 id="title"
                 name="title"
@@ -167,14 +167,14 @@ export default function NewScrapPage() {
 
             {/* Category */}
             <div className="space-y-2.5">
-              <Label className="text-[#A3A3A3] text-sm">Category *</Label>
+              <Label className="text-[#A3A3A3] text-base">Category *</Label>
               <div className="flex flex-wrap gap-2">
                 {categories.map((cat) => (
                   <button
                     key={cat}
                     type="button"
                     onClick={() => handleCategoryChange(cat)}
-                    className={`rounded-lg px-4 py-2 text-sm font-medium transition-all ${
+                    className={`rounded-lg px-4 py-2 text-base font-medium transition-all ${
                       selectedCategory === cat
                         ? "bg-[#10B981] text-black shadow-[0_0_12px_rgba(16,185,129,0.15)]"
                         : "border border-[#262626] bg-[#0A0A0A] text-[#A3A3A3] hover:bg-[#1A1A1A] hover:text-white hover:border-[#333]"
@@ -188,7 +188,7 @@ export default function NewScrapPage() {
 
             {/* Sub-type */}
             <div className="space-y-2.5">
-              <Label className="text-[#A3A3A3] text-sm">
+              <Label className="text-[#A3A3A3] text-base">
                 Sub-type <span className="text-[#525252]">(optional)</span>
               </Label>
               <div className="flex flex-wrap gap-2">
@@ -197,7 +197,7 @@ export default function NewScrapPage() {
                     key={sub}
                     type="button"
                     onClick={() => setSelectedSubType(sub === selectedSubType ? "" : sub)}
-                    className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
+                    className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-all ${
                       selectedSubType === sub
                         ? "bg-[#059669]/30 text-[#34D399] border border-[#10B981]/30"
                         : "border border-[#262626] bg-[#0A0A0A] text-[#737373] hover:bg-[#1A1A1A] hover:text-white hover:border-[#333]"
@@ -218,7 +218,7 @@ export default function NewScrapPage() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="quantity" className="text-[#A3A3A3] text-sm">Quantity *</Label>
+                <Label htmlFor="quantity" className="text-[#A3A3A3] text-base">Quantity *</Label>
                 <Input
                   id="quantity"
                   name="quantity"
@@ -230,12 +230,12 @@ export default function NewScrapPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="unit" className="text-[#A3A3A3] text-sm">Unit *</Label>
+                <Label htmlFor="unit" className="text-[#A3A3A3] text-base">Unit *</Label>
                 <select
                   id="unit"
                   name="unit"
                   required
-                  className="flex h-11 w-full rounded-lg border border-[#262626] bg-[#0A0A0A] px-3 py-2 text-sm text-white focus:border-[#10B981] focus:outline-none focus:ring-2 focus:ring-[#10B981]/20"
+                  className="flex h-11 w-full rounded-lg border border-[#262626] bg-[#0A0A0A] px-3 py-2 text-base text-white focus:border-[#10B981] focus:outline-none focus:ring-2 focus:ring-[#10B981]/20"
                 >
                   {units.map((u) => (
                     <option key={u} value={u} className="bg-[#141414] text-white">{u}</option>
@@ -245,7 +245,7 @@ export default function NewScrapPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="price_expectation" className="text-[#A3A3A3] text-sm">
+              <Label htmlFor="price_expectation" className="text-[#A3A3A3] text-base">
                 Expected Price (₹)
               </Label>
               <Input
@@ -257,7 +257,7 @@ export default function NewScrapPage() {
                 placeholder="Recyclers will bid against this"
                 className="border-[#262626] bg-[#0A0A0A] text-white placeholder:text-[#525252] h-11 focus:border-[#10B981] focus:ring-[#10B981]/20"
               />
-              <p className="flex items-center gap-1.5 text-xs text-[#525252]">
+              <p className="flex items-center gap-1.5 text-sm text-[#525252]">
                 <Info className="h-3 w-3" />
                 This is a reference price. Recyclers submit their own bid offers.
               </p>
@@ -271,18 +271,18 @@ export default function NewScrapPage() {
             </p>
 
             <div className="space-y-2">
-              <Label htmlFor="description" className="text-[#A3A3A3] text-sm">Description</Label>
+              <Label htmlFor="description" className="text-[#A3A3A3] text-base">Description</Label>
               <textarea
                 id="description"
                 name="description"
                 rows={3}
-                className="flex w-full rounded-lg border border-[#262626] bg-[#0A0A0A] px-3 py-2.5 text-sm text-white placeholder:text-[#525252] focus:border-[#10B981] focus:outline-none focus:ring-2 focus:ring-[#10B981]/20 resize-none"
+                className="flex w-full rounded-lg border border-[#262626] bg-[#0A0A0A] px-3 py-2.5 text-base text-white placeholder:text-[#525252] focus:border-[#10B981] focus:outline-none focus:ring-2 focus:ring-[#10B981]/20 resize-none"
                 placeholder="Condition, grade, any relevant details..."
               />
             </div>
 
             <div className="space-y-2">
-              <Label className="text-[#A3A3A3] text-sm">Images</Label>
+              <Label className="text-[#A3A3A3] text-base">Images</Label>
               <ImageUpload
                 bucket="scrap-images"
                 path="scraps"
@@ -304,7 +304,7 @@ export default function NewScrapPage() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="address" className="text-[#A3A3A3] text-sm">Address</Label>
+                <Label htmlFor="address" className="text-[#A3A3A3] text-base">Address</Label>
                 <Input
                   id="address"
                   name="address"
@@ -312,7 +312,7 @@ export default function NewScrapPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="city" className="text-[#A3A3A3] text-sm">City *</Label>
+                <Label htmlFor="city" className="text-[#A3A3A3] text-base">City *</Label>
                 <Input
                   id="city"
                   name="city"
@@ -323,7 +323,7 @@ export default function NewScrapPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="state" className="text-[#A3A3A3] text-sm">State *</Label>
+                <Label htmlFor="state" className="text-[#A3A3A3] text-base">State *</Label>
                 <Input
                   id="state"
                   name="state"
@@ -332,7 +332,7 @@ export default function NewScrapPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="pincode" className="text-[#A3A3A3] text-sm">Pincode</Label>
+                <Label htmlFor="pincode" className="text-[#A3A3A3] text-base">Pincode</Label>
                 <Input
                   id="pincode"
                   name="pincode"
@@ -345,7 +345,7 @@ export default function NewScrapPage() {
 
           {/* Error */}
           {error && (
-            <div className="rounded-lg border border-red-500/20 bg-red-500/5 px-4 py-3 text-sm text-red-400">
+            <div className="rounded-lg border border-red-500/20 bg-red-500/5 px-4 py-3 text-base text-red-400">
               {error}
             </div>
           )}

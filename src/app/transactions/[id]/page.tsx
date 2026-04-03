@@ -161,7 +161,7 @@ export default function TransactionDetailPage() {
         <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#141414] border border-[#262626]">
           <Loader2 className="h-5 w-5 animate-spin text-[#10B981]" />
         </div>
-        <span className="mt-3 text-sm text-[#525252]">Loading deal...</span>
+        <span className="mt-3 text-base text-[#525252]">Loading deal...</span>
       </div>
     );
   }
@@ -172,8 +172,8 @@ export default function TransactionDetailPage() {
         <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#141414] border border-[#262626]">
           <XCircle className="h-6 w-6 text-[#525252]" />
         </div>
-        <p className="mt-4 text-sm text-[#737373]">Deal not found</p>
-        <Link href="/transactions" className="mt-3 text-xs text-[#10B981] hover:underline">
+        <p className="mt-4 text-base text-[#737373]">Deal not found</p>
+        <Link href="/transactions" className="mt-3 text-sm text-[#10B981] hover:underline">
           Back to deals
         </Link>
       </div>
@@ -190,7 +190,7 @@ export default function TransactionDetailPage() {
     <div className="min-h-screen bg-[#0A0A0A]">
       <div className="mx-auto max-w-2xl px-4 py-8 space-y-6">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-1.5 text-sm text-[#525252] animate-fade-in">
+        <nav className="flex items-center gap-1.5 text-base text-[#525252] animate-fade-in">
           <Link href="/transactions" className="flex items-center gap-1 hover:text-[#10B981] transition-colors">
             <ArrowLeft className="h-3.5 w-3.5" />
             Deals
@@ -205,7 +205,7 @@ export default function TransactionDetailPage() {
             <p className="text-xs font-medium uppercase tracking-widest text-[#525252]">
               Transaction
             </p>
-            <h1 className="mt-1 text-2xl font-bold text-white">Deal Details</h1>
+            <h1 className="mt-1 text-3xl font-bold text-white">Deal Details</h1>
           </div>
           <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium ${status.bg} ${status.text}`}>
             <span className={`h-1.5 w-1.5 rounded-full ${status.dot}`} />
@@ -242,7 +242,7 @@ export default function TransactionDetailPage() {
                         )}
                       </div>
                       <span
-                        className={`text-[11px] font-medium ${
+                        className={`text-xs font-medium ${
                           state === "done" || state === "active"
                             ? "text-[#A3A3A3]"
                             : "text-[#525252]"
@@ -303,7 +303,7 @@ export default function TransactionDetailPage() {
                 </div>
                 <div>
                   <p className="text-xs font-medium uppercase tracking-widest text-[#525252]">Agreed Price</p>
-                  <p className="mt-1.5 text-2xl font-bold text-[#10B981]">
+                  <p className="mt-1.5 text-3xl font-bold text-[#10B981]">
                     {"\u20B9"}{tx.final_price.toLocaleString("en-IN")}
                   </p>
                 </div>
@@ -356,14 +356,14 @@ export default function TransactionDetailPage() {
                 <ShieldCheck className="h-4 w-4 text-[#10B981]" />
               </div>
               <div>
-                <h3 className="font-semibold text-white text-sm">Pickup Verification</h3>
-                <p className="text-xs text-[#525252]">OTP-based confirmation</p>
+                <h3 className="font-semibold text-white text-base">Pickup Verification</h3>
+                <p className="text-sm text-[#525252]">OTP-based confirmation</p>
               </div>
             </div>
 
             {isProducer && tx.pickup_otp && (
               <div className="space-y-3">
-                <p className="text-sm text-[#737373]">
+                <p className="text-base text-[#737373]">
                   Share this OTP with the recycler at pickup. They will use it to confirm collection.
                 </p>
                 <div className="flex items-center gap-3">
@@ -384,7 +384,7 @@ export default function TransactionDetailPage() {
 
             {isRecycler && (
               <div className="space-y-3">
-                <p className="text-sm text-[#737373]">
+                <p className="text-base text-[#737373]">
                   Ask the producer for the 6-digit OTP. Enter it below to confirm pickup and complete the deal.
                 </p>
                 <div className="flex gap-3">
@@ -407,7 +407,7 @@ export default function TransactionDetailPage() {
             )}
 
             {tx.otp_verified_at && (
-              <div className="flex items-center gap-2 rounded-lg bg-[#10B981]/10 border border-[#10B981]/20 px-3 py-2.5 text-sm text-[#10B981]">
+              <div className="flex items-center gap-2 rounded-lg bg-[#10B981]/10 border border-[#10B981]/20 px-3 py-2.5 text-base text-[#10B981]">
                 <ShieldCheck className="h-4 w-4" />
                 Pickup confirmed on{" "}
                 {new Date(tx.otp_verified_at).toLocaleDateString("en-IN", {
@@ -423,7 +423,7 @@ export default function TransactionDetailPage() {
         {/* Completed OTP confirmation (shown when deal is completed) */}
         {tx.status === "completed" && tx.otp_verified_at && (
           <div className="rounded-xl border border-[#10B981]/20 bg-[#10B981]/5 p-4 animate-slide-up delay-4">
-            <div className="flex items-center gap-2.5 text-sm text-[#10B981]">
+            <div className="flex items-center gap-2.5 text-base text-[#10B981]">
               <ShieldCheck className="h-4.5 w-4.5" />
               <span className="font-medium">
                 Pickup verified on{" "}
@@ -440,7 +440,7 @@ export default function TransactionDetailPage() {
         {/* Chat button */}
         <div className="animate-slide-up delay-5">
           <Link href={`/transactions/${tx.id}/chat`}>
-            <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#10B981] px-5 py-3 text-sm font-semibold text-black transition-all hover:bg-[#059669] active:scale-[0.98] shadow-lg shadow-[#10B981]/20">
+            <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#10B981] px-5 py-3 text-base font-semibold text-black transition-all hover:bg-[#059669] active:scale-[0.98] shadow-lg shadow-[#10B981]/20">
               <MessageCircle className="h-4 w-4" />
               Open Chat
             </button>
@@ -448,7 +448,7 @@ export default function TransactionDetailPage() {
         </div>
 
         {/* Transaction metadata */}
-        <div className="flex items-center justify-between text-xs text-[#333] pt-2 animate-fade-in delay-6">
+        <div className="flex items-center justify-between text-sm text-[#333] pt-2 animate-fade-in delay-6">
           <span>Transaction ID: {tx.id.slice(0, 8)}...</span>
           <span>
             Created{" "}

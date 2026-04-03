@@ -39,8 +39,8 @@ export default async function AdminContactPage({
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-white">Contact Submissions</h1>
-        <p className="mt-1 text-sm text-white/40">Messages from the public contact form</p>
+        <h1 className="text-3xl font-bold text-white">Contact Submissions</h1>
+        <p className="mt-1 text-base text-white/40">Messages from the public contact form</p>
       </div>
 
       <div className="flex gap-2">
@@ -66,7 +66,7 @@ export default async function AdminContactPage({
       {submissions.length === 0 ? (
         <div className="flex flex-col items-center gap-2 rounded-xl border border-dashed border-[#262626] py-16 text-center">
           <MessageSquare className="h-8 w-8 text-white/20" />
-          <p className="text-sm text-white/40">No submissions yet</p>
+          <p className="text-base text-white/40">No submissions yet</p>
         </div>
       ) : (
         <div className="space-y-3">
@@ -79,14 +79,14 @@ export default async function AdminContactPage({
                 <div>
                   <div className="flex items-center gap-2">
                     <p className="font-semibold text-white">{sub.name}</p>
-                    <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${statusColor[sub.status]}`}>
+                    <span className={`rounded-full px-2.5 py-0.5 text-sm font-medium ${statusColor[sub.status]}`}>
                       {sub.status}
                     </span>
                   </div>
-                  <p className="text-sm text-white/50">{sub.email}{sub.phone ? ` · ${sub.phone}` : ""}</p>
+                  <p className="text-base text-white/50">{sub.email}{sub.phone ? ` · ${sub.phone}` : ""}</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <p className="text-xs text-white/30">
+                  <p className="text-sm text-white/30">
                     {new Date(sub.created_at).toLocaleDateString("en-IN", {
                       day: "numeric",
                       month: "short",
@@ -98,14 +98,14 @@ export default async function AdminContactPage({
               </div>
 
               {sub.subject && (
-                <p className="text-sm font-medium text-white/70">{sub.subject}</p>
+                <p className="text-base font-medium text-white/70">{sub.subject}</p>
               )}
 
-              <p className="text-sm text-white/60 leading-relaxed">{sub.message}</p>
+              <p className="text-base text-white/60 leading-relaxed">{sub.message}</p>
 
               <a
                 href={`mailto:${sub.email}?subject=Re: ${sub.subject ?? "Your message to ScrapKart"}`}
-                className="inline-block text-xs text-brand-accent hover:text-brand-accent/80 transition-colors"
+                className="inline-block text-sm text-brand-accent hover:text-brand-accent/80 transition-colors"
               >
                 Reply via email →
               </a>

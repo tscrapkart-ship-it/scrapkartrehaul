@@ -64,7 +64,7 @@ export function AdminNav() {
                 height={32}
                 priority
               />
-              <span className="hidden rounded-md border border-[#10B981]/30 bg-[#10B981]/10 px-2 py-0.5 text-xs font-semibold text-[#10B981] sm:inline">
+              <span className="hidden rounded-md border border-[#10B981]/30 bg-[#10B981]/10 px-2 py-0.5 text-sm font-semibold text-[#10B981] sm:inline">
                 Admin
               </span>
             </Link>
@@ -75,7 +75,7 @@ export function AdminNav() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`relative rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                    className={`relative rounded-lg px-3 py-2 text-base font-medium transition-colors ${
                       active
                         ? "text-[#10B981] bg-[#10B981]/[0.06]"
                         : "text-[#737373] hover:text-white hover:bg-[#1A1A1A]"
@@ -95,7 +95,7 @@ export function AdminNav() {
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#10B981]/10 border border-[#10B981]/20">
                 <ShieldCheck className="h-4 w-4 text-[#10B981]" />
               </div>
-              <span className="text-sm text-[#737373]">Admin</span>
+              <span className="text-base text-[#737373]">Admin</span>
             </div>
             <Button
               variant="ghost"
@@ -119,7 +119,7 @@ export function AdminNav() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex flex-col items-center gap-0.5 px-2 py-1 text-[10px] transition-colors shrink-0 ${
+                className={`flex flex-col items-center gap-0.5 px-2 py-1 text-xs transition-colors shrink-0 ${
                   active ? "text-[#10B981]" : "text-[#525252]"
                 }`}
               >
@@ -141,7 +141,7 @@ export function AdminNav() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex flex-col items-center gap-0.5 px-2 py-1 text-[10px] transition-colors shrink-0 ${
+                className={`flex flex-col items-center gap-0.5 px-2 py-1 text-xs transition-colors shrink-0 ${
                   active ? "text-[#10B981]" : "text-[#3F3F3F]"
                 }`}
               >

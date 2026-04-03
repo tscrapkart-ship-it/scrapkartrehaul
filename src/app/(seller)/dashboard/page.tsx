@@ -122,10 +122,10 @@ export default async function SellerDashboard() {
       {/* Page header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white">
+          <h1 className="text-3xl font-bold text-white">
             Producer Dashboard
           </h1>
-          <p className="mt-1 text-sm text-[#737373]">
+          <p className="mt-1 text-base text-[#737373]">
             Manage your scrap listings and track bids
           </p>
         </div>
@@ -151,10 +151,10 @@ export default async function SellerDashboard() {
                 )}
               </div>
               <div>
-                <h3 className="font-semibold text-white text-base">{company.name}</h3>
+                <h3 className="font-semibold text-white text-lg">{company.name}</h3>
                 <div className="flex items-center gap-2.5 mt-0.5">
                   {company.city && (
-                    <p className="text-sm text-[#737373]">
+                    <p className="text-base text-[#737373]">
                       {company.city}{company.state ? `, ${company.state}` : ""}
                     </p>
                   )}
@@ -203,8 +203,8 @@ export default async function SellerDashboard() {
                 <Building2 className="h-6 w-6 text-[#10B981]" />
               </div>
               <div>
-                <h3 className="font-semibold text-white">Set up your company profile</h3>
-                <p className="text-sm text-[#737373] mt-0.5">Required before posting listings.</p>
+                <h3 className="font-semibold text-white text-lg">Set up your company profile</h3>
+                <p className="text-base text-[#737373] mt-0.5">Required before posting listings.</p>
               </div>
             </div>
             <Link href="/company/setup">
@@ -234,7 +234,7 @@ export default async function SellerDashboard() {
                   <Icon className={`h-4 w-4 ${stat.iconColor}`} />
                 </div>
               </div>
-              <p className={`text-2xl font-bold ${stat.highlight ? "text-yellow-400" : stat.isPrice ? "text-[#10B981]" : "text-white"}`}>
+              <p className={`text-3xl font-bold ${stat.highlight ? "text-yellow-400" : stat.isPrice ? "text-[#10B981]" : "text-white"}`}>
                 {stat.value}
               </p>
             </div>
@@ -251,10 +251,10 @@ export default async function SellerDashboard() {
                 <AlertCircle className="h-5 w-5 text-yellow-400" />
               </div>
               <div>
-                <p className="font-semibold text-white">
+                <p className="font-semibold text-white text-base">
                   {pendingBids} pending bid{pendingBids !== 1 ? "s" : ""} awaiting your response
                 </p>
-                <p className="text-sm text-[#737373]">Review and accept or decline</p>
+                <p className="text-base text-[#737373]">Review and accept or decline</p>
               </div>
             </div>
             <ArrowRight className="h-5 w-5 text-yellow-400/60 transition-transform group-hover:translate-x-1" />
@@ -267,7 +267,7 @@ export default async function SellerDashboard() {
         <div className="animate-slide-up delay-4">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xs font-medium uppercase tracking-widest text-[#525252]">Recent Listings</h2>
-            <Link href="/scraps" className="text-xs text-[#10B981] hover:text-[#34D399] transition-colors flex items-center gap-1">
+            <Link href="/scraps" className="text-sm text-[#10B981] hover:text-[#34D399] transition-colors flex items-center gap-1">
               View all
               <ChevronRight className="h-3 w-3" />
             </Link>
@@ -287,7 +287,7 @@ export default async function SellerDashboard() {
                       <span className={`h-1.5 w-1.5 rounded-full ${cat.text.replace("text-", "bg-")}`} />
                       {listing.category}
                     </span>
-                    <p className="text-sm font-medium text-[#D4D4D4] truncate group-hover:text-white transition-colors">
+                    <p className="text-base font-medium text-[#D4D4D4] truncate group-hover:text-white transition-colors">
                       {listing.title}
                     </p>
                   </div>
@@ -311,8 +311,8 @@ export default async function SellerDashboard() {
           <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#1A1A1A] border border-[#262626] mb-4">
             <ArrowLeftRight className="h-7 w-7 text-[#525252]" />
           </div>
-          <p className="text-[#D4D4D4] font-semibold text-lg">No listings yet</p>
-          <p className="text-sm text-[#525252] mt-1 mb-6 max-w-xs text-center">
+          <p className="text-[#D4D4D4] font-semibold text-xl">No listings yet</p>
+          <p className="text-base text-[#525252] mt-1 mb-6 max-w-xs text-center">
             Post your first scrap listing to start receiving bids from verified recyclers.
           </p>
           <Link href="/scraps/new">

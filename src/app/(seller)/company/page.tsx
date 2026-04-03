@@ -31,7 +31,7 @@ export default async function CompanyPage() {
   return (
     <div className="mx-auto max-w-2xl space-y-6 animate-fade-in">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-white">Company Profile</h1>
+        <h1 className="text-3xl font-bold text-white">Company Profile</h1>
         <Link href="/company/edit">
           <Button className="bg-[#10B981] text-black hover:bg-[#059669] font-semibold transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.2)]">
             <Pencil className="mr-2 h-4 w-4" />
@@ -57,9 +57,9 @@ export default async function CompanyPage() {
             </div>
           )}
           <div className="min-w-0">
-            <h2 className="text-xl font-bold text-white">{company.name}</h2>
+            <h2 className="text-2xl font-bold text-white">{company.name}</h2>
             {company.industry_type && (
-              <p className="mt-1 flex items-center gap-1.5 text-sm text-[#10B981]">
+              <p className="mt-1 flex items-center gap-1.5 text-base text-[#10B981]">
                 <Factory className="h-3.5 w-3.5" />
                 {company.industry_type}
               </p>
@@ -82,7 +82,7 @@ export default async function CompanyPage() {
         </div>
 
         {company.description && (
-          <p className="mt-5 text-sm leading-relaxed text-[#A3A3A3] border-t border-[#262626] pt-5">
+          <p className="mt-5 text-base leading-relaxed text-[#A3A3A3] border-t border-[#262626] pt-5">
             {company.description}
           </p>
         )}
@@ -94,7 +94,7 @@ export default async function CompanyPage() {
               <MapPin className="h-3.5 w-3.5" />
               <span className="text-xs font-medium uppercase tracking-wider">Location</span>
             </div>
-            <div className="grid grid-cols-2 gap-y-2.5 text-sm">
+            <div className="grid grid-cols-2 gap-y-2.5 text-base">
               {company.address && (
                 <>
                   <span className="text-[#525252]">Address</span>

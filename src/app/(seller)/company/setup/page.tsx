@@ -62,8 +62,8 @@ export default function CompanySetupPage() {
           <Building2 className="h-5 w-5 text-[#10B981]" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold text-white">Set Up Your Company</h1>
-          <p className="text-sm text-[#737373]">Create your company profile to start posting listings.</p>
+          <h1 className="text-3xl font-bold text-white">Set Up Your Company</h1>
+          <p className="text-base text-[#737373]">Create your company profile to start posting listings.</p>
         </div>
       </div>
 
@@ -76,7 +76,7 @@ export default function CompanySetupPage() {
             </p>
 
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-[#A3A3A3] text-sm">Company Name *</Label>
+              <Label htmlFor="name" className="text-[#A3A3A3] text-base">Company Name *</Label>
               <Input
                 id="name"
                 name="name"
@@ -87,7 +87,7 @@ export default function CompanySetupPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="industry_type" className="text-[#A3A3A3] text-sm">Industry Type</Label>
+              <Label htmlFor="industry_type" className="text-[#A3A3A3] text-base">Industry Type</Label>
               <Input
                 id="industry_type"
                 name="industry_type"
@@ -97,7 +97,7 @@ export default function CompanySetupPage() {
             </div>
 
             <div className="space-y-2">
-              <Label className="text-[#A3A3A3] text-sm">Company Logo</Label>
+              <Label className="text-[#A3A3A3] text-base">Company Logo</Label>
               <ImageUpload
                 bucket="company-logos"
                 path="logos"
@@ -108,12 +108,12 @@ export default function CompanySetupPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="description" className="text-[#A3A3A3] text-sm">Description</Label>
+              <Label htmlFor="description" className="text-[#A3A3A3] text-base">Description</Label>
               <textarea
                 id="description"
                 name="description"
                 rows={3}
-                className="flex w-full rounded-lg border border-[#262626] bg-[#0A0A0A] px-3 py-2.5 text-sm text-white placeholder:text-[#525252] focus:border-[#10B981] focus:outline-none focus:ring-2 focus:ring-[#10B981]/20 resize-none"
+                className="flex w-full rounded-lg border border-[#262626] bg-[#0A0A0A] px-3 py-2.5 text-base text-white placeholder:text-[#525252] focus:border-[#10B981] focus:outline-none focus:ring-2 focus:ring-[#10B981]/20 resize-none"
                 placeholder="Brief description of your company"
               />
             </div>
@@ -130,7 +130,7 @@ export default function CompanySetupPage() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="address" className="text-[#A3A3A3] text-sm">Address</Label>
+                <Label htmlFor="address" className="text-[#A3A3A3] text-base">Address</Label>
                 <Input
                   id="address"
                   name="address"
@@ -138,7 +138,7 @@ export default function CompanySetupPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="city" className="text-[#A3A3A3] text-sm">City</Label>
+                <Label htmlFor="city" className="text-[#A3A3A3] text-base">City</Label>
                 <Input
                   id="city"
                   name="city"
@@ -148,7 +148,7 @@ export default function CompanySetupPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="state" className="text-[#A3A3A3] text-sm">State</Label>
+                <Label htmlFor="state" className="text-[#A3A3A3] text-base">State</Label>
                 <Input
                   id="state"
                   name="state"
@@ -156,7 +156,7 @@ export default function CompanySetupPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="pincode" className="text-[#A3A3A3] text-sm">Pincode</Label>
+                <Label htmlFor="pincode" className="text-[#A3A3A3] text-base">Pincode</Label>
                 <Input
                   id="pincode"
                   name="pincode"
@@ -169,7 +169,7 @@ export default function CompanySetupPage() {
 
           {/* Error */}
           {error && (
-            <div className="rounded-lg border border-red-500/20 bg-red-500/5 px-4 py-3 text-sm text-red-400">
+            <div className="rounded-lg border border-red-500/20 bg-red-500/5 px-4 py-3 text-base text-red-400">
               {error}
             </div>
           )}

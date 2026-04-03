@@ -116,8 +116,8 @@ export default function RecyclerOnboardingPage() {
             <Recycle className="h-5 w-5 text-[#10B981]" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white">Recycler Onboarding</h1>
-            <p className="text-xs text-[#525252]">Tell us about your processing capabilities</p>
+            <h1 className="text-2xl font-bold text-white">Recycler Onboarding</h1>
+            <p className="text-sm text-[#525252]">Tell us about your processing capabilities</p>
           </div>
         </div>
 
@@ -169,8 +169,8 @@ export default function RecyclerOnboardingPage() {
                 <p className="text-xs font-medium uppercase tracking-widest text-[#525252] mb-3">
                   Materials Accepted
                 </p>
-                <h3 className="font-semibold text-white text-base mb-1">Waste Types You Accept <span className="text-[#10B981]">*</span></h3>
-                <p className="text-sm text-[#737373] mb-4">Select all material types you can process.</p>
+                <h3 className="font-semibold text-white text-lg mb-1">Waste Types You Accept <span className="text-[#10B981]">*</span></h3>
+                <p className="text-base text-[#737373] mb-4">Select all material types you can process.</p>
                 <div className="grid grid-cols-2 gap-2">
                   {WASTE_TYPES.map((type) => {
                     const sel = wasteTypes.includes(type);
@@ -179,7 +179,7 @@ export default function RecyclerOnboardingPage() {
                         key={type}
                         type="button"
                         onClick={() => toggleItem(wasteTypes, setWasteTypes, type)}
-                        className={`flex items-center gap-2.5 rounded-lg px-4 py-3 text-sm font-medium transition-all text-left ${
+                        className={`flex items-center gap-2.5 rounded-lg px-4 py-3 text-base font-medium transition-all text-left ${
                           sel
                             ? "bg-[#10B981]/15 text-[#10B981] border border-[#10B981]/30 ring-1 ring-[#10B981]/20"
                             : "border border-[#262626] bg-[#0A0A0A] text-[#A3A3A3] hover:bg-[#1A1A1A] hover:border-[#333] hover:text-white"
@@ -211,8 +211,8 @@ export default function RecyclerOnboardingPage() {
                 <p className="text-xs font-medium uppercase tracking-widest text-[#525252] mb-3">
                   Processing Capabilities
                 </p>
-                <h3 className="font-semibold text-white text-base mb-1">Processing Methods</h3>
-                <p className="text-sm text-[#737373] mb-4">What processing do you perform? (optional)</p>
+                <h3 className="font-semibold text-white text-lg mb-1">Processing Methods</h3>
+                <p className="text-base text-[#737373] mb-4">What processing do you perform? (optional)</p>
                 <div className="flex flex-wrap gap-2">
                   {PROCESSING_TYPES.map((type) => {
                     const sel = processingTypes.includes(type);
@@ -244,7 +244,7 @@ export default function RecyclerOnboardingPage() {
                 </p>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label className="text-[#A3A3A3] text-sm">Service Radius (km)</Label>
+                    <Label className="text-[#A3A3A3] text-base">Service Radius (km)</Label>
                     <Input
                       name="service_radius_km"
                       type="number"
@@ -255,7 +255,7 @@ export default function RecyclerOnboardingPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-[#A3A3A3] text-sm">Pricing Model</Label>
+                    <Label className="text-[#A3A3A3] text-base">Pricing Model</Label>
                     <select
                       name="pricing_model"
                       value={form.pricing_model}
@@ -271,7 +271,7 @@ export default function RecyclerOnboardingPage() {
 
                 <div className="grid grid-cols-2 gap-4 mt-4">
                   <div className="space-y-2">
-                    <Label className="text-[#A3A3A3] text-sm">Min Quantity (kg)</Label>
+                    <Label className="text-[#A3A3A3] text-base">Min Quantity (kg)</Label>
                     <Input
                       name="min_quantity_kg"
                       type="number"
@@ -282,7 +282,7 @@ export default function RecyclerOnboardingPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-[#A3A3A3] text-sm">Max Quantity (kg) <span className="text-[#525252] text-xs font-normal">optional</span></Label>
+                    <Label className="text-[#A3A3A3] text-base">Max Quantity (kg) <span className="text-[#525252] text-xs font-normal">optional</span></Label>
                     <Input
                       name="max_quantity_kg"
                       type="number"
@@ -308,8 +308,8 @@ export default function RecyclerOnboardingPage() {
               <div className="flex items-start gap-3 rounded-lg border border-[#10B981]/20 bg-[#10B981]/5 p-4">
                 <Shield className="h-5 w-5 text-[#10B981] shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm text-[#10B981] font-medium mb-1">Verification speeds up approval</p>
-                  <p className="text-xs text-[#737373] leading-relaxed">
+                  <p className="text-base text-[#10B981] font-medium mb-1">Verification speeds up approval</p>
+                  <p className="text-sm text-[#737373] leading-relaxed">
                     Upload URLs to your documents (Google Drive, etc.) or paste direct links. All fields are optional but help speed up verification.
                   </p>
                 </div>
@@ -317,7 +317,7 @@ export default function RecyclerOnboardingPage() {
 
               <div className="space-y-5">
                 <div className="space-y-2">
-                  <Label className="text-[#A3A3A3] text-sm">CPCB License URL <span className="text-[#525252] text-xs font-normal">(optional)</span></Label>
+                  <Label className="text-[#A3A3A3] text-base">CPCB License URL <span className="text-[#525252] text-xs font-normal">(optional)</span></Label>
                   <Input
                     name="cpcb_license_url"
                     value={form.cpcb_license_url}
@@ -331,7 +331,7 @@ export default function RecyclerOnboardingPage() {
                 <div className="h-px bg-[#1A1A1A]" />
 
                 <div className="space-y-2">
-                  <Label className="text-[#A3A3A3] text-sm">EPR Authorization URL <span className="text-[#525252] text-xs font-normal">(optional)</span></Label>
+                  <Label className="text-[#A3A3A3] text-base">EPR Authorization URL <span className="text-[#525252] text-xs font-normal">(optional)</span></Label>
                   <Input
                     name="epr_authorization_url"
                     value={form.epr_authorization_url}
@@ -345,7 +345,7 @@ export default function RecyclerOnboardingPage() {
                 <div className="h-px bg-[#1A1A1A]" />
 
                 <div className="space-y-2">
-                  <Label className="text-[#A3A3A3] text-sm">ISO Certificate URL <span className="text-[#525252] text-xs font-normal">(optional)</span></Label>
+                  <Label className="text-[#A3A3A3] text-base">ISO Certificate URL <span className="text-[#525252] text-xs font-normal">(optional)</span></Label>
                   <Input
                     name="iso_certificate_url"
                     value={form.iso_certificate_url}
@@ -360,7 +360,7 @@ export default function RecyclerOnboardingPage() {
           )}
 
           {error && (
-            <div className="text-sm text-red-400 bg-red-400/10 border border-red-400/20 rounded-lg px-4 py-3 flex items-center gap-2 animate-scale-in">
+            <div className="text-base text-red-400 bg-red-400/10 border border-red-400/20 rounded-lg px-4 py-3 flex items-center gap-2 animate-scale-in">
               <div className="h-1.5 w-1.5 rounded-full bg-red-400 shrink-0" />
               {error}
             </div>

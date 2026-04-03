@@ -14,7 +14,7 @@ export function ImageGallery({ images }: { images: string[] }) {
         <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#1A1A1A] border border-[#262626] mb-3">
           <ImageIcon className="h-8 w-8 text-[#525252]" />
         </div>
-        <p className="text-sm text-[#525252] font-medium">No images available</p>
+        <p className="text-base text-[#525252] font-medium">No images available</p>
       </div>
     );
   }
@@ -61,7 +61,7 @@ export function ImageGallery({ images }: { images: string[] }) {
 
         {/* Image counter */}
         {images.length > 1 && (
-          <div className="absolute bottom-3 right-3 rounded-md bg-black/50 px-2.5 py-1 text-xs font-medium text-white/80 backdrop-blur-sm">
+          <div className="absolute bottom-3 right-3 rounded-md bg-black/50 px-2.5 py-1 text-sm font-medium text-white/80 backdrop-blur-sm">
             {selected + 1} / {images.length}
           </div>
         )}

@@ -84,7 +84,7 @@ export function BookScrapDialog({
             notified and you can communicate via chat.
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <div className="flex items-start gap-2 rounded-xl bg-brand-accent/5 p-3 text-sm text-white/40">
+        <div className="flex items-start gap-2 rounded-xl bg-brand-accent/5 p-3 text-base text-white/40">
           <Info className="mt-0.5 h-4 w-4 shrink-0 text-brand-accent/60" />
           Payment integration coming soon. This is a booking confirmation only.
         </div>

@@ -81,15 +81,15 @@ export default function SignupPage() {
             transition={{ delay: 0.3 }}
             className="space-y-3"
           >
-            <h1 className="text-2xl font-bold text-white tracking-tight">
+            <h1 className="text-3xl font-bold text-white tracking-tight">
               Check your email
             </h1>
-            <p className="text-sm text-white/40 leading-relaxed">
+            <p className="text-base text-white/40 leading-relaxed">
               We sent a confirmation link to{" "}
               <span className="font-medium text-[#10B981]">{email}</span>.
               Click the link to verify your account and choose your role.
             </p>
-            <p className="text-xs text-white/25">
+            <p className="text-sm text-white/25">
               Didn&apos;t receive it? Check your spam folder.
             </p>
           </motion.div>
@@ -126,17 +126,17 @@ export default function SignupPage() {
             <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#10B981]/10 border border-[#10B981]/20">
               <UserPlus className="h-6 w-6 text-[#10B981]" />
             </div>
-            <h1 className="text-2xl font-bold text-white tracking-tight">
+            <h1 className="text-3xl font-bold text-white tracking-tight">
               Create Account
             </h1>
-            <p className="text-sm text-white/40">
+            <p className="text-base text-white/40">
               Join ScrapKart and start trading
             </p>
           </div>
 
           <form onSubmit={handleSignup} className="space-y-5">
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-white/60 text-sm">
+              <Label htmlFor="name" className="text-white/60 text-base">
                 Full Name
               </Label>
               <div className="relative">
@@ -154,7 +154,7 @@ export default function SignupPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-white/60 text-sm">
+              <Label htmlFor="email" className="text-white/60 text-base">
                 Email
               </Label>
               <div className="relative">
@@ -172,7 +172,7 @@ export default function SignupPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-white/60 text-sm">
+              <Label htmlFor="password" className="text-white/60 text-base">
                 Password
               </Label>
               <div className="relative">
@@ -194,7 +194,7 @@ export default function SignupPage() {
               <motion.p
                 initial={{ opacity: 0, y: -4 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-sm text-red-400 bg-red-400/10 border border-red-400/20 rounded-lg px-3 py-2"
+                className="text-base text-red-400 bg-red-400/10 border border-red-400/20 rounded-lg px-3 py-2"
               >
                 {error}
               </motion.p>
@@ -218,7 +218,7 @@ export default function SignupPage() {
             <GoogleAuthButton label="Sign up with Google" />
           </div>
 
-          <p className="mt-6 text-center text-sm text-white/40">
+          <p className="mt-6 text-center text-base text-white/40">
             Already have an account?{" "}
             <Link
               href="/login"

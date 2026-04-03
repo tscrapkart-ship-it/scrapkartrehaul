@@ -24,8 +24,8 @@ export default async function BlogsPage() {
             <BookOpen className="h-3.5 w-3.5" />
             Blog
           </div>
-          <h1 className="text-4xl font-bold text-white">ScrapKart Blog</h1>
-          <p className="mt-3 text-[#737373] max-w-lg mx-auto">
+          <h1 className="text-5xl font-bold text-white">ScrapKart Blog</h1>
+          <p className="mt-3 text-[#737373] max-w-lg mx-auto text-lg">
             Insights on industrial scrap, recycling, and the circular economy
           </p>
         </div>
@@ -35,8 +35,8 @@ export default async function BlogsPage() {
             <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#1A1A1A] border border-[#262626] mb-4">
               <BookOpen className="h-7 w-7 text-[#525252]" />
             </div>
-            <p className="text-[#D4D4D4] font-semibold">No posts yet</p>
-            <p className="text-sm text-[#525252] mt-1">Check back soon for new articles.</p>
+            <p className="text-lg text-[#D4D4D4] font-semibold">No posts yet</p>
+            <p className="text-base text-[#525252] mt-1">Check back soon for new articles.</p>
           </div>
         ) : (
           <div className="grid gap-6 sm:grid-cols-2">
@@ -59,12 +59,12 @@ export default async function BlogsPage() {
                 <div className="p-5 space-y-2.5">
                   <div className="flex items-center gap-2">
                     {blog.is_featured && (
-                      <span className="inline-flex items-center gap-1 rounded-md bg-[#10B981]/10 px-2 py-0.5 text-[10px] font-medium text-[#10B981]">
+                      <span className="inline-flex items-center gap-1 rounded-md bg-[#10B981]/10 px-2 py-0.5 text-xs font-medium text-[#10B981]">
                         <span className="h-1 w-1 rounded-full bg-[#10B981]" />
                         Featured
                       </span>
                     )}
-                    <span className="text-xs text-[#3F3F3F]">
+                    <span className="text-sm text-[#3F3F3F]">
                       {blog.published_at
                         ? new Date(blog.published_at).toLocaleDateString("en-IN", {
                             day: "numeric",
@@ -74,13 +74,13 @@ export default async function BlogsPage() {
                         : ""}
                     </span>
                   </div>
-                  <h2 className="font-semibold text-white group-hover:text-[#10B981] transition-colors leading-snug">
+                  <h2 className="text-lg font-semibold text-white group-hover:text-[#10B981] transition-colors leading-snug">
                     {blog.title}
                   </h2>
                   {blog.excerpt && (
-                    <p className="text-sm text-[#737373] line-clamp-2">{blog.excerpt}</p>
+                    <p className="text-base text-[#737373] line-clamp-2">{blog.excerpt}</p>
                   )}
-                  <div className="flex items-center gap-1 text-xs text-[#525252] group-hover:text-[#10B981] transition-colors pt-1">
+                  <div className="flex items-center gap-1 text-sm text-[#525252] group-hover:text-[#10B981] transition-colors pt-1">
                     Read more
                     <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
                   </div>

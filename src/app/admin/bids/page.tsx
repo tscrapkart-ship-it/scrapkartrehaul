@@ -45,8 +45,8 @@ export default async function AdminBidsPage({
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-white">Bids</h1>
-        <p className="mt-1 text-sm text-white/40">All bids submitted by recyclers</p>
+        <h1 className="text-3xl font-bold text-white">Bids</h1>
+        <p className="mt-1 text-base text-white/40">All bids submitted by recyclers</p>
       </div>
 
       <div className="flex flex-wrap gap-2">
@@ -69,19 +69,19 @@ export default async function AdminBidsPage({
         {bids.length === 0 ? (
           <div className="flex flex-col items-center gap-2 py-16 text-center">
             <Gavel className="h-8 w-8 text-white/20" />
-            <p className="text-sm text-white/40">No bids found</p>
+            <p className="text-base text-white/40">No bids found</p>
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full text-base">
               <thead>
                 <tr className="border-b border-[#262626]">
-                  <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Listing</th>
-                  <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Recycler</th>
-                  <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Offered Price</th>
-                  <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Pickup Date</th>
-                  <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Status</th>
-                  <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Date</th>
+                  <th className="px-5 py-3 text-left text-sm font-medium text-white/40">Listing</th>
+                  <th className="px-5 py-3 text-left text-sm font-medium text-white/40">Recycler</th>
+                  <th className="px-5 py-3 text-left text-sm font-medium text-white/40">Offered Price</th>
+                  <th className="px-5 py-3 text-left text-sm font-medium text-white/40">Pickup Date</th>
+                  <th className="px-5 py-3 text-left text-sm font-medium text-white/40">Status</th>
+                  <th className="px-5 py-3 text-left text-sm font-medium text-white/40">Date</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/[0.04]">
@@ -89,11 +89,11 @@ export default async function AdminBidsPage({
                   <tr key={bid.id} className="hover:bg-white/[0.02] transition-colors">
                     <td className="px-5 py-4">
                       <p className="font-medium text-white truncate max-w-[200px]">{bid.scraps?.title ?? "—"}</p>
-                      <p className="text-xs text-white/40">{bid.scraps?.category}</p>
+                      <p className="text-sm text-white/40">{bid.scraps?.category}</p>
                     </td>
                     <td className="px-5 py-4">
                       <p className="text-white">{bid.users?.name ?? "—"}</p>
-                      <p className="text-xs text-white/40">{bid.users?.email}</p>
+                      <p className="text-sm text-white/40">{bid.users?.email}</p>
                     </td>
                     <td className="px-5 py-4 font-semibold text-brand-accent">
                       ₹{bid.offered_price?.toLocaleString("en-IN")}
@@ -104,7 +104,7 @@ export default async function AdminBidsPage({
                         : "—"}
                     </td>
                     <td className="px-5 py-4">
-                      <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${statusColor[bid.status] ?? "bg-white/10 text-white/60"}`}>
+                      <span className={`rounded-full px-2.5 py-1 text-sm font-medium ${statusColor[bid.status] ?? "bg-white/10 text-white/60"}`}>
                         {bid.status}
                       </span>
                     </td>
@@ -118,7 +118,7 @@ export default async function AdminBidsPage({
           </div>
         )}
       </div>
-      <p className="text-xs text-white/20">{bids.length} bid{bids.length !== 1 ? "s" : ""} shown</p>
+      <p className="text-sm text-white/20">{bids.length} bid{bids.length !== 1 ? "s" : ""} shown</p>
     </div>
   );
 }

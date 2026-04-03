@@ -29,7 +29,7 @@ export default async function BlogPostPage({
         {/* Back link */}
         <Link
           href="/blogs"
-          className="mb-8 inline-flex items-center gap-1 text-sm text-[#525252] hover:text-[#10B981] transition-colors"
+          className="mb-8 inline-flex items-center gap-1 text-base text-[#525252] hover:text-[#10B981] transition-colors"
         >
           <ChevronLeft className="h-4 w-4" />
           All Posts
@@ -52,9 +52,9 @@ export default async function BlogPostPage({
             </span>
           )}
 
-          <h1 className="text-3xl font-bold text-white leading-tight">{blog.title}</h1>
+          <h1 className="text-4xl font-bold text-white leading-tight">{blog.title}</h1>
 
-          <div className="flex items-center gap-3 text-sm text-[#737373]">
+          <div className="flex items-center gap-3 text-base text-[#737373]">
             {(blog.author as any)?.name && (
               <span className="flex items-center gap-1.5">
                 <User className="h-3.5 w-3.5" />
@@ -79,14 +79,14 @@ export default async function BlogPostPage({
 
         {/* Excerpt */}
         {blog.excerpt && (
-          <p className="mt-6 text-lg text-[#A3A3A3] leading-relaxed border-l-2 border-[#10B981]/40 pl-4">
+          <p className="mt-6 text-xl text-[#A3A3A3] leading-relaxed border-l-2 border-[#10B981]/40 pl-4">
             {blog.excerpt}
           </p>
         )}
 
         {/* Content */}
         <div className="mt-8 animate-slide-up delay-2">
-          <div className="whitespace-pre-wrap text-[#D4D4D4] leading-relaxed text-base">
+          <div className="whitespace-pre-wrap text-[#D4D4D4] leading-relaxed text-lg">
             {blog.content}
           </div>
         </div>

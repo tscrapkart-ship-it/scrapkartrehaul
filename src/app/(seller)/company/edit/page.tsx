@@ -89,7 +89,7 @@ export default function CompanyEditPage() {
         <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#1A1A1A] border border-[#262626] mb-4">
           <Building2 className="h-7 w-7 text-[#525252]" />
         </div>
-        <p className="text-[#737373]">No company found.</p>
+        <p className="text-[#737373] text-base">No company found.</p>
         <Button
           className="mt-4 bg-[#10B981] text-black hover:bg-[#059669] font-semibold"
           onClick={() => router.push("/company/setup")}
@@ -107,8 +107,8 @@ export default function CompanyEditPage() {
           <Building2 className="h-5 w-5 text-[#10B981]" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold text-white">Edit Company Profile</h1>
-          <p className="text-sm text-[#737373]">Update your company information</p>
+          <h1 className="text-3xl font-bold text-white">Edit Company Profile</h1>
+          <p className="text-base text-[#737373]">Update your company information</p>
         </div>
       </div>
 
@@ -120,7 +120,7 @@ export default function CompanyEditPage() {
             </p>
 
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-[#A3A3A3] text-sm">Company Name *</Label>
+              <Label htmlFor="name" className="text-[#A3A3A3] text-base">Company Name *</Label>
               <Input
                 id="name"
                 name="name"
@@ -130,7 +130,7 @@ export default function CompanyEditPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="industry_type" className="text-[#A3A3A3] text-sm">Industry Type</Label>
+              <Label htmlFor="industry_type" className="text-[#A3A3A3] text-base">Industry Type</Label>
               <Input
                 id="industry_type"
                 name="industry_type"
@@ -139,7 +139,7 @@ export default function CompanyEditPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label className="text-[#A3A3A3] text-sm">Company Logo</Label>
+              <Label className="text-[#A3A3A3] text-base">Company Logo</Label>
               <ImageUpload
                 bucket="company-logos"
                 path="logos"
@@ -149,13 +149,13 @@ export default function CompanyEditPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="description" className="text-[#A3A3A3] text-sm">Description</Label>
+              <Label htmlFor="description" className="text-[#A3A3A3] text-base">Description</Label>
               <textarea
                 id="description"
                 name="description"
                 rows={3}
                 defaultValue={company.description ?? ""}
-                className="flex w-full rounded-lg border border-[#262626] bg-[#0A0A0A] px-3 py-2.5 text-sm text-white placeholder:text-[#525252] focus:border-[#10B981] focus:outline-none focus:ring-2 focus:ring-[#10B981]/20 resize-none"
+                className="flex w-full rounded-lg border border-[#262626] bg-[#0A0A0A] px-3 py-2.5 text-base text-white placeholder:text-[#525252] focus:border-[#10B981] focus:outline-none focus:ring-2 focus:ring-[#10B981]/20 resize-none"
               />
             </div>
           </div>
@@ -168,7 +168,7 @@ export default function CompanyEditPage() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="address" className="text-[#A3A3A3] text-sm">Address</Label>
+                <Label htmlFor="address" className="text-[#A3A3A3] text-base">Address</Label>
                 <Input
                   id="address"
                   name="address"
@@ -177,7 +177,7 @@ export default function CompanyEditPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="city" className="text-[#A3A3A3] text-sm">City</Label>
+                <Label htmlFor="city" className="text-[#A3A3A3] text-base">City</Label>
                 <Input
                   id="city"
                   name="city"
@@ -188,7 +188,7 @@ export default function CompanyEditPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="state" className="text-[#A3A3A3] text-sm">State</Label>
+                <Label htmlFor="state" className="text-[#A3A3A3] text-base">State</Label>
                 <Input
                   id="state"
                   name="state"
@@ -197,7 +197,7 @@ export default function CompanyEditPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="pincode" className="text-[#A3A3A3] text-sm">Pincode</Label>
+                <Label htmlFor="pincode" className="text-[#A3A3A3] text-base">Pincode</Label>
                 <Input
                   id="pincode"
                   name="pincode"
@@ -209,7 +209,7 @@ export default function CompanyEditPage() {
           </div>
 
           {error && (
-            <div className="rounded-lg border border-red-500/20 bg-red-500/5 px-4 py-3 text-sm text-red-400">
+            <div className="rounded-lg border border-red-500/20 bg-red-500/5 px-4 py-3 text-base text-red-400">
               {error}
             </div>
           )}

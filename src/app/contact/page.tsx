@@ -45,14 +45,14 @@ export default function ContactPage() {
             <CheckCircle className="h-10 w-10 text-[#10B981]" />
           </div>
           <div className="space-y-2">
-            <h2 className="text-2xl font-bold text-white">Message Sent!</h2>
-            <p className="text-[#737373] text-sm leading-relaxed">
+            <h2 className="text-3xl font-bold text-white">Message Sent!</h2>
+            <p className="text-[#737373] text-base leading-relaxed">
               Thanks for reaching out. Our team will get back to you within 24 hours.
             </p>
           </div>
           <Link
             href="/"
-            className="inline-flex items-center gap-2 mt-2 text-[#10B981] hover:text-[#34D399] text-sm font-medium transition-colors"
+            className="inline-flex items-center gap-2 mt-2 text-[#10B981] hover:text-[#34D399] text-base font-medium transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Home
@@ -69,7 +69,7 @@ export default function ContactPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 h-16 flex items-center">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-[#737373] hover:text-white text-sm transition-colors"
+            className="inline-flex items-center gap-2 text-[#737373] hover:text-white text-base transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
             Back
@@ -86,7 +86,7 @@ export default function ContactPage() {
           <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight">
             Get in Touch
           </h1>
-          <p className="mt-4 text-[#737373] max-w-lg text-base leading-relaxed">
+          <p className="mt-4 text-[#737373] max-w-lg text-lg leading-relaxed">
             Have a question or want to partner with ScrapKart? We&apos;d love to hear from you.
           </p>
         </div>
@@ -145,7 +145,7 @@ export default function ContactPage() {
 
             {/* Why ScrapKart box */}
             <div className="rounded-xl border border-[#262626] bg-[#141414] p-6 space-y-4 animate-slide-up delay-2">
-              <h3 className="font-semibold text-white text-sm">Why ScrapKart?</h3>
+              <h3 className="font-semibold text-white text-base">Why ScrapKart?</h3>
               <ul className="space-y-3">
                 {[
                   "Verified recycler network across India",
@@ -153,7 +153,7 @@ export default function ContactPage() {
                   "Compliance-first (CPCB, EPR certified partners)",
                   "End-to-end pickup tracking with OTP verification",
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-[#A3A3A3]">
+                  <li key={item} className="flex items-start gap-3 text-base text-[#A3A3A3]">
                     <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#10B981]/10">
                       <Check className="h-3 w-3 text-green-400" />
                     </span>
@@ -168,14 +168,14 @@ export default function ContactPage() {
           <div className="animate-slide-up delay-2">
             <div className="rounded-2xl border border-[#262626] bg-[#141414] p-6 sm:p-8">
               <div className="mb-6">
-                <h2 className="text-lg font-semibold text-white">Send a Message</h2>
-                <p className="text-sm text-[#525252] mt-1">Fill in the details below and we&apos;ll respond promptly.</p>
+                <h2 className="text-xl font-semibold text-white">Send a Message</h2>
+                <p className="text-base text-[#525252] mt-1">Fill in the details below and we&apos;ll respond promptly.</p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-[#A3A3A3]">
+                    <label className="text-base font-medium text-[#A3A3A3]">
                       Name <span className="text-[#10B981]">*</span>
                     </label>
                     <input
@@ -183,11 +183,11 @@ export default function ContactPage() {
                       onChange={(e) => update("name", e.target.value)}
                       placeholder="Your full name"
                       required
-                      className="h-11 w-full rounded-xl border border-[#262626] bg-[#0A0A0A] px-4 text-sm text-white placeholder:text-[#525252] focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/20 transition-colors"
+                      className="h-11 w-full rounded-xl border border-[#262626] bg-[#0A0A0A] px-4 text-base text-white placeholder:text-[#525252] focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/20 transition-colors"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-[#A3A3A3]">
+                    <label className="text-base font-medium text-[#A3A3A3]">
                       Email <span className="text-[#10B981]">*</span>
                     </label>
                     <input
@@ -196,34 +196,34 @@ export default function ContactPage() {
                       onChange={(e) => update("email", e.target.value)}
                       placeholder="you@company.com"
                       required
-                      className="h-11 w-full rounded-xl border border-[#262626] bg-[#0A0A0A] px-4 text-sm text-white placeholder:text-[#525252] focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/20 transition-colors"
+                      className="h-11 w-full rounded-xl border border-[#262626] bg-[#0A0A0A] px-4 text-base text-white placeholder:text-[#525252] focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/20 transition-colors"
                     />
                   </div>
                 </div>
 
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-[#A3A3A3]">Phone</label>
+                    <label className="text-base font-medium text-[#A3A3A3]">Phone</label>
                     <input
                       value={form.phone}
                       onChange={(e) => update("phone", e.target.value)}
                       placeholder="+91 98765 43210"
-                      className="h-11 w-full rounded-xl border border-[#262626] bg-[#0A0A0A] px-4 text-sm text-white placeholder:text-[#525252] focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/20 transition-colors"
+                      className="h-11 w-full rounded-xl border border-[#262626] bg-[#0A0A0A] px-4 text-base text-white placeholder:text-[#525252] focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/20 transition-colors"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-[#A3A3A3]">Subject</label>
+                    <label className="text-base font-medium text-[#A3A3A3]">Subject</label>
                     <input
                       value={form.subject}
                       onChange={(e) => update("subject", e.target.value)}
                       placeholder="How can we help?"
-                      className="h-11 w-full rounded-xl border border-[#262626] bg-[#0A0A0A] px-4 text-sm text-white placeholder:text-[#525252] focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/20 transition-colors"
+                      className="h-11 w-full rounded-xl border border-[#262626] bg-[#0A0A0A] px-4 text-base text-white placeholder:text-[#525252] focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981]/20 transition-colors"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-[#A3A3A3]">
+                  <label className="text-base font-medium text-[#A3A3A3]">
                     Message <span className="text-[#10B981]">*</span>
                   </label>
                   <textarea
@@ -239,7 +239,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="inline-flex items-center justify-center gap-2 h-11 px-8 rounded-xl bg-[#10B981] text-black font-semibold text-sm transition-all duration-300 hover:bg-[#059669] hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="inline-flex items-center justify-center gap-2 h-11 px-8 rounded-xl bg-[#10B981] text-black font-semibold text-base transition-all duration-300 hover:bg-[#059669] hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? (
                     <Loader2 className="h-4 w-4 animate-spin" />

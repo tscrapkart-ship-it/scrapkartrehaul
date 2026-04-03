@@ -65,12 +65,12 @@ export default async function ScrapDetailPage({
   return (
     <div className="mx-auto max-w-5xl animate-fade-in">
       {/* Breadcrumb */}
-      <nav className="mb-6 flex items-center gap-1.5 text-sm text-[#525252]">
+      <nav className="mb-6 flex items-center gap-1.5 text-base text-[#525252]">
         <Link href="/marketplace" className="hover:text-[#10B981] transition-colors">
           Marketplace
         </Link>
         <ChevronRight className="h-3.5 w-3.5" />
-        <span className="text-[#A3A3A3] truncate max-w-[300px]">{scrap.title}</span>
+        <span className="text-[#A3A3A3] truncate max-w-[300px] text-base">{scrap.title}</span>
       </nav>
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.2fr_1fr]">
@@ -87,13 +87,13 @@ export default async function ScrapDetailPage({
             <div className="flex items-start justify-between gap-3">
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="inline-flex items-center gap-1.5 rounded-md bg-[#10B981]/10 px-2.5 py-1 text-xs font-semibold text-[#10B981]">
+                  <span className="inline-flex items-center gap-1.5 rounded-md bg-[#10B981]/10 px-2.5 py-1 text-sm font-semibold text-[#10B981]">
                     <span className="h-1.5 w-1.5 rounded-full bg-[#10B981]" />
                     {scrap.category}
                     {scrap.sub_type ? ` — ${scrap.sub_type}` : ""}
                   </span>
                 </div>
-                <h1 className="text-2xl font-bold text-white leading-tight">{scrap.title}</h1>
+                <h1 className="text-3xl font-bold text-white leading-tight">{scrap.title}</h1>
               </div>
               <Badge className={`shrink-0 ${statusInfo.class}`}>{statusInfo.label}</Badge>
             </div>
@@ -101,16 +101,16 @@ export default async function ScrapDetailPage({
             {/* Price */}
             {(scrap.price_expectation || scrap.price) && (
               <div className="flex items-baseline gap-2 pb-1">
-                <span className="text-3xl font-bold text-[#10B981]">
+                <span className="text-4xl font-bold text-[#10B981]">
                   ₹{(scrap.price_expectation ?? scrap.price).toLocaleString("en-IN")}
                 </span>
-                <span className="text-sm text-[#525252]">asking price</span>
+                <span className="text-base text-[#525252]">asking price</span>
               </div>
             )}
 
             {/* Description */}
             {scrap.description && (
-              <p className="text-sm leading-relaxed text-[#A3A3A3] border-t border-[#262626] pt-4">
+              <p className="text-base leading-relaxed text-[#A3A3A3] border-t border-[#262626] pt-4">
                 {scrap.description}
               </p>
             )}
@@ -186,9 +186,9 @@ export default async function ScrapDetailPage({
               <div className="rounded-xl border border-[#10B981]/20 bg-[#10B981]/[0.04] px-4 py-3.5">
                 <div className="flex items-center gap-2">
                   <Package className="h-4 w-4 text-[#10B981]" />
-                  <p className="text-sm text-[#10B981] font-semibold">Your listing</p>
+                  <p className="text-base text-[#10B981] font-semibold">Your listing</p>
                 </div>
-                <p className="text-xs text-[#737373] mt-1 pl-6">Review and manage bids below.</p>
+                <p className="text-sm text-[#737373] mt-1 pl-6">Review and manage bids below.</p>
               </div>
             )}
           </div>
@@ -214,7 +214,7 @@ export default async function ScrapDetailPage({
                       {scrap.companies.name}
                     </p>
                     {scrap.companies.city && (
-                      <p className="text-xs text-[#525252] mt-0.5">
+                      <p className="text-sm text-[#525252] mt-0.5">
                         {scrap.companies.city}{scrap.companies.state ? `, ${scrap.companies.state}` : ""}
                       </p>
                     )}

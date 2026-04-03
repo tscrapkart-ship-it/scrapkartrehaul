@@ -132,7 +132,7 @@ export function SubmitBidDialog({
       <div className="rounded-xl border border-green-500/30 bg-green-500/10 p-4 text-center">
         <CheckCircle className="h-6 w-6 text-green-400 mx-auto mb-2" />
         <p className="font-semibold text-green-400">Your bid was accepted!</p>
-        <p className="text-xs text-white/50 mt-1">Check your Deals section for next steps.</p>
+        <p className="text-sm text-white/50 mt-1">Check your Deals section for next steps.</p>
       </div>
     );
   }
@@ -142,7 +142,7 @@ export function SubmitBidDialog({
     return (
       <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-4 text-center">
         <p className="font-medium text-red-400">Your bid was not accepted.</p>
-        <p className="text-xs text-white/40 mt-1">The producer chose a different recycler.</p>
+        <p className="text-sm text-white/40 mt-1">The producer chose a different recycler.</p>
       </div>
     );
   }
@@ -166,7 +166,7 @@ export function SubmitBidDialog({
           <DialogTitle className="text-white">
             {hasPendingBid ? "Revise Bid" : "Submit a Bid"}
           </DialogTitle>
-          <p className="text-sm text-white/50 mt-1">
+          <p className="text-base text-white/50 mt-1">
             For: <span className="text-brand-accent">{listingTitle}</span>
           </p>
         </DialogHeader>
@@ -177,7 +177,7 @@ export function SubmitBidDialog({
               <CheckCircle className="h-7 w-7 text-brand-accent" />
             </div>
             <h3 className="font-semibold text-white">Bid Submitted!</h3>
-            <p className="text-sm text-white/50">
+            <p className="text-base text-white/50">
               The producer will review your offer. You&apos;ll be notified on acceptance.
             </p>
             <Button
@@ -190,7 +190,7 @@ export function SubmitBidDialog({
         ) : (
           <form onSubmit={handleSubmit} className="space-y-5 pt-2">
             {hasPendingBid && (
-              <div className="rounded-lg border border-yellow-500/20 bg-yellow-500/5 px-3 py-2 text-xs text-yellow-400">
+              <div className="rounded-lg border border-yellow-500/20 bg-yellow-500/5 px-3 py-2 text-sm text-yellow-400">
                 You already have a pending bid of ₹{existingBid?.offered_price?.toLocaleString("en-IN")}. You can revise it below.
               </div>
             )}

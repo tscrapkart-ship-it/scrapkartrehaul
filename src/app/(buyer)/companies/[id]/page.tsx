@@ -48,7 +48,7 @@ export default async function CompanyDetailPage({
   return (
     <div className="mx-auto max-w-4xl space-y-8 animate-fade-in">
       {/* Back link */}
-      <Link href="/companies" className="inline-flex items-center gap-1 text-sm text-[#525252] hover:text-[#10B981] transition-colors">
+      <Link href="/companies" className="inline-flex items-center gap-1 text-base text-[#525252] hover:text-[#10B981] transition-colors">
         <ChevronLeft className="h-4 w-4" />
         All Companies
       </Link>
@@ -71,7 +71,7 @@ export default async function CompanyDetailPage({
           )}
           <div className="min-w-0">
             <div className="flex items-center gap-2">
-              <h1 className="text-2xl font-bold text-white">
+              <h1 className="text-3xl font-bold text-white">
                 {company.name}
               </h1>
               {company.verification_status === "verified" && (
@@ -79,13 +79,13 @@ export default async function CompanyDetailPage({
               )}
             </div>
             {company.industry_type && (
-              <p className="mt-1 flex items-center gap-1.5 text-sm text-[#10B981]">
+              <p className="mt-1 flex items-center gap-1.5 text-base text-[#10B981]">
                 <Factory className="h-3.5 w-3.5" />
                 {company.industry_type}
               </p>
             )}
             {company.city && (
-              <p className="mt-1 flex items-center gap-1.5 text-sm text-[#737373]">
+              <p className="mt-1 flex items-center gap-1.5 text-base text-[#737373]">
                 <MapPin className="h-3.5 w-3.5" />
                 {company.city}
                 {company.state ? `, ${company.state}` : ""}
@@ -94,7 +94,7 @@ export default async function CompanyDetailPage({
           </div>
         </div>
         {company.description && (
-          <p className="mt-5 text-sm leading-relaxed text-[#A3A3A3] border-t border-[#262626] pt-5">
+          <p className="mt-5 text-base leading-relaxed text-[#A3A3A3] border-t border-[#262626] pt-5">
             {company.description}
           </p>
         )}
@@ -106,7 +106,7 @@ export default async function CompanyDetailPage({
           <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#10B981]/10">
             <Package className="h-3.5 w-3.5 text-[#10B981]" />
           </div>
-          <h2 className="text-sm font-semibold text-white">
+          <h2 className="text-base font-semibold text-white">
             Available Listings
           </h2>
           <span className="rounded-md bg-[#1A1A1A] border border-[#262626] px-2 py-0.5 text-xs font-medium text-[#737373]">
@@ -115,7 +115,7 @@ export default async function CompanyDetailPage({
         </div>
         {scraps.length === 0 ? (
           <div className="rounded-xl border border-dashed border-[#262626] bg-[#141414]/50 py-12 text-center">
-            <p className="text-sm text-[#525252]">
+            <p className="text-base text-[#525252]">
               No available listings from this company.
             </p>
           </div>

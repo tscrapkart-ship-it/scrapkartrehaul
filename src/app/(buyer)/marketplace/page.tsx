@@ -69,8 +69,8 @@ export default async function MarketplacePage({
             <Store className="h-5 w-5 text-[#10B981]" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white">Marketplace</h1>
-            <p className="text-sm text-[#737373]">
+            <h1 className="text-3xl font-bold text-white">Marketplace</h1>
+            <p className="text-base text-[#737373]">
               Browse available scrap materials from verified sellers
             </p>
           </div>

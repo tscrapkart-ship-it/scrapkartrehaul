@@ -47,13 +47,13 @@ export function MessageBubble({
               : "rounded-2xl rounded-tl-md bg-[#1A1A1A] text-[#E5E5E5] border border-[#262626]"
           }`}
         >
-          <p className={`text-[14px] leading-relaxed ${isOwn ? "font-medium" : ""}`}>
+          <p className={`text-base leading-relaxed ${isOwn ? "font-medium" : ""}`}>
             {message.content}
           </p>
         </div>
         {showTimestamp && (
           <p
-            className={`mt-1 px-1 text-[11px] ${
+            className={`mt-1 px-1 text-xs ${
               isOwn ? "text-right text-[#525252]" : "text-left text-[#525252]"
             }`}
           >

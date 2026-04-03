@@ -50,8 +50,8 @@ export default async function TransactionChatPage({
               <MessageCircle className="h-4 w-4 text-brand-accent" />
             </div>
             <div>
-              <p className="text-sm font-semibold text-white">{otherName ?? "Counterpart"}</p>
-              <p className="text-xs text-white/40 truncate max-w-[200px]">{scrapTitle}</p>
+              <p className="text-base font-semibold text-white">{otherName ?? "Counterpart"}</p>
+              <p className="text-sm text-white/40 truncate max-w-[200px]">{scrapTitle}</p>
             </div>
           </div>
         </div>

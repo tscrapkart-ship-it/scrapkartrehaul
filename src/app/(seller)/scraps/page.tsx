@@ -37,8 +37,8 @@ export default async function SellerScrapsPage() {
             <Layers className="h-5 w-5 text-[#10B981]" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white">My Listings</h1>
-            <p className="text-sm text-[#737373]">
+            <h1 className="text-3xl font-bold text-white">My Listings</h1>
+            <p className="text-base text-[#737373]">
               {scraps.length > 0
                 ? `${scraps.length} total · ${liveCount} live`
                 : "Create and manage your scrap listings"}
@@ -58,8 +58,8 @@ export default async function SellerScrapsPage() {
           <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#1A1A1A] border border-[#262626] mb-4">
             <Package className="h-7 w-7 text-[#525252]" />
           </div>
-          <p className="text-lg font-semibold text-[#D4D4D4]">No listings yet</p>
-          <p className="mt-1 text-sm text-[#525252] max-w-xs text-center">
+          <p className="text-xl font-semibold text-[#D4D4D4]">No listings yet</p>
+          <p className="mt-1 text-base text-[#525252] max-w-xs text-center">
             Create your first scrap listing to start receiving bids from verified recyclers.
           </p>
           <Link href="/scraps/new" className="mt-6">

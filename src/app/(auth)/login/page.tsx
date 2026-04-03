@@ -52,17 +52,17 @@ export default function LoginPage() {
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#10B981]/10 border border-[#10B981]/20">
             <LogIn className="h-6 w-6 text-[#10B981]" />
           </div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">
+          <h1 className="text-3xl font-bold text-white tracking-tight">
             Welcome back
           </h1>
-          <p className="text-sm text-white/40">
+          <p className="text-base text-white/40">
             Sign in to your ScrapKart account
           </p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-5">
           <div className="space-y-2">
-            <Label htmlFor="email" className="text-white/60 text-sm">
+            <Label htmlFor="email" className="text-white/60 text-base">
               Email
             </Label>
             <div className="relative">
@@ -80,7 +80,7 @@ export default function LoginPage() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="password" className="text-white/60 text-sm">
+            <Label htmlFor="password" className="text-white/60 text-base">
               Password
             </Label>
             <div className="relative">
@@ -101,7 +101,7 @@ export default function LoginPage() {
             <motion.p
               initial={{ opacity: 0, y: -4 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-sm text-red-400 bg-red-400/10 border border-red-400/20 rounded-lg px-3 py-2"
+              className="text-base text-red-400 bg-red-400/10 border border-red-400/20 rounded-lg px-3 py-2"
             >
               {error}
             </motion.p>
@@ -125,7 +125,7 @@ export default function LoginPage() {
           <GoogleAuthButton label="Sign in with Google" />
         </div>
 
-        <p className="mt-6 text-center text-sm text-white/40">
+        <p className="mt-6 text-center text-base text-white/40">
           Don&apos;t have an account?{" "}
           <Link
             href="/signup"

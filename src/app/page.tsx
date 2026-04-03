@@ -92,7 +92,7 @@ export default function Home() {
               <a
                 key={item}
                 href={`#${item.toLowerCase().replace(/ /g, "-")}`}
-                className="rounded-lg px-3.5 py-2 text-sm font-medium text-[#737373] transition-all duration-200 hover:bg-[#141414] hover:text-[#F5F5F5]"
+                className="rounded-lg px-3.5 py-2 text-base font-medium text-[#737373] transition-all duration-200 hover:bg-[#141414] hover:text-[#F5F5F5]"
               >
                 {item}
               </a>
@@ -101,12 +101,12 @@ export default function Home() {
 
           <div className="hidden items-center gap-2 md:flex">
             <Link href="/login">
-              <Button variant="ghost" className="h-9 px-4 text-sm text-[#A3A3A3] hover:bg-[#141414] hover:text-white rounded-lg">
+              <Button variant="ghost" className="h-9 px-4 text-base text-[#A3A3A3] hover:bg-[#141414] hover:text-white rounded-lg">
                 Sign In
               </Button>
             </Link>
             <Link href="/signup">
-              <Button className="h-9 px-4 text-sm font-semibold bg-[#10B981] text-black hover:bg-[#059669] rounded-lg">
+              <Button className="h-9 px-4 text-base font-semibold bg-[#10B981] text-black hover:bg-[#059669] rounded-lg">
                 Get Started <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
               </Button>
             </Link>
@@ -128,13 +128,13 @@ export default function Home() {
             >
               <div className="space-y-1 px-4 py-3">
                 {["How It Works", "Categories", "Features", "Testimonials"].map((item) => (
-                  <a key={item} href={`#${item.toLowerCase().replace(/ /g, "-")}`} onClick={() => setMobileMenuOpen(false)} className="block rounded-lg px-3 py-2.5 text-sm font-medium text-[#A3A3A3] hover:bg-[#141414] hover:text-white">
+                  <a key={item} href={`#${item.toLowerCase().replace(/ /g, "-")}`} onClick={() => setMobileMenuOpen(false)} className="block rounded-lg px-3 py-2.5 text-base font-medium text-[#A3A3A3] hover:bg-[#141414] hover:text-white">
                     {item}
                   </a>
                 ))}
                 <div className="flex flex-col gap-2 pt-3 border-t border-[#1A1A1A]">
-                  <Link href="/login"><Button variant="ghost" className="w-full h-10 text-sm text-[#A3A3A3]">Sign In</Button></Link>
-                  <Link href="/signup"><Button className="w-full h-10 text-sm font-semibold bg-[#10B981] text-black">Get Started</Button></Link>
+                  <Link href="/login"><Button variant="ghost" className="w-full h-10 text-base text-[#A3A3A3]">Sign In</Button></Link>
+                  <Link href="/signup"><Button className="w-full h-10 text-base font-semibold bg-[#10B981] text-black">Get Started</Button></Link>
                 </div>
               </div>
             </motion.div>
@@ -156,7 +156,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 rounded-full border border-[#10B981]/20 bg-[#10B981]/10 px-4 py-1.5 text-sm font-medium text-[#10B981]"
+              className="inline-flex items-center gap-2 rounded-full border border-[#10B981]/20 bg-[#10B981]/10 px-4 py-1.5 text-base font-medium text-[#10B981]"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-[#10B981] animate-pulse" />
               India&apos;s B2B Scrap Marketplace
@@ -178,7 +178,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.25 }}
-              className="mt-6 max-w-lg text-base leading-relaxed text-[#A3A3A3] sm:text-lg"
+              className="mt-6 max-w-lg text-lg leading-relaxed text-[#A3A3A3] sm:text-xl"
             >
               Connect with verified recyclers and waste producers. List scrap, place competitive bids, and close deals — all on one platform.
             </motion.p>
@@ -190,13 +190,13 @@ export default function Home() {
               className="mt-8 flex flex-col gap-3 sm:flex-row"
             >
               <Link href="/signup">
-                <Button size="lg" className="h-12 w-full px-6 text-sm font-semibold bg-[#10B981] text-black hover:bg-[#059669] rounded-xl sm:w-auto group">
+                <Button size="lg" className="h-12 w-full px-6 text-base font-semibold bg-[#10B981] text-black hover:bg-[#059669] rounded-xl sm:w-auto group">
                   Start Trading
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </Button>
               </Link>
               <Link href="/marketplace">
-                <Button size="lg" variant="outline" className="h-12 w-full px-6 text-sm border-[#262626] text-[#D4D4D4] hover:bg-[#141414] hover:border-[#404040] hover:text-white rounded-xl sm:w-auto">
+                <Button size="lg" variant="outline" className="h-12 w-full px-6 text-base border-[#262626] text-[#D4D4D4] hover:bg-[#141414] hover:border-[#404040] hover:text-white rounded-xl sm:w-auto">
                   Browse Marketplace
                 </Button>
               </Link>
@@ -206,7 +206,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="mt-10 flex items-center gap-6 text-sm text-[#737373]"
+              className="mt-10 flex items-center gap-6 text-base text-[#737373]"
             >
               <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-[#10B981]" /> Free to join</span>
               <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-[#10B981]" /> Verified sellers</span>
@@ -233,9 +233,9 @@ export default function Home() {
                       prefix={stat.prefix || ""}
                       suffix={stat.suffix}
                       decimals={stat.decimals || 0}
-                      className="text-2xl font-bold text-[#F5F5F5] sm:text-3xl"
+                      className="text-3xl font-bold text-[#F5F5F5] sm:text-4xl"
                     />
-                    <p className="mt-1 text-xs font-medium text-[#737373] sm:text-sm">{stat.label}</p>
+                    <p className="mt-1 text-sm font-medium text-[#737373] sm:text-base">{stat.label}</p>
                   </div>
                 </RevealOnScroll>
               );
@@ -250,8 +250,8 @@ export default function Home() {
           <RevealOnScroll>
             <div className="text-center">
               <p className="text-sm font-semibold uppercase tracking-widest text-[#10B981]">How it works</p>
-              <h2 className="mt-3 text-3xl font-bold text-[#F5F5F5] sm:text-4xl">Four steps to close a deal</h2>
-              <p className="mt-3 text-base text-[#737373] sm:text-lg">Whether you&apos;re selling scrap or buying, the process is simple.</p>
+              <h2 className="mt-3 text-4xl font-bold text-[#F5F5F5] sm:text-5xl">Four steps to close a deal</h2>
+              <p className="mt-3 text-lg text-[#737373] sm:text-xl">Whether you&apos;re selling scrap or buying, the process is simple.</p>
             </div>
           </RevealOnScroll>
 
@@ -265,8 +265,8 @@ export default function Home() {
                       <Icon className="h-6 w-6" />
                     </div>
                     <span className="absolute top-5 right-5 text-4xl font-bold text-[#1A1A1A] group-hover:text-[#10B981]/10 transition-colors">{item.step}</span>
-                    <h3 className="mt-5 text-base font-semibold text-[#F5F5F5]">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-[#737373]">{item.description}</p>
+                    <h3 className="mt-5 text-lg font-semibold text-[#F5F5F5]">{item.title}</h3>
+                    <p className="mt-2 text-base leading-relaxed text-[#737373]">{item.description}</p>
                   </div>
                 </RevealOnScroll>
               );
@@ -281,7 +281,7 @@ export default function Home() {
           <RevealOnScroll>
             <div className="text-center">
               <p className="text-sm font-semibold uppercase tracking-widest text-[#10B981]">Categories</p>
-              <h2 className="mt-3 text-3xl font-bold text-[#F5F5F5] sm:text-4xl">Trade across six material types</h2>
+              <h2 className="mt-3 text-4xl font-bold text-[#F5F5F5] sm:text-5xl">Trade across six material types</h2>
             </div>
           </RevealOnScroll>
 
@@ -297,8 +297,8 @@ export default function Home() {
                         <Icon className="h-5 w-5 text-[#10B981]" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-[#F5F5F5]">{cat.name}</h3>
-                        <p className="mt-1 text-sm text-[#737373]">{cat.description}</p>
+                        <h3 className="text-lg font-semibold text-[#F5F5F5]">{cat.name}</h3>
+                        <p className="mt-1 text-base text-[#737373]">{cat.description}</p>
                       </div>
                     </div>
                   </div>
@@ -315,8 +315,8 @@ export default function Home() {
           <RevealOnScroll>
             <div className="text-center">
               <p className="text-sm font-semibold uppercase tracking-widest text-[#10B981]">Features</p>
-              <h2 className="mt-3 text-3xl font-bold text-[#F5F5F5] sm:text-4xl">Built for industrial scrap trading</h2>
-              <p className="mt-3 text-base text-[#737373] sm:text-lg">Everything you need to trade efficiently, in one place.</p>
+              <h2 className="mt-3 text-4xl font-bold text-[#F5F5F5] sm:text-5xl">Built for industrial scrap trading</h2>
+              <p className="mt-3 text-lg text-[#737373] sm:text-xl">Everything you need to trade efficiently, in one place.</p>
             </div>
           </RevealOnScroll>
 
@@ -329,8 +329,8 @@ export default function Home() {
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#10B981]/10 text-[#10B981] transition-colors group-hover:bg-[#10B981] group-hover:text-black">
                       <Icon className="h-5 w-5" />
                     </div>
-                    <h3 className="mt-4 font-semibold text-[#F5F5F5]">{feature.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-[#737373]">{feature.description}</p>
+                    <h3 className="mt-4 text-lg font-semibold text-[#F5F5F5]">{feature.title}</h3>
+                    <p className="mt-2 text-base leading-relaxed text-[#737373]">{feature.description}</p>
                   </div>
                 </StaggerItem>
               );
@@ -345,7 +345,7 @@ export default function Home() {
           <RevealOnScroll>
             <div className="text-center">
               <p className="text-sm font-semibold uppercase tracking-widest text-[#10B981]">Testimonials</p>
-              <h2 className="mt-3 text-3xl font-bold text-[#F5F5F5] sm:text-4xl">Trusted by industry leaders</h2>
+              <h2 className="mt-3 text-4xl font-bold text-[#F5F5F5] sm:text-5xl">Trusted by industry leaders</h2>
             </div>
           </RevealOnScroll>
 
@@ -354,7 +354,7 @@ export default function Home() {
               <RevealOnScroll key={t.author} delay={i * 0.1}>
                 <div className="flex h-full flex-col rounded-xl border border-[#1A1A1A] bg-[#111111] p-6">
                   <Quote className="h-8 w-8 text-[#10B981]/20" />
-                  <p className="mt-4 flex-1 text-sm leading-relaxed text-[#D4D4D4]">
+                  <p className="mt-4 flex-1 text-base leading-relaxed text-[#D4D4D4]">
                     &ldquo;{t.quote}&rdquo;
                   </p>
                   <div className="mt-6 flex items-center gap-3 border-t border-[#1A1A1A] pt-5">
@@ -362,8 +362,8 @@ export default function Home() {
                       {t.author.charAt(0)}
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-[#F5F5F5]">{t.author}</p>
-                      <p className="text-xs text-[#737373]">{t.role}, {t.company}</p>
+                      <p className="text-base font-semibold text-[#F5F5F5]">{t.author}</p>
+                      <p className="text-sm text-[#737373]">{t.role}, {t.company}</p>
                     </div>
                   </div>
                 </div>
@@ -382,19 +382,19 @@ export default function Home() {
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_#10B981_0%,_transparent_50%)] opacity-[0.04]" />
 
               <div className="relative">
-                <h2 className="text-3xl font-bold text-[#F5F5F5] sm:text-4xl">Ready to trade smarter?</h2>
-                <p className="mx-auto mt-4 max-w-lg text-base text-[#737373]">
+                <h2 className="text-4xl font-bold text-[#F5F5F5] sm:text-5xl">Ready to trade smarter?</h2>
+                <p className="mx-auto mt-4 max-w-lg text-lg text-[#737373]">
                   Join hundreds of businesses already using ScrapKart to buy and sell industrial scrap.
                 </p>
                 <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                   <Link href="/signup">
-                    <Button size="lg" className="h-12 w-full px-6 text-sm font-semibold bg-[#10B981] text-black hover:bg-[#059669] rounded-xl sm:w-auto group">
+                    <Button size="lg" className="h-12 w-full px-6 text-base font-semibold bg-[#10B981] text-black hover:bg-[#059669] rounded-xl sm:w-auto group">
                       Create Free Account
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                     </Button>
                   </Link>
                   <Link href="/marketplace">
-                    <Button size="lg" variant="outline" className="h-12 w-full px-6 text-sm border-[#262626] text-[#D4D4D4] hover:bg-[#1A1A1A] hover:text-white rounded-xl sm:w-auto">
+                    <Button size="lg" variant="outline" className="h-12 w-full px-6 text-base border-[#262626] text-[#D4D4D4] hover:bg-[#1A1A1A] hover:text-white rounded-xl sm:w-auto">
                       Explore Marketplace
                     </Button>
                   </Link>
@@ -411,13 +411,13 @@ export default function Home() {
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             <div className="col-span-2 md:col-span-1">
               <Image src="/logos/ScrapKart White Logo.png" alt="ScrapKart" width={130} height={37} />
-              <p className="mt-4 text-sm leading-relaxed text-[#525252]">
+              <p className="mt-4 text-base leading-relaxed text-[#525252]">
                 India&apos;s B2B marketplace for industrial scrap trading. Connecting waste producers with recyclers.
               </p>
             </div>
             <div>
               <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#525252]">Platform</h4>
-              <ul className="space-y-2.5 text-sm text-[#737373]">
+              <ul className="space-y-2.5 text-base text-[#737373]">
                 <li><Link href="/marketplace" className="transition-colors hover:text-[#10B981]">Marketplace</Link></li>
                 <li><a href="#categories" className="transition-colors hover:text-[#10B981]">Categories</a></li>
                 <li><a href="#how-it-works" className="transition-colors hover:text-[#10B981]">How It Works</a></li>
@@ -426,21 +426,21 @@ export default function Home() {
             </div>
             <div>
               <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#525252]">Get Started</h4>
-              <ul className="space-y-2.5 text-sm text-[#737373]">
+              <ul className="space-y-2.5 text-base text-[#737373]">
                 <li><Link href="/signup" className="transition-colors hover:text-[#10B981]">Create Account</Link></li>
                 <li><Link href="/login" className="transition-colors hover:text-[#10B981]">Sign In</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#525252]">Contact</h4>
-              <ul className="space-y-2.5 text-sm text-[#737373]">
+              <ul className="space-y-2.5 text-base text-[#737373]">
                 <li className="flex items-center gap-2"><Mail className="h-3.5 w-3.5 shrink-0" /> hello@scrapkart.app</li>
                 <li className="flex items-center gap-2"><Phone className="h-3.5 w-3.5 shrink-0" /> +91 98765 43210</li>
                 <li className="flex items-center gap-2"><MapPin className="h-3.5 w-3.5 shrink-0" /> Bangalore, India</li>
               </ul>
             </div>
           </div>
-          <div className="mt-10 border-t border-[#1A1A1A] pt-6 text-center text-xs text-[#404040]">
+          <div className="mt-10 border-t border-[#1A1A1A] pt-6 text-center text-sm text-[#404040]">
             &copy; {new Date().getFullYear()} ScrapKart. All rights reserved.
           </div>
         </div>

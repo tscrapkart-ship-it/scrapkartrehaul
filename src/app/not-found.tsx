@@ -21,10 +21,10 @@ export default function NotFound() {
 
           {/* Text */}
           <div className="animate-slide-up delay-2 space-y-3">
-            <h1 className="text-2xl font-bold text-white tracking-tight">
+            <h1 className="text-3xl font-bold text-white tracking-tight">
               Page not found
             </h1>
-            <p className="text-sm text-[#737373] max-w-xs mx-auto leading-relaxed">
+            <p className="text-base text-[#737373] max-w-xs mx-auto leading-relaxed">
               The page you are looking for does not exist or has been moved to a different location.
             </p>
           </div>
@@ -33,7 +33,7 @@ export default function NotFound() {
           <div className="animate-slide-up delay-3">
             <Link
               href="/"
-              className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-[#10B981] text-black font-semibold text-sm transition-all duration-300 hover:bg-[#059669] hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]"
+              className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-[#10B981] text-black font-semibold text-base transition-all duration-300 hover:bg-[#059669] hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]"
             >
               <Home className="h-4 w-4" />
               Back to Home
@@ -43,7 +43,7 @@ export default function NotFound() {
           {/* Subtle divider + help link */}
           <div className="animate-slide-up delay-4 pt-4">
             <div className="h-px w-16 mx-auto bg-[#262626] mb-4" />
-            <p className="text-xs text-[#525252]">
+            <p className="text-sm text-[#525252]">
               Need help?{" "}
               <Link href="/contact" className="text-[#10B981] hover:text-[#34D399] transition-colors">
                 Contact support

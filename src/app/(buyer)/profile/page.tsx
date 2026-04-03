@@ -103,7 +103,7 @@ export default function BuyerProfilePage() {
 
   return (
     <div className="mx-auto max-w-lg animate-fade-in">
-      <h1 className="mb-8 text-2xl font-bold text-white">Profile</h1>
+      <h1 className="mb-8 text-3xl font-bold text-white">Profile</h1>
 
       {/* Avatar + quick info */}
       <div className="mb-6 flex items-center gap-4 rounded-xl border border-[#262626] bg-[#141414] p-5">
@@ -111,8 +111,8 @@ export default function BuyerProfilePage() {
           {initials}
         </div>
         <div className="min-w-0">
-          <h2 className="text-lg font-semibold text-white truncate">{profile.name}</h2>
-          <p className="text-sm text-[#737373] truncate">{profile.email}</p>
+          <h2 className="text-xl font-semibold text-white truncate">{profile.name}</h2>
+          <p className="text-base text-[#737373] truncate">{profile.email}</p>
           <div className="flex items-center gap-2 mt-1.5">
             <span className="inline-flex items-center gap-1 rounded-md bg-[#10B981]/10 px-2 py-0.5 text-xs font-medium text-[#10B981]">
               <Shield className="h-3 w-3" />
@@ -135,7 +135,7 @@ export default function BuyerProfilePage() {
             <Calendar className="h-3.5 w-3.5" />
             <span className="text-xs font-medium uppercase tracking-wider">Member since</span>
           </div>
-          <p className="text-sm font-medium text-[#D4D4D4]">
+          <p className="text-base font-medium text-[#D4D4D4]">
             {new Date(profile.created_at).toLocaleDateString("en-IN", {
               month: "long",
               year: "numeric",
@@ -147,7 +147,7 @@ export default function BuyerProfilePage() {
             <Mail className="h-3.5 w-3.5" />
             <span className="text-xs font-medium uppercase tracking-wider">Email</span>
           </div>
-          <p className="text-sm font-medium text-[#D4D4D4] truncate">{profile.email}</p>
+          <p className="text-base font-medium text-[#D4D4D4] truncate">{profile.email}</p>
         </div>
       </div>
 
@@ -158,7 +158,7 @@ export default function BuyerProfilePage() {
         </h3>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="name" className="text-[#A3A3A3] text-sm">Full Name</Label>
+            <Label htmlFor="name" className="text-[#A3A3A3] text-base">Full Name</Label>
             <Input
               id="name"
               name="name"
@@ -168,7 +168,7 @@ export default function BuyerProfilePage() {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="phone" className="text-[#A3A3A3] text-sm flex items-center gap-1.5">
+            <Label htmlFor="phone" className="text-[#A3A3A3] text-base flex items-center gap-1.5">
               <Phone className="h-3.5 w-3.5" />
               Phone Number
             </Label>
@@ -182,12 +182,12 @@ export default function BuyerProfilePage() {
           </div>
 
           {error && (
-            <div className="rounded-lg border border-red-500/20 bg-red-500/5 px-3 py-2 text-sm text-red-400">
+            <div className="rounded-lg border border-red-500/20 bg-red-500/5 px-3 py-2 text-base text-red-400">
               {error}
             </div>
           )}
           {success && (
-            <div className="flex items-center gap-2 rounded-lg border border-green-500/20 bg-green-500/5 px-3 py-2 text-sm text-green-400">
+            <div className="flex items-center gap-2 rounded-lg border border-green-500/20 bg-green-500/5 px-3 py-2 text-base text-green-400">
               <CheckCircle className="h-4 w-4" />
               Profile updated successfully.
             </div>

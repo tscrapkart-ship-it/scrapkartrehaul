@@ -129,7 +129,7 @@ export function ScrapCard({
               <FallbackIcon
                 className={`h-12 w-12 ${cat.text} opacity-40`}
               />
-              <span className="text-[11px] text-[#525252]">
+              <span className="text-xs text-[#525252]">
                 {scrap.category}
               </span>
             </div>
@@ -182,24 +182,24 @@ export function ScrapCard({
 
       {/* Content */}
       <div className="p-4">
-        <h3 className="line-clamp-1 text-[15px] font-semibold text-[#F5F5F5] group-hover:text-white transition-colors">
+        <h3 className="line-clamp-1 text-base font-semibold text-[#F5F5F5] group-hover:text-white transition-colors">
           {scrap.title}
         </h3>
         {companyName && (
-          <p className="mt-0.5 text-xs text-[#737373]">{companyName}</p>
+          <p className="mt-0.5 text-sm text-[#737373]">{companyName}</p>
         )}
 
         {/* Price row */}
         <div className="mt-3 flex items-end justify-between">
           <div>
-            <p className="text-xs text-[#737373]">Asking price</p>
-            <p className="text-lg font-bold text-[#10B981]">
+            <p className="text-sm text-[#737373]">Asking price</p>
+            <p className="text-xl font-bold text-[#10B981]">
               ₹{scrap.price.toLocaleString("en-IN")}
             </p>
           </div>
           <div className="text-right">
-            <p className="text-xs text-[#737373]">Quantity</p>
-            <p className="text-sm font-medium text-[#D4D4D4]">
+            <p className="text-sm text-[#737373]">Quantity</p>
+            <p className="text-base font-medium text-[#D4D4D4]">
               {scrap.quantity} {scrap.unit}
             </p>
           </div>
@@ -209,7 +209,7 @@ export function ScrapCard({
         {scrap.city && (
           <div className="mt-3 flex items-center gap-1.5 border-t border-[#262626] pt-3">
             <MapPin className="h-3.5 w-3.5 text-[#525252]" />
-            <span className="text-xs text-[#737373]">{scrap.city}</span>
+            <span className="text-sm text-[#737373]">{scrap.city}</span>
           </div>
         )}
       </div>

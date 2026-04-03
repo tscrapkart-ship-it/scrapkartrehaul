@@ -67,8 +67,8 @@ export default async function TransactionsPage() {
           <p className="text-xs font-medium uppercase tracking-widest text-[#525252]">
             Transactions
           </p>
-          <h1 className="mt-2 text-3xl font-bold text-white">My Deals</h1>
-          <p className="mt-2 text-sm text-[#737373] max-w-md">
+          <h1 className="mt-2 text-4xl font-bold text-white">My Deals</h1>
+          <p className="mt-2 text-base text-[#737373] max-w-md">
             All confirmed transactions from accepted bids. Track status, pickup dates, and payment details.
           </p>
         </div>
@@ -76,15 +76,15 @@ export default async function TransactionsPage() {
         {/* Summary bar */}
         {transactions.length > 0 && (
           <div className="flex items-center gap-6 animate-slide-up delay-1">
-            <div className="flex items-center gap-2 text-sm text-[#737373]">
+            <div className="flex items-center gap-2 text-base text-[#737373]">
               <div className="h-2 w-2 rounded-full bg-[#10B981]" />
               <span>{transactions.filter((t) => t.status === "completed").length} completed</span>
             </div>
-            <div className="flex items-center gap-2 text-sm text-[#737373]">
+            <div className="flex items-center gap-2 text-base text-[#737373]">
               <div className="h-2 w-2 rounded-full bg-purple-400" />
               <span>{transactions.filter((t) => t.status === "in_progress").length} in progress</span>
             </div>
-            <div className="flex items-center gap-2 text-sm text-[#737373]">
+            <div className="flex items-center gap-2 text-base text-[#737373]">
               <div className="h-2 w-2 rounded-full bg-blue-400" />
               <span>{transactions.filter((t) => t.status === "scheduled").length} scheduled</span>
             </div>
@@ -96,8 +96,8 @@ export default async function TransactionsPage() {
             <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#1A1A1A] border border-[#262626]">
               <ArrowLeftRight className="h-6 w-6 text-[#525252]" />
             </div>
-            <p className="mt-4 text-base font-medium text-[#A3A3A3]">No deals yet</p>
-            <p className="mt-1 text-sm text-[#525252]">
+            <p className="mt-4 text-lg font-medium text-[#A3A3A3]">No deals yet</p>
+            <p className="mt-1 text-base text-[#525252]">
               Deals are created when a bid gets accepted.
             </p>
           </div>
@@ -135,7 +135,7 @@ export default async function TransactionsPage() {
                             <span className="rounded-full bg-[#1A1A1A] border border-[#262626] px-2.5 py-0.5 text-xs font-medium text-[#A3A3A3]">
                               {scrap?.category}
                             </span>
-                            <span className="text-xs text-[#525252]">
+                            <span className="text-sm text-[#525252]">
                               {isProducer ? "sold to" : "bought from"}{" "}
                               <span className="text-[#737373]">{counterpart}</span>
                             </span>
@@ -143,7 +143,7 @@ export default async function TransactionsPage() {
                           <p className="font-semibold text-white truncate group-hover:text-[#10B981] transition-colors">
                             {scrap?.title}
                           </p>
-                          <p className="text-xs text-[#525252] mt-0.5">
+                          <p className="text-sm text-[#525252] mt-0.5">
                             {scrap?.quantity} {scrap?.unit}
                           </p>
                         </div>

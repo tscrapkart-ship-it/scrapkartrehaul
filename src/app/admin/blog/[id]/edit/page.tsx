@@ -95,8 +95,8 @@ export default function EditBlogPage() {
           </Button>
         </Link>
         <div>
-          <h1 className="text-2xl font-bold text-white">Edit Post</h1>
-          <p className="mt-0.5 text-sm text-white/40">Update this blog post</p>
+          <h1 className="text-3xl font-bold text-white">Edit Post</h1>
+          <p className="mt-0.5 text-base text-white/40">Update this blog post</p>
         </div>
       </div>
 
@@ -128,7 +128,7 @@ export default function EditBlogPage() {
             onChange={(e) => setForm((p) => ({ ...p, excerpt: e.target.value }))}
             placeholder="Short summary shown in listings..."
             rows={2}
-            className="w-full rounded-md border border-[#262626] bg-card px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-brand-accent/50 resize-none"
+            className="w-full rounded-md border border-[#262626] bg-card px-3 py-2 text-base text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-brand-accent/50 resize-none"
           />
         </div>
 
@@ -139,7 +139,7 @@ export default function EditBlogPage() {
             onChange={(e) => setForm((p) => ({ ...p, content: e.target.value }))}
             placeholder="Write your post content here..."
             rows={12}
-            className="w-full rounded-md border border-[#262626] bg-card px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-brand-accent/50 resize-y font-mono"
+            className="w-full rounded-md border border-[#262626] bg-card px-3 py-2 text-base text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-brand-accent/50 resize-y font-mono"
           />
         </div>
 
@@ -161,7 +161,7 @@ export default function EditBlogPage() {
               onChange={(e) => setForm((p) => ({ ...p, is_featured: e.target.checked }))}
               className="rounded border-white/20 bg-card accent-brand-accent"
             />
-            <span className="text-sm text-white/70">Featured post</span>
+            <span className="text-base text-white/70">Featured post</span>
           </label>
           <label className="flex items-center gap-2 cursor-pointer">
             <input
@@ -170,7 +170,7 @@ export default function EditBlogPage() {
               onChange={(e) => setForm((p) => ({ ...p, is_published: e.target.checked }))}
               className="rounded border-white/20 bg-card accent-brand-accent"
             />
-            <span className="text-sm text-white/70">Published</span>
+            <span className="text-base text-white/70">Published</span>
           </label>
         </div>
 

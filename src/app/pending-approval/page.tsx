@@ -85,7 +85,7 @@ export default function PendingApprovalPage() {
             <p className="text-xs font-medium uppercase tracking-widest text-[#525252]">
               Account under review
             </p>
-            <h1 className="text-3xl font-bold text-white">
+            <h1 className="text-4xl font-bold text-white">
               {userName ? `Thanks, ${userName.split(" ")[0]}!` : "We're on it"}
             </h1>
             <p className="text-[#A3A3A3] leading-relaxed max-w-sm mx-auto">
@@ -122,12 +122,12 @@ export default function PendingApprovalPage() {
                     {step.done ? <CheckCircle className="h-3.5 w-3.5" /> : i + 1}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className={`text-sm leading-relaxed ${step.done ? "text-white" : "text-[#737373]"}`}>
+                    <p className={`text-base leading-relaxed ${step.done ? "text-white" : "text-[#737373]"}`}>
                       {step.text}
                     </p>
                   </div>
                   {i === 0 && (
-                    <span className="shrink-0 text-[10px] font-medium uppercase tracking-wider text-[#10B981] bg-[#10B981]/10 px-2 py-0.5 rounded-full border border-[#10B981]/20">
+                    <span className="shrink-0 text-xs font-medium uppercase tracking-wider text-[#10B981] bg-[#10B981]/10 px-2 py-0.5 rounded-full border border-[#10B981]/20">
                       In progress
                     </span>
                   )}
@@ -142,8 +142,8 @@ export default function PendingApprovalPage() {
               <Clock className="h-5 w-5 text-[#737373]" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm text-white font-medium">Estimated review time</p>
-              <p className="text-xs text-[#737373]">
+              <p className="text-base text-white font-medium">Estimated review time</p>
+              <p className="text-sm text-[#737373]">
                 Typically <span className="text-[#A3A3A3] font-medium">24-48 hours</span>. Faster for profiles with complete compliance documents.
               </p>
             </div>
@@ -153,7 +153,7 @@ export default function PendingApprovalPage() {
           <div className="text-center space-y-4 animate-slide-up delay-5">
             <a
               href="mailto:support@scrapkart.in"
-              className="inline-flex items-center gap-2 text-sm text-[#10B981] hover:text-[#34D399] transition-colors font-medium group"
+              className="inline-flex items-center gap-2 text-base text-[#10B981] hover:text-[#34D399] transition-colors font-medium group"
             >
               <Mail className="h-4 w-4" />
               support@scrapkart.in

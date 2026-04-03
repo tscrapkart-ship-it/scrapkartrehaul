@@ -33,8 +33,8 @@ export default async function MyBidsPage() {
     <div className="space-y-6 animate-fade-in">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white">My Bids</h1>
-          <p className="mt-1 text-sm text-[#737373]">
+          <h1 className="text-3xl font-bold text-white">My Bids</h1>
+          <p className="mt-1 text-base text-[#737373]">
             Track all bids you&apos;ve submitted across listings
           </p>
         </div>
@@ -55,8 +55,8 @@ export default async function MyBidsPage() {
             { label: "Accepted", value: acceptedCount, color: "text-green-400", border: acceptedCount > 0 ? "border-green-500/15" : "border-[#262626]" },
           ].map((stat, i) => (
             <div key={stat.label} className={`animate-scale-in delay-${i + 1} rounded-xl border bg-[#141414] p-4 text-center ${stat.border}`}>
-              <p className={`text-2xl font-bold ${stat.color}`}>{stat.value}</p>
-              <p className="text-xs text-[#525252] mt-1">{stat.label}</p>
+              <p className={`text-3xl font-bold ${stat.color}`}>{stat.value}</p>
+              <p className="text-sm text-[#525252] mt-1">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -67,13 +67,13 @@ export default async function MyBidsPage() {
           <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#1A1A1A] border border-[#262626]">
             <Gavel className="h-7 w-7 text-[#525252]" />
           </div>
-          <p className="text-lg font-semibold text-[#D4D4D4]">No bids yet</p>
-          <p className="mt-1 text-sm text-[#525252] max-w-xs text-center">
+          <p className="text-xl font-semibold text-[#D4D4D4]">No bids yet</p>
+          <p className="mt-1 text-base text-[#525252] max-w-xs text-center">
             Browse the marketplace and submit bids on listings you&apos;re interested in.
           </p>
           <Link
             href="/marketplace"
-            className="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#10B981] px-5 py-2.5 text-sm font-semibold text-black transition-all hover:bg-[#059669] hover:shadow-[0_0_20px_rgba(16,185,129,0.2)]"
+            className="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#10B981] px-5 py-2.5 text-base font-semibold text-black transition-all hover:bg-[#059669] hover:shadow-[0_0_20px_rgba(16,185,129,0.2)]"
           >
             Browse Marketplace
             <ArrowRight className="h-4 w-4" />
@@ -100,12 +100,12 @@ export default async function MyBidsPage() {
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1.5">
-                        <span className="inline-flex items-center gap-1.5 rounded-md bg-[#10B981]/10 px-2.5 py-0.5 text-xs font-medium text-[#10B981]">
+                        <span className="inline-flex items-center gap-1.5 rounded-md bg-[#10B981]/10 px-2.5 py-0.5 text-sm font-medium text-[#10B981]">
                           <span className="h-1.5 w-1.5 rounded-full bg-[#10B981]" />
                           {scrap?.category}
                         </span>
                         {scrap?.companies?.name && (
-                          <span className="text-xs text-[#525252] truncate">
+                          <span className="text-sm text-[#525252] truncate">
                             by {scrap.companies.name}
                           </span>
                         )}
@@ -114,7 +114,7 @@ export default async function MyBidsPage() {
                         {scrap?.title ?? "Unknown listing"}
                       </p>
                       {scrap?.city && (
-                        <p className="text-xs text-[#525252] mt-0.5">
+                        <p className="text-sm text-[#525252] mt-0.5">
                           {scrap.city}{scrap.state ? `, ${scrap.state}` : ""}
                         </p>
                       )}
@@ -134,10 +134,10 @@ export default async function MyBidsPage() {
                       <span className="font-bold">
                         ₹{bid.offered_price.toLocaleString("en-IN")}
                       </span>
-                      <span className="text-xs text-[#525252] font-normal">your offer</span>
+                      <span className="text-sm text-[#525252] font-normal">your offer</span>
                     </div>
                     {bid.estimated_pickup_date && (
-                      <div className="flex items-center gap-1.5 text-xs text-[#525252]">
+                      <div className="flex items-center gap-1.5 text-sm text-[#525252]">
                         <CalendarDays className="h-3.5 w-3.5" />
                         {new Date(bid.estimated_pickup_date).toLocaleDateString("en-IN", {
                           day: "numeric",
@@ -145,7 +145,7 @@ export default async function MyBidsPage() {
                         })}
                       </div>
                     )}
-                    <span className="text-xs text-[#3F3F3F] ml-auto">
+                    <span className="text-sm text-[#3F3F3F] ml-auto">
                       {new Date(bid.created_at).toLocaleDateString("en-IN", {
                         day: "numeric",
                         month: "short",

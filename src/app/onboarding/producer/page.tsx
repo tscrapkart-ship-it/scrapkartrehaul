@@ -150,8 +150,8 @@ export default function ProducerOnboardingPage() {
             <Factory className="h-5 w-5 text-[#10B981]" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white">Producer Onboarding</h1>
-            <p className="text-xs text-[#525252]">Set up your company profile to start listing</p>
+            <h1 className="text-2xl font-bold text-white">Producer Onboarding</h1>
+            <p className="text-sm text-[#525252]">Set up your company profile to start listing</p>
           </div>
         </div>
 
@@ -204,7 +204,7 @@ export default function ProducerOnboardingPage() {
               </p>
 
               <div className="space-y-2">
-                <Label className="text-[#A3A3A3] text-sm">Company Name <span className="text-[#10B981]">*</span></Label>
+                <Label className="text-[#A3A3A3] text-base">Company Name <span className="text-[#10B981]">*</span></Label>
                 <Input
                   name="name"
                   value={form.name}
@@ -216,7 +216,7 @@ export default function ProducerOnboardingPage() {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-[#A3A3A3] text-sm">Industry Type</Label>
+                <Label className="text-[#A3A3A3] text-base">Industry Type</Label>
                 <Input
                   name="industry_type"
                   value={form.industry_type}
@@ -233,7 +233,7 @@ export default function ProducerOnboardingPage() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label className="text-[#A3A3A3] text-sm">Contact Person <span className="text-[#10B981]">*</span></Label>
+                  <Label className="text-[#A3A3A3] text-base">Contact Person <span className="text-[#10B981]">*</span></Label>
                   <Input
                     name="contact_person"
                     value={form.contact_person}
@@ -244,7 +244,7 @@ export default function ProducerOnboardingPage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-[#A3A3A3] text-sm">Phone <span className="text-[#10B981]">*</span></Label>
+                  <Label className="text-[#A3A3A3] text-base">Phone <span className="text-[#10B981]">*</span></Label>
                   <Input
                     name="phone"
                     value={form.phone}
@@ -257,7 +257,7 @@ export default function ProducerOnboardingPage() {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-[#A3A3A3] text-sm">GST Number <span className="text-[#525252] text-xs font-normal">(optional)</span></Label>
+                <Label className="text-[#A3A3A3] text-base">GST Number <span className="text-[#525252] text-xs font-normal">(optional)</span></Label>
                 <Input
                   name="gst_number"
                   value={form.gst_number}
@@ -273,7 +273,7 @@ export default function ProducerOnboardingPage() {
               </p>
 
               <div className="space-y-2">
-                <Label className="text-[#A3A3A3] text-sm">Company Description <span className="text-[#525252] text-xs font-normal">(optional)</span></Label>
+                <Label className="text-[#A3A3A3] text-base">Company Description <span className="text-[#525252] text-xs font-normal">(optional)</span></Label>
                 <textarea
                   name="description"
                   value={form.description}
@@ -285,7 +285,7 @@ export default function ProducerOnboardingPage() {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-[#A3A3A3] text-sm">Company Logo <span className="text-[#525252] text-xs font-normal">(optional)</span></Label>
+                <Label className="text-[#A3A3A3] text-base">Company Logo <span className="text-[#525252] text-xs font-normal">(optional)</span></Label>
                 <ImageUpload
                   bucket="company-logos"
                   path="logos"
@@ -305,7 +305,7 @@ export default function ProducerOnboardingPage() {
               </p>
 
               <div className="space-y-2">
-                <Label className="text-[#A3A3A3] text-sm">Street Address <span className="text-[#525252] text-xs font-normal">(optional)</span></Label>
+                <Label className="text-[#A3A3A3] text-base">Street Address <span className="text-[#525252] text-xs font-normal">(optional)</span></Label>
                 <Input
                   name="address"
                   value={form.address}
@@ -317,7 +317,7 @@ export default function ProducerOnboardingPage() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label className="text-[#A3A3A3] text-sm">City <span className="text-[#10B981]">*</span></Label>
+                  <Label className="text-[#A3A3A3] text-base">City <span className="text-[#10B981]">*</span></Label>
                   <Input
                     name="city"
                     value={form.city}
@@ -328,7 +328,7 @@ export default function ProducerOnboardingPage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-[#A3A3A3] text-sm">State <span className="text-[#10B981]">*</span></Label>
+                  <Label className="text-[#A3A3A3] text-base">State <span className="text-[#10B981]">*</span></Label>
                   <Input
                     name="state"
                     value={form.state}
@@ -341,7 +341,7 @@ export default function ProducerOnboardingPage() {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-[#A3A3A3] text-sm">Pincode <span className="text-[#525252] text-xs font-normal">(optional)</span></Label>
+                <Label className="text-[#A3A3A3] text-base">Pincode <span className="text-[#525252] text-xs font-normal">(optional)</span></Label>
                 <Input
                   name="pincode"
                   value={form.pincode}
@@ -361,8 +361,8 @@ export default function ProducerOnboardingPage() {
                 <p className="text-xs font-medium uppercase tracking-widest text-[#525252] mb-3">
                   Waste Categories
                 </p>
-                <h3 className="font-semibold text-white text-base">What types of waste do you generate?</h3>
-                <p className="text-sm text-[#737373] mt-1">Select all that apply. This helps recyclers find your listings.</p>
+                <h3 className="font-semibold text-white text-lg">What types of waste do you generate?</h3>
+                <p className="text-base text-[#737373] mt-1">Select all that apply. This helps recyclers find your listings.</p>
               </div>
               <div className="grid grid-cols-2 gap-2">
                 {WASTE_CATEGORIES.map((cat) => {
@@ -372,7 +372,7 @@ export default function ProducerOnboardingPage() {
                       key={cat}
                       type="button"
                       onClick={() => toggleCategory(cat)}
-                      className={`flex items-center gap-2.5 rounded-lg px-4 py-3 text-sm font-medium transition-all text-left ${
+                      className={`flex items-center gap-2.5 rounded-lg px-4 py-3 text-base font-medium transition-all text-left ${
                         isSelected
                           ? "bg-[#10B981]/15 text-[#10B981] border border-[#10B981]/30 ring-1 ring-[#10B981]/20"
                           : "border border-[#262626] bg-[#0A0A0A] text-[#A3A3A3] hover:bg-[#1A1A1A] hover:border-[#333] hover:text-white"
@@ -399,7 +399,7 @@ export default function ProducerOnboardingPage() {
           )}
 
           {error && (
-            <div className="text-sm text-red-400 bg-red-400/10 border border-red-400/20 rounded-lg px-4 py-3 flex items-center gap-2 animate-scale-in">
+            <div className="text-base text-red-400 bg-red-400/10 border border-red-400/20 rounded-lg px-4 py-3 flex items-center gap-2 animate-scale-in">
               <div className="h-1.5 w-1.5 rounded-full bg-red-400 shrink-0" />
               {error}
             </div>

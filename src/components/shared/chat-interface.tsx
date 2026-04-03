@@ -86,17 +86,17 @@ export function ChatInterface({
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1A1A1A] border border-[#262626]">
               <Loader2 className="h-5 w-5 animate-spin text-[#10B981]" />
             </div>
-            <p className="mt-3 text-sm text-[#525252]">Loading messages...</p>
+            <p className="mt-3 text-base text-[#525252]">Loading messages...</p>
           </div>
         ) : messages.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20">
             <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#10B981]/10 border border-[#10B981]/20">
               <MessageSquare className="h-6 w-6 text-[#10B981]" />
             </div>
-            <p className="mt-4 text-sm font-medium text-[#A3A3A3]">
+            <p className="mt-4 text-base font-medium text-[#A3A3A3]">
               Start the conversation
             </p>
-            <p className="mt-1 text-xs text-[#525252]">
+            <p className="mt-1 text-sm text-[#525252]">
               Send a message to begin discussing this deal.
             </p>
           </div>
@@ -107,7 +107,7 @@ export function ChatInterface({
                 {/* Date separator */}
                 <div className="flex items-center justify-center py-4">
                   <div className="h-px flex-1 bg-[#262626]" />
-                  <span className="mx-3 text-[11px] font-medium uppercase tracking-widest text-[#525252]">
+                  <span className="mx-3 text-xs font-medium uppercase tracking-widest text-[#525252]">
                     {group.date}
                   </span>
                   <div className="h-px flex-1 bg-[#262626]" />

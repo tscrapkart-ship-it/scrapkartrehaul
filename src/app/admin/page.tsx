@@ -165,8 +165,8 @@ export default async function AdminOverviewPage() {
   return (
     <div className="space-y-8 animate-fade-in">
       <div>
-        <h1 className="text-2xl font-bold text-white">Overview</h1>
-        <p className="mt-1 text-sm text-[#737373]">Platform-wide activity at a glance</p>
+        <h1 className="text-3xl font-bold text-white">Overview</h1>
+        <p className="mt-1 text-base text-[#737373]">Platform-wide activity at a glance</p>
       </div>
 
       {/* Stats grid */}
@@ -182,8 +182,8 @@ export default async function AdminOverviewPage() {
                     <Icon className={`h-4.5 w-4.5 ${card.iconColor}`} />
                   </div>
                 </div>
-                <p className="text-3xl font-bold text-white">{card.value}</p>
-                <p className="mt-1 text-xs text-[#525252]">{card.sub}</p>
+                <p className="text-4xl font-bold text-white">{card.value}</p>
+                <p className="mt-1 text-sm text-[#525252]">{card.sub}</p>
               </div>
             </Link>
           );
@@ -199,7 +199,7 @@ export default async function AdminOverviewPage() {
               <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-400/10">
                 <TrendingUp className="h-3.5 w-3.5 text-blue-400" />
               </div>
-              <h2 className="text-sm font-semibold text-white">Recent Signups</h2>
+              <h2 className="text-base font-semibold text-white">Recent Signups</h2>
             </div>
             <Link href="/admin/users" className="text-[#525252] hover:text-[#10B981] transition-colors">
               <ChevronRight className="h-4 w-4" />
@@ -207,22 +207,22 @@ export default async function AdminOverviewPage() {
           </div>
           <div className="space-y-3">
             {activity.recentUsers.length === 0 && (
-              <p className="text-xs text-[#525252] text-center py-4">No users yet</p>
+              <p className="text-sm text-[#525252] text-center py-4">No users yet</p>
             )}
             {activity.recentUsers.map((u: any) => (
               <div key={u.id} className="flex items-center justify-between py-1">
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm text-white truncate">{u.name}</p>
-                  <p className="text-xs text-[#525252] truncate">{u.email}</p>
+                  <p className="text-base text-white truncate">{u.name}</p>
+                  <p className="text-sm text-[#525252] truncate">{u.email}</p>
                 </div>
                 <div className="flex items-center gap-1.5 ml-2 shrink-0">
                   {!u.is_approved && u.role && (
-                    <span className="inline-flex items-center gap-1 rounded-md bg-yellow-500/10 px-1.5 py-0.5 text-[10px] font-medium text-yellow-400">
+                    <span className="inline-flex items-center gap-1 rounded-md bg-yellow-500/10 px-1.5 py-0.5 text-xs font-medium text-yellow-400">
                       <span className="h-1 w-1 rounded-full bg-yellow-400" />
                       pending
                     </span>
                   )}
-                  <span className="rounded-md bg-[#1A1A1A] px-1.5 py-0.5 text-[10px] font-medium text-[#737373]">
+                  <span className="rounded-md bg-[#1A1A1A] px-1.5 py-0.5 text-xs font-medium text-[#737373]">
                     {roleLabel[u.role] ?? u.role ?? "—"}
                   </span>
                 </div>
@@ -238,7 +238,7 @@ export default async function AdminOverviewPage() {
               <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#10B981]/10">
                 <Package className="h-3.5 w-3.5 text-[#10B981]" />
               </div>
-              <h2 className="text-sm font-semibold text-white">Recent Listings</h2>
+              <h2 className="text-base font-semibold text-white">Recent Listings</h2>
             </div>
             <Link href="/admin/listings" className="text-[#525252] hover:text-[#10B981] transition-colors">
               <ChevronRight className="h-4 w-4" />
@@ -246,17 +246,17 @@ export default async function AdminOverviewPage() {
           </div>
           <div className="space-y-3">
             {activity.recentListings.length === 0 && (
-              <p className="text-xs text-[#525252] text-center py-4">No listings yet</p>
+              <p className="text-sm text-[#525252] text-center py-4">No listings yet</p>
             )}
             {activity.recentListings.map((s: any) => (
               <div key={s.id} className="flex items-center justify-between py-1">
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm text-white">{s.title}</p>
-                  <p className="text-xs text-[#525252]">{(s.companies as any)?.name ?? "—"}</p>
+                  <p className="truncate text-base text-white">{s.title}</p>
+                  <p className="text-sm text-[#525252]">{(s.companies as any)?.name ?? "—"}</p>
                 </div>
                 <div className="flex gap-1.5 ml-2 shrink-0">
-                  <span className="rounded-md bg-[#1A1A1A] px-1.5 py-0.5 text-[10px] font-medium text-[#737373]">{s.category}</span>
-                  <span className={`inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[10px] font-medium ${
+                  <span className="rounded-md bg-[#1A1A1A] px-1.5 py-0.5 text-xs font-medium text-[#737373]">{s.category}</span>
+                  <span className={`inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-xs font-medium ${
                     s.status === "live" ? "bg-green-500/10 text-green-400" : "bg-[#1A1A1A] text-[#525252]"
                   }`}>
                     <span className={`h-1 w-1 rounded-full ${s.status === "live" ? "bg-green-400" : "bg-[#525252]"}`} />
@@ -275,7 +275,7 @@ export default async function AdminOverviewPage() {
               <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-purple-400/10">
                 <Gavel className="h-3.5 w-3.5 text-purple-400" />
               </div>
-              <h2 className="text-sm font-semibold text-white">Recent Bids</h2>
+              <h2 className="text-base font-semibold text-white">Recent Bids</h2>
             </div>
             <Link href="/admin/bids" className="text-[#525252] hover:text-[#10B981] transition-colors">
               <ChevronRight className="h-4 w-4" />
@@ -283,19 +283,19 @@ export default async function AdminOverviewPage() {
           </div>
           <div className="space-y-3">
             {activity.recentBids.length === 0 && (
-              <p className="text-xs text-[#525252] text-center py-4">No bids yet</p>
+              <p className="text-sm text-[#525252] text-center py-4">No bids yet</p>
             )}
             {activity.recentBids.map((b: any) => {
               const bs = bidStatusConfig[b.status] ?? bidStatusConfig.withdrawn;
               return (
                 <div key={b.id} className="flex items-center justify-between py-1">
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm text-white">{(b.scraps as any)?.title ?? "—"}</p>
-                    <p className="text-xs text-[#525252]">
+                    <p className="truncate text-base text-white">{(b.scraps as any)?.title ?? "—"}</p>
+                    <p className="text-sm text-[#525252]">
                       by {(b.users as any)?.name ?? "—"} · ₹{b.offered_price?.toLocaleString("en-IN")}
                     </p>
                   </div>
-                  <span className={`ml-2 shrink-0 inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[10px] font-medium ${bs.bg} ${bs.text}`}>
+                  <span className={`ml-2 shrink-0 inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-xs font-medium ${bs.bg} ${bs.text}`}>
                     <span className={`h-1 w-1 rounded-full ${bs.dot}`} />
                     {b.status}
                   </span>

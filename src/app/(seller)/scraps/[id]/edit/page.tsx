@@ -105,7 +105,7 @@ export default function EditScrapPage() {
   if (!scrap) {
     return (
       <div className="flex flex-col items-center justify-center py-20">
-        <p className="text-[#737373]">Listing not found.</p>
+        <p className="text-[#737373] text-base">Listing not found.</p>
       </div>
     );
   }
@@ -118,8 +118,8 @@ export default function EditScrapPage() {
             <Pencil className="h-5 w-5 text-[#10B981]" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white">Edit Listing</h1>
-            <p className="text-sm text-[#737373]">Update your scrap listing details</p>
+            <h1 className="text-3xl font-bold text-white">Edit Listing</h1>
+            <p className="text-base text-[#737373]">Update your scrap listing details</p>
           </div>
         </div>
         <Button
@@ -142,7 +142,7 @@ export default function EditScrapPage() {
             </p>
 
             <div className="space-y-2">
-              <Label htmlFor="title" className="text-[#A3A3A3] text-sm">Title *</Label>
+              <Label htmlFor="title" className="text-[#A3A3A3] text-base">Title *</Label>
               <Input
                 id="title"
                 name="title"
@@ -153,7 +153,7 @@ export default function EditScrapPage() {
             </div>
 
             <div className="space-y-2.5">
-              <Label className="text-[#A3A3A3] text-sm">Category *</Label>
+              <Label className="text-[#A3A3A3] text-base">Category *</Label>
               <input type="hidden" name="category" value={selectedCategory} />
               <div className="flex flex-wrap gap-2">
                 {categories.map((cat) => (
@@ -161,7 +161,7 @@ export default function EditScrapPage() {
                     key={cat}
                     type="button"
                     onClick={() => setSelectedCategory(cat)}
-                    className={`rounded-lg px-4 py-2 text-sm font-medium transition-all ${
+                    className={`rounded-lg px-4 py-2 text-base font-medium transition-all ${
                       selectedCategory === cat
                         ? "bg-[#10B981] text-black shadow-[0_0_12px_rgba(16,185,129,0.15)]"
                         : "border border-[#262626] bg-[#0A0A0A] text-[#A3A3A3] hover:bg-[#1A1A1A] hover:text-white hover:border-[#333]"
@@ -182,7 +182,7 @@ export default function EditScrapPage() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="price" className="text-[#A3A3A3] text-sm">Price (₹) *</Label>
+                <Label htmlFor="price" className="text-[#A3A3A3] text-base">Price (₹) *</Label>
                 <Input
                   id="price"
                   name="price"
@@ -195,7 +195,7 @@ export default function EditScrapPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="quantity" className="text-[#A3A3A3] text-sm">Quantity *</Label>
+                <Label htmlFor="quantity" className="text-[#A3A3A3] text-base">Quantity *</Label>
                 <Input
                   id="quantity"
                   name="quantity"
@@ -210,13 +210,13 @@ export default function EditScrapPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="unit" className="text-[#A3A3A3] text-sm">Unit *</Label>
+              <Label htmlFor="unit" className="text-[#A3A3A3] text-base">Unit *</Label>
               <select
                 id="unit"
                 name="unit"
                 defaultValue={scrap.unit}
                 required
-                className="flex h-11 w-full rounded-lg border border-[#262626] bg-[#0A0A0A] px-3 py-2 text-sm text-white focus:border-[#10B981] focus:outline-none focus:ring-2 focus:ring-[#10B981]/20"
+                className="flex h-11 w-full rounded-lg border border-[#262626] bg-[#0A0A0A] px-3 py-2 text-base text-white focus:border-[#10B981] focus:outline-none focus:ring-2 focus:ring-[#10B981]/20"
               >
                 {units.map((u) => (
                   <option key={u} value={u} className="bg-[#141414] text-white">
@@ -234,18 +234,18 @@ export default function EditScrapPage() {
             </p>
 
             <div className="space-y-2">
-              <Label htmlFor="description" className="text-[#A3A3A3] text-sm">Description</Label>
+              <Label htmlFor="description" className="text-[#A3A3A3] text-base">Description</Label>
               <textarea
                 id="description"
                 name="description"
                 rows={3}
                 defaultValue={scrap.description ?? ""}
-                className="flex w-full rounded-lg border border-[#262626] bg-[#0A0A0A] px-3 py-2.5 text-sm text-white placeholder:text-[#525252] focus:border-[#10B981] focus:outline-none focus:ring-2 focus:ring-[#10B981]/20 resize-none"
+                className="flex w-full rounded-lg border border-[#262626] bg-[#0A0A0A] px-3 py-2.5 text-base text-white placeholder:text-[#525252] focus:border-[#10B981] focus:outline-none focus:ring-2 focus:ring-[#10B981]/20 resize-none"
               />
             </div>
 
             <div className="space-y-2">
-              <Label className="text-[#A3A3A3] text-sm">Images</Label>
+              <Label className="text-[#A3A3A3] text-base">Images</Label>
               <ImageUpload
                 bucket="scrap-images"
                 path="scraps"
@@ -267,7 +267,7 @@ export default function EditScrapPage() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="address" className="text-[#A3A3A3] text-sm">Address</Label>
+                <Label htmlFor="address" className="text-[#A3A3A3] text-base">Address</Label>
                 <Input
                   id="address"
                   name="address"
@@ -276,7 +276,7 @@ export default function EditScrapPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="city" className="text-[#A3A3A3] text-sm">City</Label>
+                <Label htmlFor="city" className="text-[#A3A3A3] text-base">City</Label>
                 <Input
                   id="city"
                   name="city"
@@ -287,7 +287,7 @@ export default function EditScrapPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="state" className="text-[#A3A3A3] text-sm">State</Label>
+                <Label htmlFor="state" className="text-[#A3A3A3] text-base">State</Label>
                 <Input
                   id="state"
                   name="state"
@@ -296,7 +296,7 @@ export default function EditScrapPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="pincode" className="text-[#A3A3A3] text-sm">Pincode</Label>
+                <Label htmlFor="pincode" className="text-[#A3A3A3] text-base">Pincode</Label>
                 <Input
                   id="pincode"
                   name="pincode"
@@ -308,7 +308,7 @@ export default function EditScrapPage() {
           </div>
 
           {error && (
-            <div className="rounded-lg border border-red-500/20 bg-red-500/5 px-4 py-3 text-sm text-red-400">
+            <div className="rounded-lg border border-red-500/20 bg-red-500/5 px-4 py-3 text-base text-red-400">
               {error}
             </div>
           )}

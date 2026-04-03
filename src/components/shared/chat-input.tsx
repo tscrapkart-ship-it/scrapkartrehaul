@@ -39,7 +39,7 @@ export function ChatInput({
           onChange={(e) => setText(e.target.value)}
           placeholder="Type a message..."
           disabled={disabled}
-          className="h-11 w-full rounded-xl border border-[#262626] bg-[#0A0A0A] px-4 text-sm text-white placeholder:text-[#525252] outline-none transition-colors focus:border-[#10B981]/50 focus:ring-1 focus:ring-[#10B981]/20 disabled:cursor-not-allowed disabled:opacity-40"
+          className="h-11 w-full rounded-xl border border-[#262626] bg-[#0A0A0A] px-4 text-base text-white placeholder:text-[#525252] outline-none transition-colors focus:border-[#10B981]/50 focus:ring-1 focus:ring-[#10B981]/20 disabled:cursor-not-allowed disabled:opacity-40"
         />
       </div>
       <button

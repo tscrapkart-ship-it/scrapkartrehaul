@@ -178,8 +178,8 @@ export function BidsList({
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#1A1A1A] mb-3">
               <Gavel className="h-6 w-6 text-white/20" />
             </div>
-            <p className="text-white/40">No bids yet</p>
-            <p className="text-xs text-white/25 mt-1">
+            <p className="text-base text-white/40">No bids yet</p>
+            <p className="text-sm text-white/25 mt-1">
               Recyclers will see your listing and submit bids.
             </p>
           </div>
@@ -198,11 +198,11 @@ export function BidsList({
                     <div>
                       <div className="flex items-center gap-1.5">
                         <User className="h-3 w-3 text-white/30" />
-                        <span className="text-sm font-medium text-white">
+                        <span className="text-base font-medium text-white">
                           {bid.users?.name ?? "Recycler"}
                         </span>
                       </div>
-                      <p className="text-xs text-white/30">{bid.users?.email}</p>
+                      <p className="text-sm text-white/30">{bid.users?.email}</p>
                     </div>
                   </div>
                   <Badge className={statusConfig[bid.status] ?? "bg-[#1A1A1A] text-white/40"}>
@@ -213,7 +213,7 @@ export function BidsList({
                 <div className="flex flex-wrap gap-4 text-sm">
                   <div className="flex items-center gap-1.5">
                     <IndianRupee className="h-3.5 w-3.5 text-brand-accent" />
-                    <span className="text-xl font-bold text-brand-accent">
+                    <span className="text-2xl font-bold text-brand-accent">
                       ₹{bid.offered_price.toLocaleString("en-IN")}
                     </span>
                   </div>
@@ -234,7 +234,7 @@ export function BidsList({
                 {bid.message && (
                   <div className="flex items-start gap-2 rounded-lg bg-[#141414] px-3 py-2">
                     <MessageSquare className="h-3.5 w-3.5 text-white/30 shrink-0 mt-0.5" />
-                    <p className="text-xs text-white/50 leading-relaxed">{bid.message}</p>
+                    <p className="text-sm text-white/50 leading-relaxed">{bid.message}</p>
                   </div>
                 )}
 

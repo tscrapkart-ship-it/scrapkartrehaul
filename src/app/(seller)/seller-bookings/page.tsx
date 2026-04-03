@@ -32,13 +32,13 @@ export default async function SellerBidsPage() {
     <div className="space-y-6 animate-fade-in">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white">Incoming Bids</h1>
-          <p className="mt-1 text-sm text-[#737373]">
+          <h1 className="text-3xl font-bold text-white">Incoming Bids</h1>
+          <p className="mt-1 text-base text-[#737373]">
             Review and respond to bids from recyclers
           </p>
         </div>
         {pendingCount > 0 && (
-          <span className="shrink-0 inline-flex items-center gap-1.5 rounded-lg bg-[#10B981]/10 border border-[#10B981]/20 px-3 py-1.5 text-xs font-semibold text-[#10B981]">
+          <span className="shrink-0 inline-flex items-center gap-1.5 rounded-lg bg-[#10B981]/10 border border-[#10B981]/20 px-3 py-1.5 text-sm font-semibold text-[#10B981]">
             <span className="h-1.5 w-1.5 rounded-full bg-[#10B981] animate-pulse" />
             {pendingCount} pending
           </span>
@@ -50,13 +50,13 @@ export default async function SellerBidsPage() {
           <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#1A1A1A] border border-[#262626] mb-4">
             <Gavel className="h-7 w-7 text-[#525252]" />
           </div>
-          <p className="text-lg font-semibold text-[#D4D4D4]">No bids yet</p>
-          <p className="mt-1 text-sm text-[#525252] max-w-xs text-center">
+          <p className="text-xl font-semibold text-[#D4D4D4]">No bids yet</p>
+          <p className="mt-1 text-base text-[#525252] max-w-xs text-center">
             Bids will appear here when recyclers submit offers on your listings.
           </p>
           <Link
             href="/scraps/new"
-            className="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#10B981] px-5 py-2.5 text-sm font-semibold text-black transition-all hover:bg-[#059669] hover:shadow-[0_0_20px_rgba(16,185,129,0.2)]"
+            className="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#10B981] px-5 py-2.5 text-base font-semibold text-black transition-all hover:bg-[#059669] hover:shadow-[0_0_20px_rgba(16,185,129,0.2)]"
           >
             <Plus className="h-4 w-4" />
             Post a Listing
@@ -86,10 +86,10 @@ export default async function SellerBidsPage() {
                           {scrap?.category}
                         </span>
                       </div>
-                      <p className="font-semibold text-white truncate group-hover:text-[#10B981] transition-colors">
+                      <p className="font-semibold text-white truncate group-hover:text-[#10B981] transition-colors text-base">
                         {scrap?.title}
                       </p>
-                      <div className="flex items-center gap-1.5 text-xs text-[#525252] mt-1">
+                      <div className="flex items-center gap-1.5 text-sm text-[#525252] mt-1">
                         <User className="h-3 w-3" />
                         <span className="text-[#A3A3A3]">{recycler?.name ?? "Recycler"}</span>
                         {recycler?.email && (
@@ -109,13 +109,13 @@ export default async function SellerBidsPage() {
                   <div className="flex flex-wrap items-center gap-4 mt-3 pt-3 border-t border-[#1A1A1A]">
                     <div className="flex items-center gap-1.5 text-[#10B981]">
                       <IndianRupee className="h-3.5 w-3.5" />
-                      <span className="font-bold">
+                      <span className="font-bold text-base">
                         ₹{bid.offered_price.toLocaleString("en-IN")}
                       </span>
-                      <span className="text-xs text-[#525252] font-normal">offered</span>
+                      <span className="text-sm text-[#525252] font-normal">offered</span>
                     </div>
                     {bid.estimated_pickup_date && (
-                      <div className="flex items-center gap-1.5 text-xs text-[#525252]">
+                      <div className="flex items-center gap-1.5 text-sm text-[#525252]">
                         <CalendarDays className="h-3.5 w-3.5" />
                         {new Date(bid.estimated_pickup_date).toLocaleDateString("en-IN", {
                           day: "numeric",
@@ -123,7 +123,7 @@ export default async function SellerBidsPage() {
                         })}
                       </div>
                     )}
-                    <span className="text-xs text-[#3F3F3F] ml-auto">
+                    <span className="text-sm text-[#3F3F3F] ml-auto">
                       {new Date(bid.created_at).toLocaleDateString("en-IN", {
                         day: "numeric",
                         month: "short",
@@ -135,7 +135,7 @@ export default async function SellerBidsPage() {
                   {bid.message && (
                     <div className="flex items-start gap-2 mt-3 pt-3 border-t border-[#1A1A1A]">
                       <MessageSquare className="h-3.5 w-3.5 text-[#3F3F3F] shrink-0 mt-0.5" />
-                      <p className="text-xs text-[#525252] italic truncate">
+                      <p className="text-sm text-[#525252] italic truncate">
                         &ldquo;{bid.message}&rdquo;
                       </p>
                     </div>
