@@ -90,7 +90,7 @@ export default function EditBlogPage() {
     <div className="space-y-6 max-w-2xl">
       <div className="flex items-center gap-3">
         <Link href="/admin/blog">
-          <Button size="sm" variant="outline" className="border-[#262626] text-white/60 hover:bg-white/[0.06] h-8 px-3">
+          <Button size="sm" variant="outline" className="border-[#262626] text-white/60 hover:bg-[#1A1A1A] h-8 px-3">
             <ArrowLeft className="h-3.5 w-3.5" />
           </Button>
         </Link>
@@ -184,7 +184,7 @@ export default function EditBlogPage() {
             Save Changes
           </Button>
           <Link href="/admin/blog">
-            <Button type="button" variant="outline" className="border-[#262626] text-white/60 hover:bg-white/[0.06]">
+            <Button type="button" variant="outline" className="border-[#262626] text-white/60 hover:bg-[#1A1A1A]">
               Cancel
             </Button>
           </Link>

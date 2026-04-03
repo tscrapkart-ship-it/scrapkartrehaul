@@ -89,7 +89,7 @@ export function BookScrapDialog({
           Payment integration coming soon. This is a booking confirmation only.
         </div>
         <AlertDialogFooter>
-          <AlertDialogCancel className="border-white/10 bg-transparent text-white/60 hover:bg-white/[0.06] hover:text-white">
+          <AlertDialogCancel className="border-white/10 bg-transparent text-white/60 hover:bg-[#1A1A1A] hover:text-white">
             Cancel
           </AlertDialogCancel>
           <AlertDialogAction

@@ -59,7 +59,7 @@ export default async function AdminBlogPage() {
                     <p className="text-xs text-white/30">/{blog.slug}</p>
                   </td>
                   <td className="px-5 py-4">
-                    <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${blog.is_published ? "bg-green-500/10 text-green-400" : "bg-white/[0.06] text-white/40"}`}>
+                    <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${blog.is_published ? "bg-green-500/10 text-green-400" : "bg-[#1A1A1A] text-white/40"}`}>
                       {blog.is_published ? "Published" : "Draft"}
                     </span>
                   </td>
@@ -74,7 +74,7 @@ export default async function AdminBlogPage() {
                   <td className="px-5 py-4">
                     <div className="flex items-center gap-2">
                       <Link href={`/admin/blog/${blog.id}/edit`}>
-                        <Button size="sm" variant="outline" className="border-[#262626] text-white/60 hover:bg-white/[0.06] h-7 px-3 text-xs">
+                        <Button size="sm" variant="outline" className="border-[#262626] text-white/60 hover:bg-[#1A1A1A] h-7 px-3 text-xs">
                           Edit
                         </Button>
                       </Link>

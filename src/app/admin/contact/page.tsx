@@ -22,7 +22,7 @@ async function getSubmissions(status?: string) {
 
 const statusColor: Record<string, string> = {
   new: "bg-brand-accent/10 text-brand-accent",
-  read: "bg-white/[0.06] text-white/40",
+  read: "bg-[#1A1A1A] text-white/40",
   replied: "bg-green-500/10 text-green-400",
   archived: "bg-[#1A1A1A] text-white/25",
 };

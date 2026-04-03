@@ -47,17 +47,16 @@ export function AdminNav() {
     return pathname.startsWith(item.href);
   }
 
-  // Show first 5 in desktop nav, rest in overflow
   const primaryItems = navItems.slice(0, 6);
   const secondaryItems = navItems.slice(6);
 
   return (
     <>
       {/* Desktop header */}
-      <header className="sticky top-0 z-40 border-b border-[#262626] bg-brand-dark">
+      <header className="sticky top-0 z-40 border-b border-[#262626] bg-[#0A0A0A]/95 backdrop-blur-sm">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-6">
-            <Link href="/admin" className="flex items-center gap-2">
+            <Link href="/admin" className="flex items-center gap-2.5">
               <Image
                 src="/logos/ScrapKart White Logo.png"
                 alt="ScrapKart"
@@ -65,41 +64,44 @@ export function AdminNav() {
                 height={32}
                 priority
               />
-              <span className="hidden rounded-md border border-brand-accent/30 bg-brand-accent/10 px-2 py-0.5 text-xs font-semibold text-brand-accent sm:inline">
+              <span className="hidden rounded-md border border-[#10B981]/30 bg-[#10B981]/10 px-2 py-0.5 text-xs font-semibold text-[#10B981] sm:inline">
                 Admin
               </span>
             </Link>
             <nav className="hidden items-center gap-0.5 md:flex">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`relative rounded-lg px-2.5 py-2 text-sm font-medium transition-colors ${
-                    isActive(item)
-                      ? "text-brand-accent"
-                      : "text-white/60 hover:text-white"
-                  }`}
-                >
-                  {item.label}
-                  {isActive(item) && (
-                    <span className="absolute bottom-0 left-2.5 right-2.5 h-0.5 rounded-full bg-brand-accent" />
-                  )}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const active = isActive(item);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`relative rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                      active
+                        ? "text-[#10B981] bg-[#10B981]/[0.06]"
+                        : "text-[#737373] hover:text-white hover:bg-[#1A1A1A]"
+                    }`}
+                  >
+                    {item.label}
+                    {active && (
+                      <span className="absolute bottom-0 left-3 right-3 h-0.5 rounded-full bg-[#10B981]" />
+                    )}
+                  </Link>
+                );
+              })}
             </nav>
           </div>
           <div className="flex items-center gap-3">
             <div className="hidden items-center gap-2 sm:flex">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-accent/10">
-                <ShieldCheck className="h-4 w-4 text-brand-accent" />
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#10B981]/10 border border-[#10B981]/20">
+                <ShieldCheck className="h-4 w-4 text-[#10B981]" />
               </div>
-              <span className="text-sm text-white/60">Admin</span>
+              <span className="text-sm text-[#737373]">Admin</span>
             </div>
             <Button
               variant="ghost"
               size="sm"
               onClick={handleLogout}
-              className="text-white/40 hover:bg-white/[0.06] hover:text-white"
+              className="text-[#525252] hover:bg-[#1A1A1A] hover:text-white"
             >
               <LogOut className="h-4 w-4" />
             </Button>
@@ -107,8 +109,8 @@ export function AdminNav() {
         </div>
       </header>
 
-      {/* Mobile bottom nav — show primary items */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-[#262626] bg-brand-dark md:hidden">
+      {/* Mobile bottom nav */}
+      <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-[#262626] bg-[#0A0A0A]/95 backdrop-blur-sm md:hidden" style={{ paddingBottom: "env(safe-area-inset-bottom)" }}>
         <div className="flex justify-around py-2 overflow-x-auto">
           {primaryItems.map((item) => {
             const Icon = item.icon;
@@ -117,18 +119,21 @@ export function AdminNav() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex flex-col items-center gap-0.5 px-2 py-1 text-xs transition-colors shrink-0 ${
-                  active ? "text-brand-accent" : "text-white/40"
+                className={`flex flex-col items-center gap-0.5 px-2 py-1 text-[10px] transition-colors shrink-0 ${
+                  active ? "text-[#10B981]" : "text-[#525252]"
                 }`}
               >
-                <Icon className="h-5 w-5" />
+                <div className={`flex h-7 w-7 items-center justify-center rounded-lg transition-colors ${
+                  active ? "bg-[#10B981]/10" : ""
+                }`}>
+                  <Icon className="h-4 w-4" />
+                </div>
                 {item.label}
               </Link>
             );
           })}
         </div>
-        {/* Secondary items row */}
-        <div className="flex justify-around py-1 border-t border-white/[0.04]">
+        <div className="flex justify-around py-1 border-t border-[#1A1A1A]">
           {secondaryItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item);
@@ -136,8 +141,8 @@ export function AdminNav() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex flex-col items-center gap-0.5 px-2 py-1 text-xs transition-colors shrink-0 ${
-                  active ? "text-brand-accent" : "text-white/30"
+                className={`flex flex-col items-center gap-0.5 px-2 py-1 text-[10px] transition-colors shrink-0 ${
+                  active ? "text-[#10B981]" : "text-[#3F3F3F]"
                 }`}
               >
                 <Icon className="h-4 w-4" />

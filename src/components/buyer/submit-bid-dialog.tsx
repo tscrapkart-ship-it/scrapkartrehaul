@@ -118,7 +118,7 @@ export function SubmitBidDialog({
     return (
       <Button
         disabled
-        className="w-full bg-white/[0.06] text-white/40 border border-[#262626]"
+        className="w-full bg-[#1A1A1A] text-white/40 border border-[#262626]"
         size="lg"
       >
         {listingStatus === "matched" ? "Bid Accepted by Another Recycler" : "Listing Closed"}

@@ -112,7 +112,7 @@ export default async function AdminUsersPage({
                     </td>
                     <td className="px-5 py-4">
                       {!user.onboarding_completed ? (
-                        <span className="rounded-full bg-white/[0.06] px-2.5 py-1 text-xs text-white/40">Onboarding</span>
+                        <span className="rounded-full bg-[#1A1A1A] px-2.5 py-1 text-xs text-white/40">Onboarding</span>
                       ) : user.is_approved ? (
                         <span className="rounded-full bg-green-500/10 px-2.5 py-1 text-xs text-green-400">Approved</span>
                       ) : (

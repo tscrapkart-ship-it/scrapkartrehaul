@@ -56,7 +56,7 @@ export default async function AdminCompaniesPage() {
                   <p className="text-xs font-medium text-white">{(company.owner as any)?.name ?? "—"}</p>
                   <p className="text-xs text-white/40">{(company.owner as any)?.email ?? ""}</p>
                 </div>
-                <span className="rounded-full bg-white/[0.06] px-2.5 py-1 text-xs text-white/50">
+                <span className="rounded-full bg-[#1A1A1A] px-2.5 py-1 text-xs text-white/50">
                   {company.city}, {company.state}
                 </span>
               </div>

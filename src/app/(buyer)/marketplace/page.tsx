@@ -2,6 +2,7 @@ import { ScrapGrid } from "@/components/buyer/scrap-grid";
 import { MarketplaceFilters } from "@/components/buyer/marketplace-filters";
 import { isMockMode, mockScraps } from "@/lib/mock-data";
 import type { ScrapCategory } from "@/types";
+import { Store } from "lucide-react";
 
 async function getScraps(params: {
   category?: string;
@@ -60,13 +61,27 @@ export default async function MarketplacePage({
   const scraps = await getScraps(params);
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-white">Marketplace</h1>
-        <p className="mt-1 text-sm text-white/40">
-          Browse available scrap materials from verified sellers
-        </p>
+    <div className="space-y-6 animate-fade-in">
+      {/* Header */}
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#10B981]/10 border border-[#10B981]/20">
+            <Store className="h-5 w-5 text-[#10B981]" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-bold text-white">Marketplace</h1>
+            <p className="text-sm text-[#737373]">
+              Browse available scrap materials from verified sellers
+            </p>
+          </div>
+        </div>
+        {scraps.length > 0 && (
+          <span className="shrink-0 rounded-lg bg-[#1A1A1A] border border-[#262626] px-3 py-1.5 text-xs font-medium text-[#737373]">
+            {scraps.length} listing{scraps.length !== 1 ? "s" : ""}
+          </span>
+        )}
       </div>
+
       <MarketplaceFilters
         currentCategory={params.category}
         currentSort={params.sort}

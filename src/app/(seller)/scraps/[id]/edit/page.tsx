@@ -6,9 +6,8 @@ import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent } from "@/components/ui/card";
 import { ImageUpload } from "@/components/shared/image-upload";
-import { Pencil, Trash2, Loader2 } from "lucide-react";
+import { Pencil, Trash2, Loader2, MapPin, Save } from "lucide-react";
 import type { Scrap, ScrapCategory } from "@/types";
 
 const categories: ScrapCategory[] = [
@@ -96,9 +95,9 @@ export default function EditScrapPage() {
 
   if (fetching) {
     return (
-      <div className="flex items-center justify-center py-20">
-        <Loader2 className="h-6 w-6 animate-spin text-brand-accent" />
-        <span className="ml-2 text-white/40">Loading...</span>
+      <div className="flex items-center justify-center py-20 text-[#525252]">
+        <Loader2 className="h-5 w-5 animate-spin mr-2 text-[#10B981]" />
+        Loading...
       </div>
     );
   }
@@ -106,19 +105,22 @@ export default function EditScrapPage() {
   if (!scrap) {
     return (
       <div className="flex flex-col items-center justify-center py-20">
-        <p className="text-white/40">Listing not found.</p>
+        <p className="text-[#737373]">Listing not found.</p>
       </div>
     );
   }
 
   return (
-    <div className="mx-auto max-w-2xl">
+    <div className="mx-auto max-w-2xl animate-fade-in">
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-accent/10">
-            <Pencil className="h-5 w-5 text-brand-accent" />
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#10B981]/10 border border-[#10B981]/20">
+            <Pencil className="h-5 w-5 text-[#10B981]" />
           </div>
-          <h1 className="text-2xl font-bold text-white">Edit Listing</h1>
+          <div>
+            <h1 className="text-2xl font-bold text-white">Edit Listing</h1>
+            <p className="text-sm text-[#737373]">Update your scrap listing details</p>
+          </div>
         </div>
         <Button
           variant="destructive"
@@ -130,22 +132,28 @@ export default function EditScrapPage() {
           Delete
         </Button>
       </div>
-      <Card className="border-[#262626] bg-[#141414]">
-        <CardContent className="pt-6">
-          <form onSubmit={handleSubmit} className="space-y-5">
+
+      <div className="rounded-xl border border-[#262626] bg-[#141414] p-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Basic Info */}
+          <div className="space-y-5">
+            <p className="text-xs font-medium uppercase tracking-widest text-[#525252]">
+              Listing Details
+            </p>
+
             <div className="space-y-2">
-              <Label htmlFor="title" className="text-white/60">Title *</Label>
+              <Label htmlFor="title" className="text-[#A3A3A3] text-sm">Title *</Label>
               <Input
                 id="title"
                 name="title"
                 defaultValue={scrap.title}
                 required
-                className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                className="border-[#262626] bg-[#0A0A0A] text-white placeholder:text-[#525252] h-11 focus:border-[#10B981] focus:ring-[#10B981]/20"
               />
             </div>
 
-            <div className="space-y-2">
-              <Label className="text-white/60">Category *</Label>
+            <div className="space-y-2.5">
+              <Label className="text-[#A3A3A3] text-sm">Category *</Label>
               <input type="hidden" name="category" value={selectedCategory} />
               <div className="flex flex-wrap gap-2">
                 {categories.map((cat) => (
@@ -153,10 +161,10 @@ export default function EditScrapPage() {
                     key={cat}
                     type="button"
                     onClick={() => setSelectedCategory(cat)}
-                    className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
+                    className={`rounded-lg px-4 py-2 text-sm font-medium transition-all ${
                       selectedCategory === cat
-                        ? "bg-brand-accent text-brand-dark"
-                        : "border border-[#262626] bg-[#1A1A1A] text-white/60 hover:bg-white/[0.08] hover:text-white"
+                        ? "bg-[#10B981] text-black shadow-[0_0_12px_rgba(16,185,129,0.15)]"
+                        : "border border-[#262626] bg-[#0A0A0A] text-[#A3A3A3] hover:bg-[#1A1A1A] hover:text-white hover:border-[#333]"
                     }`}
                   >
                     {cat}
@@ -164,10 +172,17 @@ export default function EditScrapPage() {
                 ))}
               </div>
             </div>
+          </div>
+
+          {/* Quantity & Price */}
+          <div className="space-y-5 border-t border-[#262626] pt-6">
+            <p className="text-xs font-medium uppercase tracking-widest text-[#525252]">
+              Quantity & Price
+            </p>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="price" className="text-white/60">Price (₹) *</Label>
+                <Label htmlFor="price" className="text-[#A3A3A3] text-sm">Price (₹) *</Label>
                 <Input
                   id="price"
                   name="price"
@@ -176,11 +191,11 @@ export default function EditScrapPage() {
                   min="0"
                   step="0.01"
                   required
-                  className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                  className="border-[#262626] bg-[#0A0A0A] text-white placeholder:text-[#525252] h-11 focus:border-[#10B981] focus:ring-[#10B981]/20"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="quantity" className="text-white/60">Quantity *</Label>
+                <Label htmlFor="quantity" className="text-[#A3A3A3] text-sm">Quantity *</Label>
                 <Input
                   id="quantity"
                   name="quantity"
@@ -189,41 +204,48 @@ export default function EditScrapPage() {
                   min="0"
                   step="0.01"
                   required
-                  className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                  className="border-[#262626] bg-[#0A0A0A] text-white placeholder:text-[#525252] h-11 focus:border-[#10B981] focus:ring-[#10B981]/20"
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="unit" className="text-white/60">Unit *</Label>
+              <Label htmlFor="unit" className="text-[#A3A3A3] text-sm">Unit *</Label>
               <select
                 id="unit"
                 name="unit"
                 defaultValue={scrap.unit}
                 required
-                className="flex h-10 w-full rounded-md border border-[#262626] bg-[#1A1A1A] px-3 py-2 text-sm text-white ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/50"
+                className="flex h-11 w-full rounded-lg border border-[#262626] bg-[#0A0A0A] px-3 py-2 text-sm text-white focus:border-[#10B981] focus:outline-none focus:ring-2 focus:ring-[#10B981]/20"
               >
                 {units.map((u) => (
-                  <option key={u} value={u} className="bg-card text-white">
+                  <option key={u} value={u} className="bg-[#141414] text-white">
                     {u}
                   </option>
                 ))}
               </select>
             </div>
+          </div>
+
+          {/* Description & Images */}
+          <div className="space-y-5 border-t border-[#262626] pt-6">
+            <p className="text-xs font-medium uppercase tracking-widest text-[#525252]">
+              Description & Images
+            </p>
 
             <div className="space-y-2">
-              <Label htmlFor="description" className="text-white/60">Description</Label>
+              <Label htmlFor="description" className="text-[#A3A3A3] text-sm">Description</Label>
               <textarea
                 id="description"
                 name="description"
                 rows={3}
                 defaultValue={scrap.description ?? ""}
-                className="flex w-full rounded-md border border-[#262626] bg-[#1A1A1A] px-3 py-2 text-sm text-white ring-offset-background placeholder:text-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/50"
+                className="flex w-full rounded-lg border border-[#262626] bg-[#0A0A0A] px-3 py-2.5 text-sm text-white placeholder:text-[#525252] focus:border-[#10B981] focus:outline-none focus:ring-2 focus:ring-[#10B981]/20 resize-none"
               />
             </div>
 
             <div className="space-y-2">
-              <Label className="text-white/60">Images</Label>
+              <Label className="text-[#A3A3A3] text-sm">Images</Label>
               <ImageUpload
                 bucket="scrap-images"
                 path="scraps"
@@ -232,62 +254,84 @@ export default function EditScrapPage() {
                 maxImages={5}
               />
             </div>
+          </div>
 
-            <div className="border-t border-[#262626] pt-5">
-              <p className="mb-3 text-xs font-medium uppercase tracking-wider text-white/30">Pickup Location</p>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="address" className="text-white/60">Address</Label>
-                  <Input
-                    id="address"
-                    name="address"
-                    defaultValue={scrap.address ?? ""}
-                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="city" className="text-white/60">City</Label>
-                  <Input
-                    id="city"
-                    name="city"
-                    defaultValue={scrap.city ?? ""}
-                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
-                  />
-                </div>
-              </div>
-              <div className="mt-4 grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="state" className="text-white/60">State</Label>
-                  <Input
-                    id="state"
-                    name="state"
-                    defaultValue={scrap.state ?? ""}
-                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="pincode" className="text-white/60">Pincode</Label>
-                  <Input
-                    id="pincode"
-                    name="pincode"
-                    defaultValue={scrap.pincode ?? ""}
-                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
-                  />
-                </div>
-              </div>
+          {/* Location */}
+          <div className="space-y-5 border-t border-[#262626] pt-6">
+            <div className="flex items-center gap-2">
+              <MapPin className="h-3.5 w-3.5 text-[#525252]" />
+              <p className="text-xs font-medium uppercase tracking-widest text-[#525252]">
+                Pickup Location
+              </p>
             </div>
 
-            {error && <p className="text-sm text-red-400">{error}</p>}
-            <Button
-              type="submit"
-              className="w-full bg-brand-accent text-brand-dark hover:bg-brand-accent/90 font-semibold"
-              disabled={loading}
-            >
-              {loading ? "Saving..." : "Save Changes"}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="address" className="text-[#A3A3A3] text-sm">Address</Label>
+                <Input
+                  id="address"
+                  name="address"
+                  defaultValue={scrap.address ?? ""}
+                  className="border-[#262626] bg-[#0A0A0A] text-white placeholder:text-[#525252] h-11 focus:border-[#10B981] focus:ring-[#10B981]/20"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="city" className="text-[#A3A3A3] text-sm">City</Label>
+                <Input
+                  id="city"
+                  name="city"
+                  defaultValue={scrap.city ?? ""}
+                  className="border-[#262626] bg-[#0A0A0A] text-white placeholder:text-[#525252] h-11 focus:border-[#10B981] focus:ring-[#10B981]/20"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="state" className="text-[#A3A3A3] text-sm">State</Label>
+                <Input
+                  id="state"
+                  name="state"
+                  defaultValue={scrap.state ?? ""}
+                  className="border-[#262626] bg-[#0A0A0A] text-white placeholder:text-[#525252] h-11 focus:border-[#10B981] focus:ring-[#10B981]/20"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="pincode" className="text-[#A3A3A3] text-sm">Pincode</Label>
+                <Input
+                  id="pincode"
+                  name="pincode"
+                  defaultValue={scrap.pincode ?? ""}
+                  className="border-[#262626] bg-[#0A0A0A] text-white placeholder:text-[#525252] h-11 focus:border-[#10B981] focus:ring-[#10B981]/20"
+                />
+              </div>
+            </div>
+          </div>
+
+          {error && (
+            <div className="rounded-lg border border-red-500/20 bg-red-500/5 px-4 py-3 text-sm text-red-400">
+              {error}
+            </div>
+          )}
+
+          <Button
+            type="submit"
+            className="w-full bg-[#10B981] text-black hover:bg-[#059669] font-semibold h-12 text-base transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.2)]"
+            disabled={loading}
+          >
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Saving...
+              </>
+            ) : (
+              <>
+                <Save className="mr-2 h-4 w-4" />
+                Save Changes
+              </>
+            )}
+          </Button>
+        </form>
+      </div>
     </div>
   );
 }

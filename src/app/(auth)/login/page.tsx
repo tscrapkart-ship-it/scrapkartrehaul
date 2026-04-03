@@ -118,9 +118,9 @@ export default function LoginPage() {
 
         <div className="mt-6 space-y-4">
           <div className="flex items-center gap-3">
-            <div className="h-px flex-1 bg-white/[0.06]" />
+            <div className="h-px flex-1 bg-[#1A1A1A]" />
             <span className="text-xs text-white/25">or</span>
-            <div className="h-px flex-1 bg-white/[0.06]" />
+            <div className="h-px flex-1 bg-[#1A1A1A]" />
           </div>
           <GoogleAuthButton label="Sign in with Google" />
         </div>

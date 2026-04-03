@@ -1,10 +1,9 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { Card, CardContent } from "@/components/ui/card";
 import { ScrapCard } from "@/components/shared/scrap-card";
 import { isMockMode, mockCompanies, mockScraps } from "@/lib/mock-data";
-import { MapPin, Factory, Package } from "lucide-react";
+import { MapPin, Factory, Package, ChevronLeft, CheckCircle } from "lucide-react";
 
 async function getCompanyWithScraps(id: string) {
   if (isMockMode()) {
@@ -47,70 +46,81 @@ export default async function CompanyDetailPage({
   const { company, scraps } = result;
 
   return (
-    <div className="mx-auto max-w-4xl space-y-8">
+    <div className="mx-auto max-w-4xl space-y-8 animate-fade-in">
+      {/* Back link */}
+      <Link href="/companies" className="inline-flex items-center gap-1 text-sm text-[#525252] hover:text-[#10B981] transition-colors">
+        <ChevronLeft className="h-4 w-4" />
+        All Companies
+      </Link>
+
       {/* Company hero card */}
-      <Card className="overflow-hidden border-[#262626] bg-gradient-to-br from-[#141414] to-[#0A0A0A]">
-        <CardContent className="pt-6">
-          <div className="flex items-start gap-5">
-            {company.logo_url ? (
-              <Image
-                src={company.logo_url}
-                alt={company.name}
-                width={80}
-                height={80}
-                className="rounded-xl border border-[#262626] object-cover"
-              />
-            ) : (
-              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl bg-brand-accent/10 text-2xl font-bold text-brand-accent">
-                {company.name.charAt(0)}
-              </div>
-            )}
-            <div className="min-w-0">
+      <div className="rounded-xl border border-[#262626] bg-[#141414] p-6 animate-slide-up delay-1">
+        <div className="flex items-start gap-5">
+          {company.logo_url ? (
+            <Image
+              src={company.logo_url}
+              alt={company.name}
+              width={80}
+              height={80}
+              className="rounded-xl border border-[#262626] object-cover"
+            />
+          ) : (
+            <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl bg-[#10B981]/10 border border-[#10B981]/20 text-2xl font-bold text-[#10B981]">
+              {company.name.charAt(0)}
+            </div>
+          )}
+          <div className="min-w-0">
+            <div className="flex items-center gap-2">
               <h1 className="text-2xl font-bold text-white">
                 {company.name}
               </h1>
-              {company.industry_type && (
-                <p className="mt-1 flex items-center gap-1.5 text-sm text-brand-accent">
-                  <Factory className="h-3.5 w-3.5" />
-                  {company.industry_type}
-                </p>
-              )}
-              {company.city && (
-                <p className="mt-1 flex items-center gap-1.5 text-sm text-white/40">
-                  <MapPin className="h-3.5 w-3.5" />
-                  {company.city}
-                  {company.state ? `, ${company.state}` : ""}
-                </p>
+              {company.verification_status === "verified" && (
+                <CheckCircle className="h-5 w-5 text-green-400 shrink-0" />
               )}
             </div>
+            {company.industry_type && (
+              <p className="mt-1 flex items-center gap-1.5 text-sm text-[#10B981]">
+                <Factory className="h-3.5 w-3.5" />
+                {company.industry_type}
+              </p>
+            )}
+            {company.city && (
+              <p className="mt-1 flex items-center gap-1.5 text-sm text-[#737373]">
+                <MapPin className="h-3.5 w-3.5" />
+                {company.city}
+                {company.state ? `, ${company.state}` : ""}
+              </p>
+            )}
           </div>
-          {company.description && (
-            <p className="mt-5 text-sm leading-relaxed text-white/50 border-t border-[#262626] pt-5">
-              {company.description}
-            </p>
-          )}
-        </CardContent>
-      </Card>
+        </div>
+        {company.description && (
+          <p className="mt-5 text-sm leading-relaxed text-[#A3A3A3] border-t border-[#262626] pt-5">
+            {company.description}
+          </p>
+        )}
+      </div>
 
       {/* Available listings */}
-      <div>
+      <div className="animate-slide-up delay-2">
         <div className="mb-4 flex items-center gap-2">
-          <Package className="h-4 w-4 text-brand-accent" />
-          <h2 className="text-lg font-semibold text-white">
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#10B981]/10">
+            <Package className="h-3.5 w-3.5 text-[#10B981]" />
+          </div>
+          <h2 className="text-sm font-semibold text-white">
             Available Listings
           </h2>
-          <span className="ml-1 rounded-full bg-brand-accent/10 px-2.5 py-0.5 text-xs font-medium text-brand-accent">
+          <span className="rounded-md bg-[#1A1A1A] border border-[#262626] px-2 py-0.5 text-xs font-medium text-[#737373]">
             {scraps.length}
           </span>
         </div>
         {scraps.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-[#262626] bg-card py-12 text-center">
-            <p className="text-sm text-white/40">
+          <div className="rounded-xl border border-dashed border-[#262626] bg-[#141414]/50 py-12 text-center">
+            <p className="text-sm text-[#525252]">
               No available listings from this company.
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {scraps.map((scrap) => (
               <Link key={scrap.id} href={`/marketplace/${scrap.id}`}>
                 <ScrapCard scrap={scrap} companyName={company.name} />

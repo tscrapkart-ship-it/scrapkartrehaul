@@ -1,6 +1,18 @@
+"use client";
+
 import Image from "next/image";
-import { MapPin, Scale, ArrowUpRight } from "lucide-react";
-import type { Scrap } from "@/types";
+import { useState } from "react";
+import {
+  MapPin,
+  ArrowUpRight,
+  Cog,
+  Cpu,
+  Recycle,
+  FileText,
+  GlassWater,
+  Layers,
+} from "lucide-react";
+import type { Scrap, ScrapCategory } from "@/types";
 
 const categoryConfig: Record<
   string,
@@ -38,6 +50,54 @@ const categoryConfig: Record<
   },
 };
 
+const categoryIcons: Record<ScrapCategory, React.ElementType> = {
+  Metal: Cog,
+  "E-waste": Cpu,
+  Plastic: Recycle,
+  Paper: FileText,
+  Glass: GlassWater,
+  "Mixed Scrap": Layers,
+};
+
+/* ── Skeleton / Loading Card ───────────────────────────────── */
+export function ScrapCardSkeleton() {
+  return (
+    <div className="overflow-hidden rounded-xl border border-[#262626] bg-[#141414]">
+      {/* Image placeholder */}
+      <div className="relative aspect-[16/10] bg-[#0A0A0A]">
+        <div className="absolute inset-0 animate-pulse bg-[#1A1A1A]" />
+        {/* Category badge skeleton */}
+        <div className="absolute left-3 top-3">
+          <div className="h-6 w-20 animate-pulse rounded-md bg-[#1A1A1A]" />
+        </div>
+      </div>
+
+      {/* Content placeholder */}
+      <div className="p-4">
+        <div className="h-5 w-3/4 animate-pulse rounded bg-[#1A1A1A]" />
+        <div className="mt-1.5 h-3 w-1/3 animate-pulse rounded bg-[#1A1A1A]" />
+
+        <div className="mt-3 flex items-end justify-between">
+          <div>
+            <div className="h-3 w-16 animate-pulse rounded bg-[#1A1A1A]" />
+            <div className="mt-1.5 h-6 w-24 animate-pulse rounded bg-[#1A1A1A]" />
+          </div>
+          <div className="text-right">
+            <div className="h-3 w-14 animate-pulse rounded bg-[#1A1A1A]" />
+            <div className="mt-1.5 h-4 w-16 animate-pulse rounded bg-[#1A1A1A]" />
+          </div>
+        </div>
+
+        <div className="mt-3 flex items-center gap-1.5 border-t border-[#262626] pt-3">
+          <div className="h-3.5 w-3.5 animate-pulse rounded bg-[#1A1A1A]" />
+          <div className="h-3 w-20 animate-pulse rounded bg-[#1A1A1A]" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Scrap Card ────────────────────────────────────────────── */
 export function ScrapCard({
   scrap,
   companyName,
@@ -45,28 +105,53 @@ export function ScrapCard({
   scrap: Scrap;
   companyName?: string | null;
 }) {
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const [imgError, setImgError] = useState(false);
+
   const cat = categoryConfig[scrap.category] ?? {
     bg: "bg-[#10B981]/10",
     text: "text-[#10B981]",
     dot: "bg-[#10B981]",
   };
 
+  const FallbackIcon =
+    categoryIcons[scrap.category as ScrapCategory] ?? Layers;
+  const showFallback = !scrap.images?.[0] || imgError;
+
   return (
     <div className="group relative overflow-hidden rounded-xl border border-[#262626] bg-[#141414] transition-all duration-300 hover:border-[#10B981]/20 hover:shadow-[0_0_30px_-5px_rgba(16,185,129,0.08)]">
       {/* Image */}
       <div className="relative aspect-[16/10] overflow-hidden bg-[#0A0A0A]">
-        {scrap.images?.[0] ? (
-          <Image
-            src={scrap.images[0]}
-            alt={scrap.title}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          />
-        ) : (
-          <div className="flex h-full items-center justify-center">
-            <Scale className="h-10 w-10 text-[#262626]" />
+        {showFallback ? (
+          /* Category-appropriate fallback icon */
+          <div className="flex h-full items-center justify-center bg-[#0A0A0A]">
+            <div className="flex flex-col items-center gap-2">
+              <FallbackIcon
+                className={`h-12 w-12 ${cat.text} opacity-40`}
+              />
+              <span className="text-[11px] text-[#525252]">
+                {scrap.category}
+              </span>
+            </div>
           </div>
+        ) : (
+          <>
+            {/* Pulse loader while image is loading */}
+            {!imgLoaded && (
+              <div className="absolute inset-0 z-10 animate-pulse bg-[#1A1A1A]" />
+            )}
+            <Image
+              src={scrap.images[0]}
+              alt={scrap.title}
+              fill
+              className={`object-cover transition-all duration-500 group-hover:scale-105 ${
+                imgLoaded ? "opacity-100" : "opacity-0"
+              }`}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              onLoad={() => setImgLoaded(true)}
+              onError={() => setImgError(true)}
+            />
+          </>
         )}
 
         {/* Gradient overlay */}

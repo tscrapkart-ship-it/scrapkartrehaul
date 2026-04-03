@@ -4,7 +4,7 @@ const statusColor: Record<string, string> = {
   pending: "bg-yellow-500/10 text-yellow-400",
   accepted: "bg-green-500/10 text-green-400",
   rejected: "bg-red-500/10 text-red-400",
-  withdrawn: "bg-white/[0.06] text-white/40",
+  withdrawn: "bg-[#1A1A1A] text-white/40",
 };
 
 async function getBids(status?: string) {

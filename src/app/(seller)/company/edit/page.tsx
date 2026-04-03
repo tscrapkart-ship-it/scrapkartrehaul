@@ -6,9 +6,8 @@ import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent } from "@/components/ui/card";
 import { ImageUpload } from "@/components/shared/image-upload";
-import { Building2, Loader2 } from "lucide-react";
+import { Building2, Loader2, MapPin, Save } from "lucide-react";
 import type { Company } from "@/types";
 
 export default function CompanyEditPage() {
@@ -77,9 +76,9 @@ export default function CompanyEditPage() {
 
   if (fetching) {
     return (
-      <div className="flex items-center justify-center py-20">
-        <Loader2 className="h-6 w-6 animate-spin text-brand-accent" />
-        <span className="ml-2 text-white/40">Loading...</span>
+      <div className="flex items-center justify-center py-20 text-[#525252]">
+        <Loader2 className="h-5 w-5 animate-spin mr-2 text-[#10B981]" />
+        Loading...
       </div>
     );
   }
@@ -87,10 +86,12 @@ export default function CompanyEditPage() {
   if (!company) {
     return (
       <div className="flex flex-col items-center justify-center py-20">
-        <Building2 className="h-12 w-12 text-white/20" />
-        <p className="mt-4 text-white/40">No company found.</p>
+        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#1A1A1A] border border-[#262626] mb-4">
+          <Building2 className="h-7 w-7 text-[#525252]" />
+        </div>
+        <p className="text-[#737373]">No company found.</p>
         <Button
-          className="mt-4 bg-brand-accent text-brand-dark hover:bg-brand-accent/90 font-semibold"
+          className="mt-4 bg-[#10B981] text-black hover:bg-[#059669] font-semibold"
           onClick={() => router.push("/company/setup")}
         >
           Create Company
@@ -100,39 +101,45 @@ export default function CompanyEditPage() {
   }
 
   return (
-    <div className="mx-auto max-w-2xl">
+    <div className="mx-auto max-w-2xl animate-fade-in">
       <div className="mb-6 flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-accent/10">
-          <Building2 className="h-5 w-5 text-brand-accent" />
+        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#10B981]/10 border border-[#10B981]/20">
+          <Building2 className="h-5 w-5 text-[#10B981]" />
         </div>
-        <h1 className="text-2xl font-bold text-white">
-          Edit Company Profile
-        </h1>
+        <div>
+          <h1 className="text-2xl font-bold text-white">Edit Company Profile</h1>
+          <p className="text-sm text-[#737373]">Update your company information</p>
+        </div>
       </div>
-      <Card className="border-[#262626] bg-[#141414]">
-        <CardContent className="pt-6">
-          <form onSubmit={handleSubmit} className="space-y-5">
+
+      <div className="rounded-xl border border-[#262626] bg-[#141414] p-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-5">
+            <p className="text-xs font-medium uppercase tracking-widest text-[#525252]">
+              Company Information
+            </p>
+
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-white/60">Company Name *</Label>
+              <Label htmlFor="name" className="text-[#A3A3A3] text-sm">Company Name *</Label>
               <Input
                 id="name"
                 name="name"
                 defaultValue={company.name}
                 required
-                className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                className="border-[#262626] bg-[#0A0A0A] text-white placeholder:text-[#525252] h-11 focus:border-[#10B981] focus:ring-[#10B981]/20"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="industry_type" className="text-white/60">Industry Type</Label>
+              <Label htmlFor="industry_type" className="text-[#A3A3A3] text-sm">Industry Type</Label>
               <Input
                 id="industry_type"
                 name="industry_type"
                 defaultValue={company.industry_type ?? ""}
-                className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                className="border-[#262626] bg-[#0A0A0A] text-white placeholder:text-[#525252] h-11 focus:border-[#10B981] focus:ring-[#10B981]/20"
               />
             </div>
             <div className="space-y-2">
-              <Label className="text-white/60">Company Logo</Label>
+              <Label className="text-[#A3A3A3] text-sm">Company Logo</Label>
               <ImageUpload
                 bucket="company-logos"
                 path="logos"
@@ -142,71 +149,90 @@ export default function CompanyEditPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="description" className="text-white/60">Description</Label>
+              <Label htmlFor="description" className="text-[#A3A3A3] text-sm">Description</Label>
               <textarea
                 id="description"
                 name="description"
                 rows={3}
                 defaultValue={company.description ?? ""}
-                className="flex w-full rounded-md border border-[#262626] bg-[#1A1A1A] px-3 py-2 text-sm text-white ring-offset-background placeholder:text-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/50"
+                className="flex w-full rounded-lg border border-[#262626] bg-[#0A0A0A] px-3 py-2.5 text-sm text-white placeholder:text-[#525252] focus:border-[#10B981] focus:outline-none focus:ring-2 focus:ring-[#10B981]/20 resize-none"
               />
             </div>
+          </div>
 
-            <div className="border-t border-[#262626] pt-5">
-              <p className="mb-3 text-xs font-medium uppercase tracking-wider text-white/30">Location</p>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="address" className="text-white/60">Address</Label>
-                  <Input
-                    id="address"
-                    name="address"
-                    defaultValue={company.address ?? ""}
-                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="city" className="text-white/60">City</Label>
-                  <Input
-                    id="city"
-                    name="city"
-                    defaultValue={company.city ?? ""}
-                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
-                  />
-                </div>
-              </div>
-              <div className="mt-4 grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="state" className="text-white/60">State</Label>
-                  <Input
-                    id="state"
-                    name="state"
-                    defaultValue={company.state ?? ""}
-                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="pincode" className="text-white/60">Pincode</Label>
-                  <Input
-                    id="pincode"
-                    name="pincode"
-                    defaultValue={company.pincode ?? ""}
-                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
-                  />
-                </div>
-              </div>
+          <div className="space-y-5 border-t border-[#262626] pt-6">
+            <div className="flex items-center gap-2">
+              <MapPin className="h-3.5 w-3.5 text-[#525252]" />
+              <p className="text-xs font-medium uppercase tracking-widest text-[#525252]">Location</p>
             </div>
 
-            {error && <p className="text-sm text-red-400">{error}</p>}
-            <Button
-              type="submit"
-              className="w-full bg-brand-accent text-brand-dark hover:bg-brand-accent/90 font-semibold"
-              disabled={loading}
-            >
-              {loading ? "Saving..." : "Save Changes"}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="address" className="text-[#A3A3A3] text-sm">Address</Label>
+                <Input
+                  id="address"
+                  name="address"
+                  defaultValue={company.address ?? ""}
+                  className="border-[#262626] bg-[#0A0A0A] text-white placeholder:text-[#525252] h-11 focus:border-[#10B981] focus:ring-[#10B981]/20"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="city" className="text-[#A3A3A3] text-sm">City</Label>
+                <Input
+                  id="city"
+                  name="city"
+                  defaultValue={company.city ?? ""}
+                  className="border-[#262626] bg-[#0A0A0A] text-white placeholder:text-[#525252] h-11 focus:border-[#10B981] focus:ring-[#10B981]/20"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="state" className="text-[#A3A3A3] text-sm">State</Label>
+                <Input
+                  id="state"
+                  name="state"
+                  defaultValue={company.state ?? ""}
+                  className="border-[#262626] bg-[#0A0A0A] text-white placeholder:text-[#525252] h-11 focus:border-[#10B981] focus:ring-[#10B981]/20"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="pincode" className="text-[#A3A3A3] text-sm">Pincode</Label>
+                <Input
+                  id="pincode"
+                  name="pincode"
+                  defaultValue={company.pincode ?? ""}
+                  className="border-[#262626] bg-[#0A0A0A] text-white placeholder:text-[#525252] h-11 focus:border-[#10B981] focus:ring-[#10B981]/20"
+                />
+              </div>
+            </div>
+          </div>
+
+          {error && (
+            <div className="rounded-lg border border-red-500/20 bg-red-500/5 px-4 py-3 text-sm text-red-400">
+              {error}
+            </div>
+          )}
+
+          <Button
+            type="submit"
+            className="w-full bg-[#10B981] text-black hover:bg-[#059669] font-semibold h-12 text-base transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.2)]"
+            disabled={loading}
+          >
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Saving...
+              </>
+            ) : (
+              <>
+                <Save className="mr-2 h-4 w-4" />
+                Save Changes
+              </>
+            )}
+          </Button>
+        </form>
+      </div>
     </div>
   );
 }

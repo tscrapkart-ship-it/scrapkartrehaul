@@ -6,8 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent } from "@/components/ui/card";
-import { Check, ArrowRight, ArrowLeft, Recycle, Shield } from "lucide-react";
+import { Check, ArrowRight, ArrowLeft, Recycle, Shield, Cog, FileCheck } from "lucide-react";
 
 const WASTE_TYPES = [
   "Metal",
@@ -31,7 +30,10 @@ const PROCESSING_TYPES = [
   "Refurbishment",
 ];
 
-const steps = ["Capabilities", "Compliance Docs"];
+const steps = [
+  { label: "Capabilities", icon: Cog },
+  { label: "Compliance Docs", icon: FileCheck },
+];
 
 export default function RecyclerOnboardingPage() {
   const router = useRouter();
@@ -108,50 +110,68 @@ export default function RecyclerOnboardingPage() {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="space-y-2">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-accent/10">
-            <Recycle className="h-5 w-5 text-brand-accent" />
+      <div className="animate-slide-up delay-1">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#10B981]/10 border border-[#10B981]/20">
+            <Recycle className="h-5 w-5 text-[#10B981]" />
           </div>
           <div>
             <h1 className="text-xl font-bold text-white">Recycler Onboarding</h1>
-            <p className="text-sm text-white/40">Step {step} of {steps.length}</p>
+            <p className="text-xs text-[#525252]">Tell us about your processing capabilities</p>
           </div>
         </div>
 
         {/* Step indicators */}
-        <div className="flex items-center gap-2 mt-4">
-          {steps.map((s, i) => (
-            <div key={s} className="flex items-center gap-2">
-              <div
-                className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold transition-all ${
-                  i + 1 < step
-                    ? "bg-brand-accent text-brand-dark"
-                    : i + 1 === step
-                    ? "bg-brand-accent/20 border border-brand-accent text-brand-accent"
-                    : "bg-white/[0.06] text-white/30"
-                }`}
-              >
-                {i + 1 < step ? <Check className="h-3.5 w-3.5" /> : i + 1}
+        <div className="flex items-center gap-1 w-full">
+          {steps.map((s, i) => {
+            const StepIcon = s.icon;
+            const isComplete = i + 1 < step;
+            const isCurrent = i + 1 === step;
+
+            return (
+              <div key={s.label} className="flex items-center gap-1 flex-1">
+                <div className="flex items-center gap-2 min-w-0">
+                  <div
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-semibold transition-all ${
+                      isComplete
+                        ? "bg-[#10B981] text-black"
+                        : isCurrent
+                        ? "bg-[#10B981]/15 border border-[#10B981]/50 text-[#10B981]"
+                        : "bg-[#1A1A1A] border border-[#262626] text-[#525252]"
+                    }`}
+                  >
+                    {isComplete ? <Check className="h-4 w-4" /> : <StepIcon className="h-3.5 w-3.5" />}
+                  </div>
+                  <span className={`text-xs font-medium truncate ${
+                    isCurrent ? "text-white" : isComplete ? "text-[#A3A3A3]" : "text-[#525252]"
+                  }`}>
+                    {s.label}
+                  </span>
+                </div>
+                {i < steps.length - 1 && (
+                  <div className={`h-px flex-1 mx-2 transition-colors ${isComplete ? "bg-[#10B981]/40" : "bg-[#262626]"}`} />
+                )}
               </div>
-              <span className={`text-xs ${i + 1 === step ? "text-white" : "text-white/30"}`}>{s}</span>
-              {i < steps.length - 1 && (
-                <div className={`h-px w-8 ${i + 1 < step ? "bg-brand-accent/50" : "bg-white/[0.06]"}`} />
-              )}
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
-      <Card className="border-[#262626] bg-[#141414]">
-        <CardContent className="pt-6 space-y-6">
+      {/* Card */}
+      <div className="rounded-xl border border-[#262626] bg-[#141414] overflow-hidden animate-slide-up delay-2">
+        <div className="p-6 space-y-6">
+
           {/* Step 1: Capabilities */}
           {step === 1 && (
-            <>
+            <div className="space-y-6 animate-fade-in">
+              {/* Waste Types */}
               <div>
-                <h3 className="font-medium text-white mb-1">Waste Types You Accept *</h3>
-                <p className="text-sm text-white/40 mb-3">Select all material types you can process.</p>
-                <div className="flex flex-wrap gap-2">
+                <p className="text-xs font-medium uppercase tracking-widest text-[#525252] mb-3">
+                  Materials Accepted
+                </p>
+                <h3 className="font-semibold text-white text-base mb-1">Waste Types You Accept <span className="text-[#10B981]">*</span></h3>
+                <p className="text-sm text-[#737373] mb-4">Select all material types you can process.</p>
+                <div className="grid grid-cols-2 gap-2">
                   {WASTE_TYPES.map((type) => {
                     const sel = wasteTypes.includes(type);
                     return (
@@ -159,10 +179,52 @@ export default function RecyclerOnboardingPage() {
                         key={type}
                         type="button"
                         onClick={() => toggleItem(wasteTypes, setWasteTypes, type)}
-                        className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all ${
+                        className={`flex items-center gap-2.5 rounded-lg px-4 py-3 text-sm font-medium transition-all text-left ${
                           sel
-                            ? "bg-brand-accent text-brand-dark"
-                            : "border border-[#262626] bg-[#1A1A1A] text-white/60 hover:bg-white/[0.08] hover:text-white"
+                            ? "bg-[#10B981]/15 text-[#10B981] border border-[#10B981]/30 ring-1 ring-[#10B981]/20"
+                            : "border border-[#262626] bg-[#0A0A0A] text-[#A3A3A3] hover:bg-[#1A1A1A] hover:border-[#333] hover:text-white"
+                        }`}
+                      >
+                        <div className={`flex h-5 w-5 shrink-0 items-center justify-center rounded transition-all ${
+                          sel
+                            ? "bg-[#10B981] text-black"
+                            : "border border-[#333] bg-transparent"
+                        }`}>
+                          {sel && <Check className="h-3 w-3" />}
+                        </div>
+                        {type}
+                      </button>
+                    );
+                  })}
+                </div>
+                {wasteTypes.length > 0 && (
+                  <p className="text-xs text-[#10B981]/70 font-medium mt-2">
+                    {wasteTypes.length} type{wasteTypes.length === 1 ? "" : "s"} selected
+                  </p>
+                )}
+              </div>
+
+              <div className="h-px bg-[#262626]" />
+
+              {/* Processing Methods */}
+              <div>
+                <p className="text-xs font-medium uppercase tracking-widest text-[#525252] mb-3">
+                  Processing Capabilities
+                </p>
+                <h3 className="font-semibold text-white text-base mb-1">Processing Methods</h3>
+                <p className="text-sm text-[#737373] mb-4">What processing do you perform? (optional)</p>
+                <div className="flex flex-wrap gap-2">
+                  {PROCESSING_TYPES.map((type) => {
+                    const sel = processingTypes.includes(type);
+                    return (
+                      <button
+                        key={type}
+                        type="button"
+                        onClick={() => toggleItem(processingTypes, setProcessingTypes, type)}
+                        className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-all ${
+                          sel
+                            ? "bg-[#10B981]/15 text-[#10B981] border border-[#10B981]/30"
+                            : "border border-[#262626] bg-[#0A0A0A] text-[#737373] hover:bg-[#1A1A1A] hover:border-[#333] hover:text-white"
                         }`}
                       >
                         {sel && <Check className="inline h-3 w-3 mr-1" />}
@@ -173,148 +235,146 @@ export default function RecyclerOnboardingPage() {
                 </div>
               </div>
 
+              <div className="h-px bg-[#262626]" />
+
+              {/* Operational Details */}
               <div>
-                <h3 className="font-medium text-white mb-1">Processing Methods</h3>
-                <p className="text-sm text-white/40 mb-3">What processing do you perform? (optional)</p>
-                <div className="flex flex-wrap gap-2">
-                  {PROCESSING_TYPES.map((type) => {
-                    const sel = processingTypes.includes(type);
-                    return (
-                      <button
-                        key={type}
-                        type="button"
-                        onClick={() => toggleItem(processingTypes, setProcessingTypes, type)}
-                        className={`rounded-full px-3 py-1 text-xs font-medium transition-all ${
-                          sel
-                            ? "bg-brand-secondary/50 text-white border border-brand-accent/40"
-                            : "border border-[#262626] bg-[#1A1A1A] text-white/50 hover:bg-white/[0.08] hover:text-white"
-                        }`}
-                      >
-                        {type}
-                      </button>
-                    );
-                  })}
+                <p className="text-xs font-medium uppercase tracking-widest text-[#525252] mb-4">
+                  Operational Details
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label className="text-[#A3A3A3] text-sm">Service Radius (km)</Label>
+                    <Input
+                      name="service_radius_km"
+                      type="number"
+                      min="1"
+                      value={form.service_radius_km}
+                      onChange={handleChange}
+                      className="h-11 border-[#262626] bg-[#0A0A0A] text-white focus-visible:ring-[#10B981]/50 focus-visible:border-[#10B981]/30 transition-colors"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-[#A3A3A3] text-sm">Pricing Model</Label>
+                    <select
+                      name="pricing_model"
+                      value={form.pricing_model}
+                      onChange={handleChange}
+                      className="flex h-11 w-full rounded-lg border border-[#262626] bg-[#0A0A0A] px-3 py-2 text-sm text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#10B981]/50 focus-visible:border-[#10B981]/30 transition-colors"
+                    >
+                      <option value="negotiable" className="bg-[#141414]">Negotiable</option>
+                      <option value="market_rate" className="bg-[#141414]">Market Rate</option>
+                      <option value="fixed" className="bg-[#141414]">Fixed</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label className="text-white/60">Service Radius (km)</Label>
-                  <Input
-                    name="service_radius_km"
-                    type="number"
-                    min="1"
-                    value={form.service_radius_km}
-                    onChange={handleChange}
-                    className="border-[#262626] bg-[#1A1A1A] text-white focus-visible:ring-brand-accent/50"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label className="text-white/60">Pricing Model</Label>
-                  <select
-                    name="pricing_model"
-                    value={form.pricing_model}
-                    onChange={handleChange}
-                    className="flex h-10 w-full rounded-md border border-[#262626] bg-[#1A1A1A] px-3 py-2 text-sm text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/50"
-                  >
-                    <option value="negotiable" className="bg-card">Negotiable</option>
-                    <option value="market_rate" className="bg-card">Market Rate</option>
-                    <option value="fixed" className="bg-card">Fixed</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label className="text-white/60">Min Quantity (kg)</Label>
-                  <Input
-                    name="min_quantity_kg"
-                    type="number"
-                    min="0"
-                    value={form.min_quantity_kg}
-                    onChange={handleChange}
-                    className="border-[#262626] bg-[#1A1A1A] text-white focus-visible:ring-brand-accent/50"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label className="text-white/60">Max Quantity (kg) <span className="text-white/30">optional</span></Label>
-                  <Input
-                    name="max_quantity_kg"
-                    type="number"
-                    min="0"
-                    value={form.max_quantity_kg}
-                    onChange={handleChange}
-                    placeholder="No limit"
-                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
-                  />
+                <div className="grid grid-cols-2 gap-4 mt-4">
+                  <div className="space-y-2">
+                    <Label className="text-[#A3A3A3] text-sm">Min Quantity (kg)</Label>
+                    <Input
+                      name="min_quantity_kg"
+                      type="number"
+                      min="0"
+                      value={form.min_quantity_kg}
+                      onChange={handleChange}
+                      className="h-11 border-[#262626] bg-[#0A0A0A] text-white focus-visible:ring-[#10B981]/50 focus-visible:border-[#10B981]/30 transition-colors"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-[#A3A3A3] text-sm">Max Quantity (kg) <span className="text-[#525252] text-xs font-normal">optional</span></Label>
+                    <Input
+                      name="max_quantity_kg"
+                      type="number"
+                      min="0"
+                      value={form.max_quantity_kg}
+                      onChange={handleChange}
+                      placeholder="No limit"
+                      className="h-11 border-[#262626] bg-[#0A0A0A] text-white placeholder:text-[#525252] focus-visible:ring-[#10B981]/50 focus-visible:border-[#10B981]/30 transition-colors"
+                    />
+                  </div>
                 </div>
               </div>
-            </>
+            </div>
           )}
 
           {/* Step 2: Compliance Docs */}
           {step === 2 && (
-            <div className="space-y-5">
-              <div className="flex items-center gap-2 rounded-lg border border-brand-accent/20 bg-brand-accent/5 p-3">
-                <Shield className="h-4 w-4 text-brand-accent shrink-0" />
-                <p className="text-xs text-brand-accent/80">
-                  Compliance docs are reviewed by our admin team. Upload URLs to your documents (Google Drive, etc.) or paste direct links. All fields are optional but help speed up verification.
-                </p>
+            <div className="space-y-5 animate-fade-in">
+              <p className="text-xs font-medium uppercase tracking-widest text-[#525252]">
+                Compliance Documents
+              </p>
+
+              <div className="flex items-start gap-3 rounded-lg border border-[#10B981]/20 bg-[#10B981]/5 p-4">
+                <Shield className="h-5 w-5 text-[#10B981] shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-sm text-[#10B981] font-medium mb-1">Verification speeds up approval</p>
+                  <p className="text-xs text-[#737373] leading-relaxed">
+                    Upload URLs to your documents (Google Drive, etc.) or paste direct links. All fields are optional but help speed up verification.
+                  </p>
+                </div>
               </div>
 
-              <div className="space-y-2">
-                <Label className="text-white/60">CPCB License URL <span className="text-white/30">(optional)</span></Label>
-                <Input
-                  name="cpcb_license_url"
-                  value={form.cpcb_license_url}
-                  onChange={handleChange}
-                  placeholder="https://drive.google.com/..."
-                  className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
-                />
-                <p className="text-xs text-white/30">Central Pollution Control Board authorization</p>
-              </div>
+              <div className="space-y-5">
+                <div className="space-y-2">
+                  <Label className="text-[#A3A3A3] text-sm">CPCB License URL <span className="text-[#525252] text-xs font-normal">(optional)</span></Label>
+                  <Input
+                    name="cpcb_license_url"
+                    value={form.cpcb_license_url}
+                    onChange={handleChange}
+                    placeholder="https://drive.google.com/..."
+                    className="h-11 border-[#262626] bg-[#0A0A0A] text-white placeholder:text-[#525252] focus-visible:ring-[#10B981]/50 focus-visible:border-[#10B981]/30 transition-colors"
+                  />
+                  <p className="text-xs text-[#525252]">Central Pollution Control Board authorization</p>
+                </div>
 
-              <div className="space-y-2">
-                <Label className="text-white/60">EPR Authorization URL <span className="text-white/30">(optional)</span></Label>
-                <Input
-                  name="epr_authorization_url"
-                  value={form.epr_authorization_url}
-                  onChange={handleChange}
-                  placeholder="https://drive.google.com/..."
-                  className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
-                />
-                <p className="text-xs text-white/30">Extended Producer Responsibility authorization</p>
-              </div>
+                <div className="h-px bg-[#1A1A1A]" />
 
-              <div className="space-y-2">
-                <Label className="text-white/60">ISO Certificate URL <span className="text-white/30">(optional)</span></Label>
-                <Input
-                  name="iso_certificate_url"
-                  value={form.iso_certificate_url}
-                  onChange={handleChange}
-                  placeholder="https://drive.google.com/..."
-                  className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
-                />
-                <p className="text-xs text-white/30">ISO 14001 or relevant certification</p>
+                <div className="space-y-2">
+                  <Label className="text-[#A3A3A3] text-sm">EPR Authorization URL <span className="text-[#525252] text-xs font-normal">(optional)</span></Label>
+                  <Input
+                    name="epr_authorization_url"
+                    value={form.epr_authorization_url}
+                    onChange={handleChange}
+                    placeholder="https://drive.google.com/..."
+                    className="h-11 border-[#262626] bg-[#0A0A0A] text-white placeholder:text-[#525252] focus-visible:ring-[#10B981]/50 focus-visible:border-[#10B981]/30 transition-colors"
+                  />
+                  <p className="text-xs text-[#525252]">Extended Producer Responsibility authorization</p>
+                </div>
+
+                <div className="h-px bg-[#1A1A1A]" />
+
+                <div className="space-y-2">
+                  <Label className="text-[#A3A3A3] text-sm">ISO Certificate URL <span className="text-[#525252] text-xs font-normal">(optional)</span></Label>
+                  <Input
+                    name="iso_certificate_url"
+                    value={form.iso_certificate_url}
+                    onChange={handleChange}
+                    placeholder="https://drive.google.com/..."
+                    className="h-11 border-[#262626] bg-[#0A0A0A] text-white placeholder:text-[#525252] focus-visible:ring-[#10B981]/50 focus-visible:border-[#10B981]/30 transition-colors"
+                  />
+                  <p className="text-xs text-[#525252]">ISO 14001 or relevant certification</p>
+                </div>
               </div>
             </div>
           )}
 
           {error && (
-            <p className="text-sm text-red-400 bg-red-400/10 border border-red-400/20 rounded-lg px-3 py-2">
+            <div className="text-sm text-red-400 bg-red-400/10 border border-red-400/20 rounded-lg px-4 py-3 flex items-center gap-2 animate-scale-in">
+              <div className="h-1.5 w-1.5 rounded-full bg-red-400 shrink-0" />
               {error}
-            </p>
+            </div>
           )}
-        </CardContent>
-      </Card>
+        </div>
+      </div>
 
       {/* Navigation */}
-      <div className="flex gap-3">
+      <div className="flex gap-3 animate-slide-up delay-3">
         {step > 1 && (
           <Button
             variant="outline"
             onClick={() => { setError(null); setStep(step - 1); }}
-            className="border-[#262626] text-white/60 hover:bg-white/[0.06] hover:text-white"
+            className="border-[#262626] bg-transparent text-[#A3A3A3] hover:bg-[#1A1A1A] hover:text-white hover:border-[#333] transition-all"
           >
             <ArrowLeft className="h-4 w-4 mr-1" />
             Back
@@ -324,22 +384,36 @@ export default function RecyclerOnboardingPage() {
         {step < steps.length ? (
           <Button
             onClick={handleNext}
-            className="flex-1 bg-gradient-to-r from-[#059669] to-[#10B981] text-white font-semibold hover:from-[#047857] hover:to-[#34D399]"
+            className="flex-1 h-11 bg-[#10B981] text-black hover:bg-[#059669] font-semibold transition-colors"
           >
-            Next
+            Continue
             <ArrowRight className="h-4 w-4 ml-1" />
           </Button>
         ) : (
           <Button
             onClick={handleSubmit}
             disabled={loading}
-            className="flex-1 bg-gradient-to-r from-[#059669] to-[#10B981] text-white font-semibold hover:from-[#047857] hover:to-[#34D399] disabled:opacity-40"
+            className="flex-1 h-11 bg-[#10B981] text-black hover:bg-[#059669] font-semibold disabled:opacity-40 transition-colors"
           >
-            {loading ? "Saving..." : "Complete Setup"}
-            <ArrowRight className="h-4 w-4 ml-1" />
+            {loading ? (
+              <span className="flex items-center gap-2">
+                <span className="h-4 w-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                Saving...
+              </span>
+            ) : (
+              <>
+                Complete Setup
+                <ArrowRight className="h-4 w-4 ml-1" />
+              </>
+            )}
           </Button>
         )}
       </div>
+
+      {/* Step count footer */}
+      <p className="text-center text-xs text-[#525252]">
+        Step {step} of {steps.length}
+      </p>
     </div>
   );
 }
