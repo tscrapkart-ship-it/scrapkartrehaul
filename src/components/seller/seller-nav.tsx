@@ -11,12 +11,14 @@ import {
   Package,
   Gavel,
   ArrowLeftRight,
+  Store,
   LogOut,
   ChevronDown,
 } from "lucide-react";
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/marketplace", label: "Marketplace", icon: Store },
   { href: "/company", label: "Company", icon: Building2 },
   { href: "/scraps", label: "Listings", icon: Package },
   { href: "/seller-bookings", label: "Bids", icon: Gavel },

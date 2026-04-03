@@ -148,17 +148,11 @@ export async function updateSession(request: NextRequest) {
       return NextResponse.redirect(url);
     }
 
-    // Role-based route protection (approved + onboarded users)
-    // "both" can access everything — no restrictions needed
-    if (role === "recycler" && path.startsWith("/dashboard")) {
+    // Role-based route protection
+    // Recyclers can't access seller dashboard/scraps management
+    if (role === "recycler" && (path.startsWith("/dashboard") || path.startsWith("/scraps") || path.startsWith("/company") || path.startsWith("/seller-bookings"))) {
       const url = request.nextUrl.clone();
       url.pathname = "/marketplace";
-      return NextResponse.redirect(url);
-    }
-
-    if (role === "waste_producer" && path.startsWith("/marketplace")) {
-      const url = request.nextUrl.clone();
-      url.pathname = "/dashboard";
       return NextResponse.redirect(url);
     }
   }
