@@ -72,7 +72,7 @@ export default async function ScrapDetailPage({
 
         {/* Right: Details card */}
         <div className="md:sticky md:top-6 md:self-start space-y-4">
-          <Card className="border-white/[0.06] bg-[#002a47]">
+          <Card className="border-[#262626] bg-card">
             <CardContent className="space-y-5 pt-6">
               <div className="flex items-start justify-between gap-3">
                 <div>
@@ -100,7 +100,7 @@ export default async function ScrapDetailPage({
               )}
 
               {/* Details grid */}
-              <div className="grid grid-cols-2 gap-y-3 rounded-lg border border-white/[0.06] bg-white/[0.03] p-4 text-sm">
+              <div className="grid grid-cols-2 gap-y-3 rounded-lg border border-[#262626] bg-[#141414] p-4 text-sm">
                 <span className="flex items-center gap-1.5 text-white/40">
                   <Scale className="h-3.5 w-3.5" />
                   Quantity
@@ -166,7 +166,7 @@ export default async function ScrapDetailPage({
 
       {/* Company info */}
       {scrap.companies && (
-        <Card className="border-white/[0.06] bg-[#002a47]">
+        <Card className="border-[#262626] bg-card">
           <CardContent className="pt-5">
             <h3 className="mb-3 text-xs font-medium uppercase tracking-wider text-white/40">
               Listed by

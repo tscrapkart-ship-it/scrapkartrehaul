@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { UserPlus, Mail, Lock, User } from "lucide-react";
@@ -11,12 +12,21 @@ import { Label } from "@/components/ui/label";
 import { GoogleAuthButton } from "@/components/auth/google-auth-button";
 
 export default function SignupPage() {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
+
+  // Redirect already-authenticated users away from signup
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) router.replace("/role-select");
+    });
+  }, [router]);
 
   async function handleSignup(e: React.FormEvent) {
     e.preventDefault();
@@ -49,19 +59,19 @@ export default function SignupPage() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-xl p-8 shadow-2xl text-center space-y-6">
+        <div className="rounded-2xl border border-[#262626] bg-[#141414] p-8 shadow-2xl text-center space-y-6">
           {/* Animated mail icon */}
           <motion.div
             initial={{ scale: 0, rotate: -20 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ delay: 0.2, type: "spring", stiffness: 200, damping: 15 }}
-            className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#64CCC5]/10 border border-[#64CCC5]/20"
+            className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#10B981]/10 border border-[#10B981]/20"
           >
             <motion.div
               animate={{ y: [0, -4, 0] }}
               transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
             >
-              <Mail className="h-10 w-10 text-[#64CCC5]" />
+              <Mail className="h-10 w-10 text-[#10B981]" />
             </motion.div>
           </motion.div>
 
@@ -76,7 +86,7 @@ export default function SignupPage() {
             </h1>
             <p className="text-sm text-white/40 leading-relaxed">
               We sent a confirmation link to{" "}
-              <span className="font-medium text-[#64CCC5]">{email}</span>.
+              <span className="font-medium text-[#10B981]">{email}</span>.
               Click the link to verify your account and choose your role.
             </p>
             <p className="text-xs text-white/25">
@@ -91,7 +101,7 @@ export default function SignupPage() {
           >
             <Button
               variant="outline"
-              className="w-full h-11 rounded-xl border-white/[0.08] bg-white/[0.04] text-white/60 hover:bg-white/[0.08] hover:text-white transition-all"
+              className="w-full h-11 rounded-xl border-[#262626] bg-[#1A1A1A] text-white/60 hover:bg-white/[0.08] hover:text-white transition-all"
               onClick={() => setEmailSent(false)}
             >
               Back to Sign Up
@@ -110,11 +120,11 @@ export default function SignupPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-xl p-8 shadow-2xl">
+        <div className="rounded-2xl border border-[#262626] bg-[#141414] p-8 shadow-2xl">
           {/* Header */}
           <div className="mb-8 text-center space-y-2">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#64CCC5]/10 border border-[#64CCC5]/20">
-              <UserPlus className="h-6 w-6 text-[#64CCC5]" />
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#10B981]/10 border border-[#10B981]/20">
+              <UserPlus className="h-6 w-6 text-[#10B981]" />
             </div>
             <h1 className="text-2xl font-bold text-white tracking-tight">
               Create Account
@@ -138,7 +148,7 @@ export default function SignupPage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
-                  className="pl-10 h-11 bg-white/[0.04] border-white/[0.08] text-white placeholder:text-white/25 rounded-xl focus:border-[#64CCC5]/50 focus:ring-1 focus:ring-[#64CCC5]/30 focus-visible:ring-[#64CCC5]/30 transition-all"
+                  className="pl-10 h-11 bg-[#1A1A1A] border-[#262626] text-white placeholder:text-white/25 rounded-xl focus:border-[#10B981]/50 focus:ring-1 focus:ring-[#10B981]/30 focus-visible:ring-[#10B981]/30 transition-all"
                 />
               </div>
             </div>
@@ -156,7 +166,7 @@ export default function SignupPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="pl-10 h-11 bg-white/[0.04] border-white/[0.08] text-white placeholder:text-white/25 rounded-xl focus:border-[#64CCC5]/50 focus:ring-1 focus:ring-[#64CCC5]/30 focus-visible:ring-[#64CCC5]/30 transition-all"
+                  className="pl-10 h-11 bg-[#1A1A1A] border-[#262626] text-white placeholder:text-white/25 rounded-xl focus:border-[#10B981]/50 focus:ring-1 focus:ring-[#10B981]/30 focus-visible:ring-[#10B981]/30 transition-all"
                 />
               </div>
             </div>
@@ -175,7 +185,7 @@ export default function SignupPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   minLength={6}
-                  className="pl-10 h-11 bg-white/[0.04] border-white/[0.08] text-white placeholder:text-white/25 rounded-xl focus:border-[#64CCC5]/50 focus:ring-1 focus:ring-[#64CCC5]/30 focus-visible:ring-[#64CCC5]/30 transition-all"
+                  className="pl-10 h-11 bg-[#1A1A1A] border-[#262626] text-white placeholder:text-white/25 rounded-xl focus:border-[#10B981]/50 focus:ring-1 focus:ring-[#10B981]/30 focus-visible:ring-[#10B981]/30 transition-all"
                 />
               </div>
             </div>
@@ -192,7 +202,7 @@ export default function SignupPage() {
 
             <Button
               type="submit"
-              className="w-full h-11 rounded-xl bg-gradient-to-r from-[#176B87] to-[#64CCC5] hover:from-[#1a7a99] hover:to-[#72ddd4] text-white font-semibold shadow-lg shadow-[#64CCC5]/10 transition-all duration-300"
+              className="w-full h-11 rounded-xl bg-[#10B981] hover:bg-[#059669] text-black font-semibold transition-all duration-300"
               disabled={loading}
             >
               {loading ? "Creating account..." : "Sign Up"}
@@ -212,7 +222,7 @@ export default function SignupPage() {
             Already have an account?{" "}
             <Link
               href="/login"
-              className="font-medium text-[#64CCC5] hover:text-[#72ddd4] transition-colors"
+              className="font-medium text-[#10B981] hover:text-[#34D399] transition-colors"
             >
               Sign In
             </Link>

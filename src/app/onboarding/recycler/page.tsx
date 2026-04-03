@@ -143,7 +143,7 @@ export default function RecyclerOnboardingPage() {
         </div>
       </div>
 
-      <Card className="border-white/[0.06] bg-white/[0.03]">
+      <Card className="border-[#262626] bg-[#141414]">
         <CardContent className="pt-6 space-y-6">
           {/* Step 1: Capabilities */}
           {step === 1 && (
@@ -162,7 +162,7 @@ export default function RecyclerOnboardingPage() {
                         className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all ${
                           sel
                             ? "bg-brand-accent text-brand-dark"
-                            : "border border-white/[0.08] bg-white/[0.04] text-white/60 hover:bg-white/[0.08] hover:text-white"
+                            : "border border-[#262626] bg-[#1A1A1A] text-white/60 hover:bg-white/[0.08] hover:text-white"
                         }`}
                       >
                         {sel && <Check className="inline h-3 w-3 mr-1" />}
@@ -187,7 +187,7 @@ export default function RecyclerOnboardingPage() {
                         className={`rounded-full px-3 py-1 text-xs font-medium transition-all ${
                           sel
                             ? "bg-brand-secondary/50 text-white border border-brand-accent/40"
-                            : "border border-white/[0.08] bg-white/[0.04] text-white/50 hover:bg-white/[0.08] hover:text-white"
+                            : "border border-[#262626] bg-[#1A1A1A] text-white/50 hover:bg-white/[0.08] hover:text-white"
                         }`}
                       >
                         {type}
@@ -206,7 +206,7 @@ export default function RecyclerOnboardingPage() {
                     min="1"
                     value={form.service_radius_km}
                     onChange={handleChange}
-                    className="border-white/[0.06] bg-white/[0.04] text-white focus-visible:ring-brand-accent/50"
+                    className="border-[#262626] bg-[#1A1A1A] text-white focus-visible:ring-brand-accent/50"
                   />
                 </div>
                 <div className="space-y-2">
@@ -215,11 +215,11 @@ export default function RecyclerOnboardingPage() {
                     name="pricing_model"
                     value={form.pricing_model}
                     onChange={handleChange}
-                    className="flex h-10 w-full rounded-md border border-white/[0.06] bg-white/[0.04] px-3 py-2 text-sm text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/50"
+                    className="flex h-10 w-full rounded-md border border-[#262626] bg-[#1A1A1A] px-3 py-2 text-sm text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/50"
                   >
-                    <option value="negotiable" className="bg-[#002a47]">Negotiable</option>
-                    <option value="market_rate" className="bg-[#002a47]">Market Rate</option>
-                    <option value="fixed" className="bg-[#002a47]">Fixed</option>
+                    <option value="negotiable" className="bg-card">Negotiable</option>
+                    <option value="market_rate" className="bg-card">Market Rate</option>
+                    <option value="fixed" className="bg-card">Fixed</option>
                   </select>
                 </div>
               </div>
@@ -233,7 +233,7 @@ export default function RecyclerOnboardingPage() {
                     min="0"
                     value={form.min_quantity_kg}
                     onChange={handleChange}
-                    className="border-white/[0.06] bg-white/[0.04] text-white focus-visible:ring-brand-accent/50"
+                    className="border-[#262626] bg-[#1A1A1A] text-white focus-visible:ring-brand-accent/50"
                   />
                 </div>
                 <div className="space-y-2">
@@ -245,7 +245,7 @@ export default function RecyclerOnboardingPage() {
                     value={form.max_quantity_kg}
                     onChange={handleChange}
                     placeholder="No limit"
-                    className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                   />
                 </div>
               </div>
@@ -269,7 +269,7 @@ export default function RecyclerOnboardingPage() {
                   value={form.cpcb_license_url}
                   onChange={handleChange}
                   placeholder="https://drive.google.com/..."
-                  className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                  className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                 />
                 <p className="text-xs text-white/30">Central Pollution Control Board authorization</p>
               </div>
@@ -281,7 +281,7 @@ export default function RecyclerOnboardingPage() {
                   value={form.epr_authorization_url}
                   onChange={handleChange}
                   placeholder="https://drive.google.com/..."
-                  className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                  className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                 />
                 <p className="text-xs text-white/30">Extended Producer Responsibility authorization</p>
               </div>
@@ -293,7 +293,7 @@ export default function RecyclerOnboardingPage() {
                   value={form.iso_certificate_url}
                   onChange={handleChange}
                   placeholder="https://drive.google.com/..."
-                  className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                  className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                 />
                 <p className="text-xs text-white/30">ISO 14001 or relevant certification</p>
               </div>
@@ -314,7 +314,7 @@ export default function RecyclerOnboardingPage() {
           <Button
             variant="outline"
             onClick={() => { setError(null); setStep(step - 1); }}
-            className="border-white/[0.08] text-white/60 hover:bg-white/[0.06] hover:text-white"
+            className="border-[#262626] text-white/60 hover:bg-white/[0.06] hover:text-white"
           >
             <ArrowLeft className="h-4 w-4 mr-1" />
             Back
@@ -324,7 +324,7 @@ export default function RecyclerOnboardingPage() {
         {step < steps.length ? (
           <Button
             onClick={handleNext}
-            className="flex-1 bg-gradient-to-r from-[#176B87] to-[#64CCC5] text-white font-semibold hover:from-[#1a7a99] hover:to-[#72ddd4]"
+            className="flex-1 bg-gradient-to-r from-[#059669] to-[#10B981] text-white font-semibold hover:from-[#047857] hover:to-[#34D399]"
           >
             Next
             <ArrowRight className="h-4 w-4 ml-1" />
@@ -333,7 +333,7 @@ export default function RecyclerOnboardingPage() {
           <Button
             onClick={handleSubmit}
             disabled={loading}
-            className="flex-1 bg-gradient-to-r from-[#176B87] to-[#64CCC5] text-white font-semibold hover:from-[#1a7a99] hover:to-[#72ddd4] disabled:opacity-40"
+            className="flex-1 bg-gradient-to-r from-[#059669] to-[#10B981] text-white font-semibold hover:from-[#047857] hover:to-[#34D399] disabled:opacity-40"
           >
             {loading ? "Saving..." : "Complete Setup"}
             <ArrowRight className="h-4 w-4 ml-1" />

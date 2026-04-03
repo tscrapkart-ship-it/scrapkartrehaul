@@ -74,7 +74,7 @@ export default async function AdminListingsPage({
         ))}
       </div>
 
-      <div className="rounded-xl border border-white/[0.06] bg-[#002a47] overflow-hidden">
+      <div className="rounded-xl border border-[#262626] bg-card overflow-hidden">
         {listings.length === 0 ? (
           <div className="flex flex-col items-center gap-2 py-16 text-center">
             <Package className="h-8 w-8 text-white/20" />
@@ -84,7 +84,7 @@ export default async function AdminListingsPage({
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-white/[0.06]">
+                <tr className="border-b border-[#262626]">
                   <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Title</th>
                   <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Category</th>
                   <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Seller</th>

@@ -41,7 +41,7 @@ export default async function CompanyPage() {
         </Link>
       </div>
 
-      <Card className="border-white/[0.06] bg-white/[0.03]">
+      <Card className="border-[#262626] bg-[#141414]">
         <CardContent className="pt-6">
           <div className="flex items-start gap-4">
             {company.logo_url ? (

@@ -5,7 +5,15 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
-import { LayoutDashboard, Building2, Package, Gavel, ArrowLeftRight, LogOut } from "lucide-react";
+import {
+  LayoutDashboard,
+  Building2,
+  Package,
+  Gavel,
+  ArrowLeftRight,
+  LogOut,
+  ChevronDown,
+} from "lucide-react";
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -36,49 +44,56 @@ export function SellerNav({ userName }: { userName: string }) {
   return (
     <>
       {/* Desktop header */}
-      <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-brand-dark">
+      <header className="sticky top-0 z-40 border-b border-[#262626] bg-[#0A0A0A]/95 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-8">
-            <Link href="/dashboard">
+            <Link href="/dashboard" className="shrink-0">
               <Image
                 src="/logos/ScrapKart White Logo.png"
                 alt="ScrapKart"
-                width={140}
-                height={40}
+                width={130}
+                height={37}
                 priority
               />
             </Link>
-            <nav className="hidden items-center gap-1 md:flex">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`relative rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
-                    pathname.startsWith(item.href)
-                      ? "text-brand-accent"
-                      : "text-white/60 hover:text-white"
-                  }`}
-                >
-                  {item.label}
-                  {pathname.startsWith(item.href) && (
-                    <span className="absolute bottom-0 left-3 right-3 h-0.5 rounded-full bg-brand-accent" />
-                  )}
-                </Link>
-              ))}
+            <nav className="hidden items-center gap-0.5 md:flex">
+              {navItems.map((item) => {
+                const Icon = item.icon;
+                const isActive = pathname.startsWith(item.href);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`flex items-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium transition-all duration-200 ${
+                      isActive
+                        ? "bg-[#10B981]/10 text-[#10B981]"
+                        : "text-[#A3A3A3] hover:bg-[#1A1A1A] hover:text-white"
+                    }`}
+                  >
+                    <Icon className="h-4 w-4" />
+                    {item.label}
+                  </Link>
+                );
+              })}
             </nav>
           </div>
-          <div className="flex items-center gap-3">
-            <div className="hidden items-center gap-2 sm:flex">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-accent/10 text-xs font-semibold text-brand-accent">
+
+          {/* User section */}
+          <div className="flex items-center gap-2">
+            <div className="hidden items-center gap-2.5 rounded-lg border border-[#262626] bg-[#141414] px-3 py-1.5 sm:flex">
+              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#10B981] text-xs font-bold text-black">
                 {initials}
               </div>
-              <span className="text-sm text-white/60">{userName}</span>
+              <span className="text-sm font-medium text-[#F5F5F5]">
+                {userName}
+              </span>
+              <ChevronDown className="h-3.5 w-3.5 text-[#A3A3A3]" />
             </div>
             <Button
               variant="ghost"
               size="sm"
               onClick={handleLogout}
-              className="text-white/40 hover:bg-white/[0.06] hover:text-white"
+              className="h-9 w-9 rounded-lg text-[#A3A3A3] hover:bg-[#1A1A1A] hover:text-white"
             >
               <LogOut className="h-4 w-4" />
             </Button>
@@ -87,8 +102,8 @@ export function SellerNav({ userName }: { userName: string }) {
       </header>
 
       {/* Mobile bottom nav */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/[0.06] bg-brand-dark md:hidden">
-        <div className="flex justify-around py-2">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-[#262626] bg-[#0A0A0A]/95 backdrop-blur-md md:hidden">
+        <div className="flex justify-around py-1.5 pb-[max(0.375rem,env(safe-area-inset-bottom))]">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = pathname.startsWith(item.href);
@@ -96,11 +111,19 @@ export function SellerNav({ userName }: { userName: string }) {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex flex-col items-center gap-0.5 px-3 py-1 text-xs transition-colors ${
-                  isActive ? "text-brand-accent" : "text-white/40"
+                className={`flex flex-col items-center gap-0.5 rounded-lg px-3 py-1.5 text-[10px] font-medium transition-all ${
+                  isActive
+                    ? "text-[#10B981]"
+                    : "text-[#525252] active:text-white"
                 }`}
               >
-                <Icon className="h-5 w-5" />
+                <div
+                  className={`rounded-lg p-1 transition-all ${
+                    isActive ? "bg-[#10B981]/10" : ""
+                  }`}
+                >
+                  <Icon className="h-5 w-5" />
+                </div>
                 {item.label}
               </Link>
             );

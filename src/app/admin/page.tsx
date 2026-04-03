@@ -158,7 +158,7 @@ export default async function AdminOverviewPage() {
           const Icon = card.icon;
           return (
             <a key={card.label} href={card.href} className="group">
-              <div className="rounded-xl border border-white/[0.06] bg-[#002a47] p-5 transition-colors hover:border-white/[0.12]">
+              <div className="rounded-xl border border-[#262626] bg-card p-5 transition-colors hover:border-[#333333]">
                 <div className="flex items-center justify-between">
                   <p className="text-sm text-white/50">{card.label}</p>
                   <div className={`rounded-lg p-2 ${card.bg}`}>
@@ -176,7 +176,7 @@ export default async function AdminOverviewPage() {
       {/* Recent activity */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* Recent users */}
-        <div className="rounded-xl border border-white/[0.06] bg-[#002a47] p-5">
+        <div className="rounded-xl border border-[#262626] bg-card p-5">
           <div className="mb-4 flex items-center gap-2">
             <TrendingUp className="h-4 w-4 text-brand-accent" />
             <h2 className="text-sm font-semibold text-white">Recent Signups</h2>
@@ -205,7 +205,7 @@ export default async function AdminOverviewPage() {
         </div>
 
         {/* Recent listings */}
-        <div className="rounded-xl border border-white/[0.06] bg-[#002a47] p-5">
+        <div className="rounded-xl border border-[#262626] bg-card p-5">
           <div className="mb-4 flex items-center gap-2">
             <Package className="h-4 w-4 text-brand-accent" />
             <h2 className="text-sm font-semibold text-white">Recent Listings</h2>
@@ -230,7 +230,7 @@ export default async function AdminOverviewPage() {
         </div>
 
         {/* Recent bids */}
-        <div className="rounded-xl border border-white/[0.06] bg-[#002a47] p-5">
+        <div className="rounded-xl border border-[#262626] bg-card p-5">
           <div className="mb-4 flex items-center gap-2">
             <Gavel className="h-4 w-4 text-brand-accent" />
             <h2 className="text-sm font-semibold text-white">Recent Bids</h2>

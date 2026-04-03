@@ -7,9 +7,9 @@ export default function OnboardingLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-[#001C30] flex flex-col">
+    <div className="min-h-screen bg-[#0A0A0A] flex flex-col">
       {/* Minimal header */}
-      <header className="border-b border-white/[0.06] px-6 py-4">
+      <header className="border-b border-[#262626] px-6 py-4">
         <Link href="/">
           <Image
             src="/logos/ScrapKart White Logo.png"

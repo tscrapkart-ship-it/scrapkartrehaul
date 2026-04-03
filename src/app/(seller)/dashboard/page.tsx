@@ -92,7 +92,7 @@ export default async function SellerDashboard() {
 
       {/* Company card */}
       {company ? (
-        <Card className="border-white/[0.06] bg-white/[0.03]">
+        <Card className="border-[#262626] bg-[#141414]">
           <CardContent className="pt-5">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -129,7 +129,7 @@ export default async function SellerDashboard() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="border-white/[0.06] text-white/60 hover:bg-white/[0.06] hover:text-white"
+                  className="border-[#262626] text-white/60 hover:bg-white/[0.06] hover:text-white"
                 >
                   Edit Profile
                 </Button>
@@ -161,7 +161,7 @@ export default async function SellerDashboard() {
 
       {/* Stats */}
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <Card className="border-white/[0.06] bg-white/[0.03]">
+        <Card className="border-[#262626] bg-[#141414]">
           <CardContent className="pt-5">
             <div className="flex items-center justify-between">
               <p className="text-sm text-white/40">Total Listings</p>
@@ -171,7 +171,7 @@ export default async function SellerDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="border-white/[0.06] bg-white/[0.03]">
+        <Card className="border-[#262626] bg-[#141414]">
           <CardContent className="pt-5">
             <div className="flex items-center justify-between">
               <p className="text-sm text-white/40">Live Listings</p>
@@ -181,7 +181,7 @@ export default async function SellerDashboard() {
           </CardContent>
         </Card>
 
-        <Card className={`border-white/[0.06] bg-white/[0.03] ${pendingBids > 0 ? "border-yellow-500/20 bg-yellow-500/5" : ""}`}>
+        <Card className={`border-[#262626] bg-[#141414] ${pendingBids > 0 ? "border-yellow-500/20 bg-yellow-500/5" : ""}`}>
           <CardContent className="pt-5">
             <div className="flex items-center justify-between">
               <p className="text-sm text-white/40">Pending Bids</p>
@@ -193,7 +193,7 @@ export default async function SellerDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="border-white/[0.06] bg-white/[0.03]">
+        <Card className="border-[#262626] bg-[#141414]">
           <CardContent className="pt-5">
             <div className="flex items-center justify-between">
               <p className="text-sm text-white/40">Total Earned</p>
@@ -241,7 +241,7 @@ export default async function SellerDashboard() {
             {recentListings.map((listing) => (
               <div
                 key={listing.id}
-                className="flex items-center justify-between rounded-xl border border-white/[0.06] bg-white/[0.03] px-4 py-3"
+                className="flex items-center justify-between rounded-xl border border-[#262626] bg-[#141414] px-4 py-3"
               >
                 <div className="flex items-center gap-3">
                   <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${categoryColors[listing.category] ?? "bg-white/10 text-white/50"}`}>
@@ -265,8 +265,8 @@ export default async function SellerDashboard() {
 
       {/* Empty state */}
       {totalListings === 0 && (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-white/[0.06] py-14">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/[0.04] mb-3">
+        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-[#262626] py-14">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#1A1A1A] mb-3">
             <ArrowLeftRight className="h-6 w-6 text-white/20" />
           </div>
           <p className="text-white/60 font-medium">No listings yet</p>

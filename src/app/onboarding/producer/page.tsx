@@ -177,7 +177,7 @@ export default function ProducerOnboardingPage() {
         </div>
       </div>
 
-      <Card className="border-white/[0.06] bg-white/[0.03]">
+      <Card className="border-[#262626] bg-[#141414]">
         <CardContent className="pt-6 space-y-5">
           {/* Step 1: Company Info */}
           {step === 1 && (
@@ -190,7 +190,7 @@ export default function ProducerOnboardingPage() {
                   onChange={handleChange}
                   placeholder="e.g., Acme Steel Industries"
                   required
-                  className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                  className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                 />
               </div>
 
@@ -201,7 +201,7 @@ export default function ProducerOnboardingPage() {
                   value={form.industry_type}
                   onChange={handleChange}
                   placeholder="e.g., Steel Manufacturing, Electronics"
-                  className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                  className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                 />
               </div>
 
@@ -214,7 +214,7 @@ export default function ProducerOnboardingPage() {
                     onChange={handleChange}
                     placeholder="Full name"
                     required
-                    className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                   />
                 </div>
                 <div className="space-y-2">
@@ -225,7 +225,7 @@ export default function ProducerOnboardingPage() {
                     onChange={handleChange}
                     placeholder="+91 9876543210"
                     required
-                    className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                   />
                 </div>
               </div>
@@ -237,7 +237,7 @@ export default function ProducerOnboardingPage() {
                   value={form.gst_number}
                   onChange={handleChange}
                   placeholder="22AAAAA0000A1Z5"
-                  className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                  className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                 />
               </div>
 
@@ -249,7 +249,7 @@ export default function ProducerOnboardingPage() {
                   onChange={handleChange}
                   rows={2}
                   placeholder="Brief description of your business..."
-                  className="flex w-full rounded-md border border-white/[0.06] bg-white/[0.04] px-3 py-2 text-sm text-white placeholder:text-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/50"
+                  className="flex w-full rounded-md border border-[#262626] bg-[#1A1A1A] px-3 py-2 text-sm text-white placeholder:text-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/50"
                 />
               </div>
 
@@ -276,7 +276,7 @@ export default function ProducerOnboardingPage() {
                   value={form.address}
                   onChange={handleChange}
                   placeholder="Building, street, area"
-                  className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                  className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                 />
               </div>
 
@@ -289,7 +289,7 @@ export default function ProducerOnboardingPage() {
                     onChange={handleChange}
                     placeholder="e.g., Mumbai"
                     required
-                    className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                   />
                 </div>
                 <div className="space-y-2">
@@ -300,7 +300,7 @@ export default function ProducerOnboardingPage() {
                     onChange={handleChange}
                     placeholder="e.g., Maharashtra"
                     required
-                    className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                   />
                 </div>
               </div>
@@ -313,7 +313,7 @@ export default function ProducerOnboardingPage() {
                   onChange={handleChange}
                   placeholder="400001"
                   maxLength={6}
-                  className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                  className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                 />
               </div>
             </>
@@ -337,7 +337,7 @@ export default function ProducerOnboardingPage() {
                       className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
                         isSelected
                           ? "bg-brand-accent text-brand-dark"
-                          : "border border-white/[0.08] bg-white/[0.04] text-white/60 hover:bg-white/[0.08] hover:text-white"
+                          : "border border-[#262626] bg-[#1A1A1A] text-white/60 hover:bg-white/[0.08] hover:text-white"
                       }`}
                     >
                       {isSelected && <Check className="inline h-3 w-3 mr-1.5" />}
@@ -368,7 +368,7 @@ export default function ProducerOnboardingPage() {
           <Button
             variant="outline"
             onClick={() => { setError(null); setStep(step - 1); }}
-            className="border-white/[0.08] text-white/60 hover:bg-white/[0.06] hover:text-white"
+            className="border-[#262626] text-white/60 hover:bg-white/[0.06] hover:text-white"
           >
             <ArrowLeft className="h-4 w-4 mr-1" />
             Back
@@ -378,7 +378,7 @@ export default function ProducerOnboardingPage() {
         {step < steps.length ? (
           <Button
             onClick={handleNext}
-            className="flex-1 bg-gradient-to-r from-[#176B87] to-[#64CCC5] text-white font-semibold hover:from-[#1a7a99] hover:to-[#72ddd4]"
+            className="flex-1 bg-gradient-to-r from-[#059669] to-[#10B981] text-white font-semibold hover:from-[#047857] hover:to-[#34D399]"
           >
             Next
             <ArrowRight className="h-4 w-4 ml-1" />
@@ -387,7 +387,7 @@ export default function ProducerOnboardingPage() {
           <Button
             onClick={handleSubmit}
             disabled={loading}
-            className="flex-1 bg-gradient-to-r from-[#176B87] to-[#64CCC5] text-white font-semibold hover:from-[#1a7a99] hover:to-[#72ddd4] disabled:opacity-40"
+            className="flex-1 bg-gradient-to-r from-[#059669] to-[#10B981] text-white font-semibold hover:from-[#047857] hover:to-[#34D399] disabled:opacity-40"
           >
             {loading ? "Saving..." : (userRole === "both" ? "Next: Recycler Profile" : "Complete Setup")}
             <ArrowRight className="h-4 w-4 ml-1" />

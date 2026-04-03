@@ -35,6 +35,8 @@ export default function LoginPage() {
       return;
     }
 
+    // Middleware will handle the correct redirect based on role
+    router.push("/");
     router.refresh();
   }
 
@@ -44,11 +46,11 @@ export default function LoginPage() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
-      <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-xl p-8 shadow-2xl">
+      <div className="rounded-2xl border border-[#262626] bg-[#141414] p-8 shadow-2xl">
         {/* Header */}
         <div className="mb-8 text-center space-y-2">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#64CCC5]/10 border border-[#64CCC5]/20">
-            <LogIn className="h-6 w-6 text-[#64CCC5]" />
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#10B981]/10 border border-[#10B981]/20">
+            <LogIn className="h-6 w-6 text-[#10B981]" />
           </div>
           <h1 className="text-2xl font-bold text-white tracking-tight">
             Welcome back
@@ -72,7 +74,7 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="pl-10 h-11 bg-white/[0.04] border-white/[0.08] text-white placeholder:text-white/25 rounded-xl focus:border-[#64CCC5]/50 focus:ring-1 focus:ring-[#64CCC5]/30 focus-visible:ring-[#64CCC5]/30 transition-all"
+                className="pl-10 h-11 bg-[#1A1A1A] border-[#262626] text-white placeholder:text-white/25 rounded-xl focus:border-[#10B981]/50 focus:ring-1 focus:ring-[#10B981]/30 focus-visible:ring-[#10B981]/30 transition-all"
               />
             </div>
           </div>
@@ -90,7 +92,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="pl-10 h-11 bg-white/[0.04] border-white/[0.08] text-white placeholder:text-white/25 rounded-xl focus:border-[#64CCC5]/50 focus:ring-1 focus:ring-[#64CCC5]/30 focus-visible:ring-[#64CCC5]/30 transition-all"
+                className="pl-10 h-11 bg-[#1A1A1A] border-[#262626] text-white placeholder:text-white/25 rounded-xl focus:border-[#10B981]/50 focus:ring-1 focus:ring-[#10B981]/30 focus-visible:ring-[#10B981]/30 transition-all"
               />
             </div>
           </div>
@@ -107,7 +109,7 @@ export default function LoginPage() {
 
           <Button
             type="submit"
-            className="w-full h-11 rounded-xl bg-gradient-to-r from-[#176B87] to-[#64CCC5] hover:from-[#1a7a99] hover:to-[#72ddd4] text-white font-semibold shadow-lg shadow-[#64CCC5]/10 transition-all duration-300"
+            className="w-full h-11 rounded-xl bg-[#10B981] hover:bg-[#059669] text-black font-semibold transition-all duration-300"
             disabled={loading}
           >
             {loading ? "Signing in..." : "Sign In"}
@@ -127,7 +129,7 @@ export default function LoginPage() {
           Don&apos;t have an account?{" "}
           <Link
             href="/signup"
-            className="font-medium text-[#64CCC5] hover:text-[#72ddd4] transition-colors"
+            className="font-medium text-[#10B981] hover:text-[#34D399] transition-colors"
           >
             Sign Up
           </Link>

@@ -142,7 +142,7 @@ export default function TransactionDetailPage() {
         </div>
 
         {/* Main info card */}
-        <Card className="border-white/[0.06] bg-white/[0.03]">
+        <Card className="border-[#262626] bg-[#141414]">
           <CardContent className="pt-6 space-y-5">
             {/* Listing */}
             <div className="flex items-start gap-3">
@@ -158,7 +158,7 @@ export default function TransactionDetailPage() {
               </div>
             </div>
 
-            <div className="border-t border-white/[0.06]" />
+            <div className="border-t border-[#262626]" />
 
             {/* Price */}
             <div className="flex items-start gap-3">
@@ -173,7 +173,7 @@ export default function TransactionDetailPage() {
               </div>
             </div>
 
-            <div className="border-t border-white/[0.06]" />
+            <div className="border-t border-[#262626]" />
 
             {/* Counterpart */}
             <div className="flex items-start gap-3">
@@ -189,7 +189,7 @@ export default function TransactionDetailPage() {
 
             {tx.pickup_date && (
               <>
-                <div className="border-t border-white/[0.06]" />
+                <div className="border-t border-[#262626]" />
                 <div className="flex items-start gap-3">
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/[0.06]">
                     <CalendarDays className="h-4 w-4 text-white/40" />
@@ -212,7 +212,7 @@ export default function TransactionDetailPage() {
 
         {/* OTP Section */}
         {tx.status !== "completed" && tx.status !== "cancelled" && (
-          <Card className="border-white/[0.06] bg-white/[0.03]">
+          <Card className="border-[#262626] bg-[#141414]">
             <CardContent className="pt-5 space-y-4">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-4 w-4 text-brand-accent" />
@@ -234,7 +234,7 @@ export default function TransactionDetailPage() {
                       variant="outline"
                       size="sm"
                       onClick={() => setShowOtp(!showOtp)}
-                      className="border-white/[0.08] text-white/60 hover:bg-white/[0.06]"
+                      className="border-[#262626] text-white/60 hover:bg-white/[0.06]"
                     >
                       {showOtp ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                     </Button>
@@ -253,7 +253,7 @@ export default function TransactionDetailPage() {
                       onChange={(e) => setOtpInput(e.target.value)}
                       placeholder="Enter 6-digit OTP"
                       maxLength={6}
-                      className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50 text-center font-mono text-lg tracking-widest"
+                      className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50 text-center font-mono text-lg tracking-widest"
                     />
                     <Button
                       onClick={handleVerifyOtp}

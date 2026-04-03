@@ -34,7 +34,7 @@ export default async function BlogsPage() {
               <Link
                 key={blog.id}
                 href={`/blogs/${blog.slug}`}
-                className="group rounded-xl border border-white/[0.06] bg-[#002a47] overflow-hidden hover:border-brand-accent/30 transition-colors"
+                className="group rounded-xl border border-[#262626] bg-card overflow-hidden hover:border-brand-accent/30 transition-colors"
               >
                 {blog.cover_image && (
                   <div className="aspect-video overflow-hidden">

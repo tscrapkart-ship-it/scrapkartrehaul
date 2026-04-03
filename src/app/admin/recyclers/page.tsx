@@ -66,14 +66,14 @@ export default async function AdminRecyclersPage({
       </div>
 
       {profiles.length === 0 ? (
-        <div className="flex flex-col items-center gap-2 rounded-xl border border-dashed border-white/[0.06] py-16 text-center">
+        <div className="flex flex-col items-center gap-2 rounded-xl border border-dashed border-[#262626] py-16 text-center">
           <Recycle className="h-8 w-8 text-white/20" />
           <p className="text-sm text-white/40">No recycler profiles found</p>
         </div>
       ) : (
         <div className="space-y-4">
           {profiles.map((profile: any) => (
-            <div key={profile.id} className="rounded-xl border border-white/[0.06] bg-[#002a47] p-5 space-y-4">
+            <div key={profile.id} className="rounded-xl border border-[#262626] bg-card p-5 space-y-4">
               <div className="flex items-start justify-between">
                 <div>
                   <div className="flex items-center gap-2">
@@ -124,7 +124,7 @@ export default async function AdminRecyclersPage({
                   { label: "EPR Authorization", url: profile.epr_authorization_url },
                   { label: "ISO Certificate", url: profile.iso_certificate_url },
                 ].map((doc) => (
-                  <div key={doc.label} className="rounded-lg border border-white/[0.06] bg-white/[0.03] px-3 py-2">
+                  <div key={doc.label} className="rounded-lg border border-[#262626] bg-[#141414] px-3 py-2">
                     <p className="text-xs text-white/40">{doc.label}</p>
                     {doc.url ? (
                       <a

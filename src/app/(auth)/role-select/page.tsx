@@ -131,21 +131,21 @@ export default function RoleSelectPage() {
                 onClick={() => setSelected(role.value)}
                 className={`w-full text-left rounded-2xl border p-5 transition-all duration-300 ${
                   isSelected
-                    ? "border-[#64CCC5]/50 bg-[#64CCC5]/[0.06] shadow-lg shadow-[#64CCC5]/5"
-                    : "border-white/[0.06] bg-white/[0.03] hover:border-white/[0.12] hover:bg-white/[0.05]"
+                    ? "border-[#10B981]/50 bg-[#10B981]/[0.06] shadow-lg shadow-[#10B981]/5"
+                    : "border-[#262626] bg-[#141414] hover:border-[#333333] hover:bg-[#1A1A1A]"
                 }`}
               >
                 <div className="flex items-start gap-4">
                   <div
                     className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-all duration-300 ${
                       isSelected
-                        ? "bg-[#64CCC5]/15 border border-[#64CCC5]/30"
-                        : "bg-white/[0.04] border border-white/[0.08]"
+                        ? "bg-[#10B981]/15 border border-[#10B981]/30"
+                        : "bg-[#1A1A1A] border border-[#262626]"
                     }`}
                   >
                     <Icon
                       className={`h-5 w-5 transition-colors duration-300 ${
-                        isSelected ? "text-[#64CCC5]" : "text-white/40"
+                        isSelected ? "text-[#10B981]" : "text-white/40"
                       }`}
                     />
                   </div>
@@ -160,8 +160,8 @@ export default function RoleSelectPage() {
                   <div
                     className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
                       isSelected
-                        ? "bg-[#64CCC5] scale-100"
-                        : "border border-white/[0.12] scale-90 opacity-40"
+                        ? "bg-[#10B981] scale-100"
+                        : "border border-[#333333] scale-90 opacity-40"
                     }`}
                   >
                     {isSelected && (
@@ -170,7 +170,7 @@ export default function RoleSelectPage() {
                         animate={{ scale: 1 }}
                         transition={{ type: "spring", stiffness: 300, damping: 20 }}
                       >
-                        <Check className="h-3.5 w-3.5 text-[#001C30]" strokeWidth={3} />
+                        <Check className="h-3.5 w-3.5 text-[#0A0A0A]" strokeWidth={3} />
                       </motion.div>
                     )}
                   </div>
@@ -194,7 +194,7 @@ export default function RoleSelectPage() {
       <motion.div variants={itemVariants}>
         <Button
           onClick={handleConfirm}
-          className="w-full h-11 rounded-xl bg-gradient-to-r from-[#176B87] to-[#64CCC5] hover:from-[#1a7a99] hover:to-[#72ddd4] text-white font-semibold shadow-lg shadow-[#64CCC5]/10 transition-all duration-300 disabled:opacity-40 disabled:shadow-none"
+          className="w-full h-11 rounded-xl bg-[#10B981] hover:bg-[#059669] text-black font-semibold transition-all duration-300 disabled:opacity-40"
           disabled={!selected || loading}
         >
           {loading ? (

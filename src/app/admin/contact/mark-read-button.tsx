@@ -34,7 +34,7 @@ export function MarkReadButton({ submissionId }: { submissionId: string }) {
       variant="outline"
       onClick={handleMarkRead}
       disabled={loading}
-      className="border-white/[0.08] text-white/50 hover:bg-white/[0.06] h-7 px-3 text-xs"
+      className="border-[#262626] text-white/50 hover:bg-white/[0.06] h-7 px-3 text-xs"
     >
       {loading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : "Mark read"}
     </Button>

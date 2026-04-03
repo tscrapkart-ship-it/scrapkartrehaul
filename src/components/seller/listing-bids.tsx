@@ -32,7 +32,7 @@ const statusConfig: Record<string, string> = {
   pending: "bg-yellow-500/10 text-yellow-400 border border-yellow-500/20",
   accepted: "bg-green-500/10 text-green-400 border border-green-500/20",
   rejected: "bg-red-500/10 text-red-400 border border-red-500/20",
-  withdrawn: "bg-white/[0.06] text-white/40 border border-white/[0.06]",
+  withdrawn: "bg-white/[0.06] text-white/40 border border-[#262626]",
 };
 
 export function BidsList({
@@ -65,48 +65,63 @@ export function BidsList({
     setActionLoading(bid.id);
     const supabase = createClient();
 
+    // Optimistic update — show accepted state immediately
+    setBids((prev) =>
+      prev.map((b) =>
+        b.id === bid.id
+          ? { ...b, status: "accepted" }
+          : b.status === "pending"
+            ? { ...b, status: "rejected" }
+            : b
+      )
+    );
+
     try {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) throw new Error("Not authenticated");
 
-      // Accept this bid
-      const { error: bidError } = await supabase
-        .from("listing_bids")
-        .update({ status: "accepted", responded_at: new Date().toISOString() })
-        .eq("id", bid.id);
-      if (bidError) throw bidError;
-
-      // Reject all other pending bids for this listing
-      await supabase
-        .from("listing_bids")
-        .update({ status: "rejected", responded_at: new Date().toISOString() })
-        .eq("listing_id", listingId)
-        .eq("status", "pending")
-        .neq("id", bid.id);
-
-      // Mark listing as matched
-      await supabase
-        .from("scraps")
-        .update({ status: "matched", matched_recycler_id: bid.recycler_id })
-        .eq("id", listingId);
-
-      // Create the transaction
+      // Run all mutations in parallel where possible
+      const now = new Date().toISOString();
       const otp = Math.floor(100000 + Math.random() * 900000).toString();
-      await supabase.from("transactions").insert({
-        listing_id: listingId,
-        bid_id: bid.id,
-        producer_id: user.id,
-        recycler_id: bid.recycler_id,
-        final_price: bid.offered_price,
-        pickup_date: bid.estimated_pickup_date,
-        pickup_otp: otp,
-        status: "scheduled",
-      });
+
+      const [acceptRes, , ,] = await Promise.all([
+        // Accept this bid
+        supabase
+          .from("listing_bids")
+          .update({ status: "accepted", responded_at: now })
+          .eq("id", bid.id),
+        // Reject all other pending bids for this listing
+        supabase
+          .from("listing_bids")
+          .update({ status: "rejected", responded_at: now })
+          .eq("listing_id", listingId)
+          .eq("status", "pending")
+          .neq("id", bid.id),
+        // Mark listing as matched
+        supabase
+          .from("scraps")
+          .update({ status: "matched", matched_recycler_id: bid.recycler_id })
+          .eq("id", listingId),
+        // Create the transaction
+        supabase.from("transactions").insert({
+          listing_id: listingId,
+          bid_id: bid.id,
+          producer_id: user.id,
+          recycler_id: bid.recycler_id,
+          final_price: bid.offered_price,
+          pickup_date: bid.estimated_pickup_date,
+          pickup_otp: otp,
+          status: "scheduled",
+        }),
+      ]);
+
+      if (acceptRes.error) throw acceptRes.error;
 
       toast.success("Bid accepted! A deal has been created.");
-      await fetchBids();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Failed to accept bid.");
+      // Rollback — refetch real state
+      await fetchBids();
     }
 
     setActionLoading(null);
@@ -115,6 +130,12 @@ export function BidsList({
   async function handleReject(bidId: string) {
     setActionLoading(bidId);
     const supabase = createClient();
+
+    // Optimistic update
+    setBids((prev) =>
+      prev.map((b) => (b.id === bidId ? { ...b, status: "rejected" } : b))
+    );
+
     const { error } = await supabase
       .from("listing_bids")
       .update({ status: "rejected", responded_at: new Date().toISOString() })
@@ -122,9 +143,10 @@ export function BidsList({
 
     if (error) {
       toast.error(error.message);
+      // Rollback
+      await fetchBids();
     } else {
       toast.success("Bid rejected.");
-      await fetchBids();
     }
     setActionLoading(null);
   }
@@ -132,7 +154,7 @@ export function BidsList({
   const pendingCount = bids.filter((b) => b.status === "pending").length;
 
   return (
-    <Card className="border-white/[0.06] bg-[#002a47]">
+    <Card className="border-[#262626] bg-card">
       <CardContent className="pt-5">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
@@ -153,7 +175,7 @@ export function BidsList({
           </div>
         ) : bids.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-12">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/[0.04] mb-3">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#1A1A1A] mb-3">
               <Gavel className="h-6 w-6 text-white/20" />
             </div>
             <p className="text-white/40">No bids yet</p>
@@ -166,7 +188,7 @@ export function BidsList({
             {bids.map((bid) => (
               <div
                 key={bid.id}
-                className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-4 space-y-3"
+                className="rounded-xl border border-[#262626] bg-[#141414] p-4 space-y-3"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-2">
@@ -210,7 +232,7 @@ export function BidsList({
                 </div>
 
                 {bid.message && (
-                  <div className="flex items-start gap-2 rounded-lg bg-white/[0.03] px-3 py-2">
+                  <div className="flex items-start gap-2 rounded-lg bg-[#141414] px-3 py-2">
                     <MessageSquare className="h-3.5 w-3.5 text-white/30 shrink-0 mt-0.5" />
                     <p className="text-xs text-white/50 leading-relaxed">{bid.message}</p>
                   </div>

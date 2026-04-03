@@ -8,7 +8,7 @@ export async function uploadImage(
   const supabase = createClient();
 
   const fileExt = file.name.split(".").pop();
-  const fileName = `${path}/${Date.now()}.${fileExt}`;
+  const fileName = `${path}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${fileExt}`;
 
   const { error } = await supabase.storage.from(bucket).upload(fileName, file, {
     cacheControl: "3600",

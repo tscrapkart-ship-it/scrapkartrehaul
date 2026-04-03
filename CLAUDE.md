@@ -24,7 +24,7 @@ The user is **vibe coding** this entire project — building it end-to-end throu
 ### What's been built
 | Phase | Scope | Status |
 |---|---|---|
-| 1 | Project init, Tailwind design tokens, Inter font, root layout | ✅ Done |
+| 1 | Project init, Tailwind design tokens, Plus Jakarta Sans font, root layout | ✅ Done |
 | 2 | Supabase client/server setup, TypeScript domain types, middleware auth guard | ✅ Done |
 | 3 | Auth flows — login, signup, role selection (`(auth)/`) | ✅ Done |
 | 4 | Seller dashboard — company profile CRUD, scrap listing CRUD, image upload | ✅ Done |
@@ -54,29 +54,31 @@ The user is **vibe coding** this entire project — building it end-to-end throu
 - `next-themes` — installed, available
 - `sonner` — wired into root layout via `<Toaster />`
 
-### UI/UX Overhaul — Completed (2026-03-26)
-Full dark-first design system applied across all pages. Build passes with zero errors.
+### UI/UX Redesign — Completed (2026-04-03)
+Professional B2B dark theme with emerald green palette. Solid surfaces (no glassmorphism), Plus Jakarta Sans font. Inspired by Recykal/Rubicon. Build passes with zero errors.
 
 **Global changes:**
-- `src/app/globals.css` — dark CSS variables (`#001C30` bg, `#002a47` card), brand color tokens, utility classes: `.glow-teal`, `.glass`, `.text-gradient`, `.bg-grid-pattern`
-- `src/app/layout.tsx` — Inter font via `next/font/google` (`--font-inter`), `<Toaster />` wired
-- Font switched from Lexend Giga → **Inter**
+- `src/app/globals.css` — dark CSS variables (`#0A0A0A` bg, `#141414` card), brand color tokens, utility classes: `.glow-emerald`, `.text-gradient`, `.bg-grid-pattern`
+- `src/app/layout.tsx` — Plus Jakarta Sans font via `next/font/google` (`--font-jakarta`), `<Toaster />` wired
+- Font switched from Inter → **Plus Jakarta Sans**
 
 **Landing page (`src/app/page.tsx`):**
-- `"use client"` — GSAP hero animations (badge, title, subtitle, CTA stagger on mount)
+- `"use client"` — GSAP hero animations (title, subtitle, CTA stagger on mount)
 - Stat count-up using GSAP + ScrollTrigger (animates numbers, never hides elements)
 - **Hero**: `herobg.jpg` as full-bleed background image, gradient overlay dark-left/transparent-right, text left-aligned
 - **Navbar**: `h-20`, `text-base` nav links, `h-11` CTA buttons, hamburger mobile menu
+- **Stats bar**: solid `bg-card border border-[#262626]` (no backdrop-blur)
+- **CTA**: subtle emerald tint `from-[#10B981]/5 to-background`
 - **Scrap Categories**: cards with large icon as subtle bg watermark (top-right, `opacity-20`), left-aligned text
-- **Features ("Built for Industrial Scrap Trading")**: cards with large icon centered in bg (`opacity-12`), center-aligned text
-- Scroll-triggered opacity animations removed — they caused invisible content due to GSAP hydration timing in Next.js. Only hero mount animations and stat count-up use GSAP.
+- **Features**: cards with large icon centered in bg (`opacity-12`), center-aligned text
 
 **Auth pages** (`src/app/(auth)/`):
-- Split-screen layout: dark decorative left panel (logo, tagline, gradient blobs), form on right
-- Login, signup, role-select: glassmorphic cards, Lucide icons, Framer Motion transitions
-- All auth logic untouched
+- Split-screen layout: solid dark left panel (logo, tagline, `border-r border-[#262626]`), form on right
+- No gradient blobs or glassmorphism — clean solid surfaces
+- Cards: `bg-[#141414] border border-[#262626]`
+- Buttons: solid `bg-[#10B981] hover:bg-[#059669] text-black`
 
-**All buyer + seller pages**: dark theme, white headings, teal accents, Lucide icons for empty states, dark status badges
+**All buyer + seller pages**: dark theme, white headings, emerald accents, Lucide icons for empty states, dark status badges
 
 ### GSAP Gotcha — Scroll Animations
 Do NOT use `gsap.from()` with `opacity: 0` + ScrollTrigger on section content in Next.js. On hydration, GSAP sets elements to `opacity: 0` immediately; if the ScrollTrigger never fires (timing/hydration issue), content stays invisible. Safe pattern: only use GSAP `from()` for on-mount animations (no ScrollTrigger). For scroll reveals, use CSS or Framer Motion `whileInView` instead.
@@ -174,12 +176,17 @@ Five core entities (see `SCRAPKART.md` §5 for full field list):
 ### Design Tokens
 | Token | Hex |
 |---|---|
-| Primary Dark | `#001C30` |
-| Secondary | `#176B87` |
-| Accent | `#64CCC5` |
-| Light | `#DAFFFB` |
+| Background | `#0A0A0A` |
+| Card/Surface | `#141414` |
+| Primary (emerald 500) | `#10B981` |
+| Secondary (emerald 600) | `#059669` |
+| Light accent (emerald 400) | `#34D399` |
+| Foreground | `#F5F5F5` |
+| Muted text | `#A3A3A3` |
+| Muted bg | `#1A1A1A` |
+| Border | `#262626` |
 
-Configure these in `tailwind.config.ts` under `theme.extend.colors`. Target aesthetic: Stripe Dashboard / Linear.
+Configured via CSS variables in `globals.css`. Target aesthetic: Recykal / Rubicon — professional B2B, solid surfaces, emerald green palette.
 
 ### Auth Pattern
 - Supabase Auth with role stored in `users` table (`recycler` | `waste_producer` | `admin`)
@@ -222,7 +229,7 @@ Know what is real vs placeholder in V1, and don't over-engineer the placeholder 
 | Admin dashboard | ✅ Live — `/admin/*`, 5 pages, role-gated |
 
 ### Fonts
-**Inter** is the active font, loaded via `next/font/google` in `src/app/layout.tsx` with variable `--font-inter`. Lexend Giga files still exist in `Fonts/Lexend_Giga/` and `src/fonts/` but are no longer used.
+**Plus Jakarta Sans** is the active font, loaded via `next/font/google` in `src/app/layout.tsx` with variable `--font-jakarta`. Lexend Giga files still exist in `Fonts/Lexend_Giga/` and `src/fonts/` but are no longer used.
 
 ### Brand Assets
 Logo variants are in `Logos/` and mirrored in `public/logos/` — white, black, and full-color versions.

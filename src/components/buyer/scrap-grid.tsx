@@ -12,14 +12,14 @@ interface ScrapWithCompany extends Scrap {
 export function ScrapGrid({ scraps }: { scraps: ScrapWithCompany[] }) {
   if (scraps.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-white/10 bg-[#002a47] py-16">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-accent/10">
-          <Package className="h-6 w-6 text-brand-accent" />
+      <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-[#262626] bg-[#141414] py-20">
+        <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-[#10B981]/10">
+          <Package className="h-7 w-7 text-[#10B981]" />
         </div>
-        <p className="mt-4 text-lg font-medium text-white/60">
-          No scrap listings found
+        <p className="mt-5 text-lg font-semibold text-[#D4D4D4]">
+          No listings found
         </p>
-        <p className="mt-1 text-sm text-white/30">
+        <p className="mt-1 text-sm text-[#737373]">
           Try adjusting your filters or check back later.
         </p>
       </div>
@@ -27,7 +27,7 @@ export function ScrapGrid({ scraps }: { scraps: ScrapWithCompany[] }) {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {scraps.map((scrap) => (
         <Link key={scrap.id} href={`/marketplace/${scrap.id}`}>
           <ScrapCard scrap={scrap} companyName={scrap.companies?.name} />

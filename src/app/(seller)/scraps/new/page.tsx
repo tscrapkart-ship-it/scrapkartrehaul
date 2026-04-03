@@ -114,7 +114,7 @@ export default function NewScrapPage() {
   if (companyId === null) {
     return (
       <div className="mx-auto max-w-2xl">
-        <Card className="border-white/[0.06] bg-white/[0.03]">
+        <Card className="border-[#262626] bg-[#141414]">
           <CardContent className="flex items-center justify-center gap-2 pt-6">
             <Loader2 className="h-5 w-5 animate-spin text-brand-accent" />
             <p className="text-white/40">Loading company info...</p>
@@ -149,7 +149,7 @@ export default function NewScrapPage() {
         </div>
       </div>
 
-      <Card className="border-white/[0.06] bg-white/[0.03]">
+      <Card className="border-[#262626] bg-[#141414]">
         <CardContent className="pt-6">
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Title */}
@@ -160,7 +160,7 @@ export default function NewScrapPage() {
                 name="title"
                 placeholder="e.g., 500kg HMS Grade A Steel Scrap"
                 required
-                className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
               />
             </div>
 
@@ -176,7 +176,7 @@ export default function NewScrapPage() {
                     className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
                       selectedCategory === cat
                         ? "bg-brand-accent text-brand-dark"
-                        : "border border-white/[0.06] bg-white/[0.04] text-white/60 hover:bg-white/[0.08] hover:text-white"
+                        : "border border-[#262626] bg-[#1A1A1A] text-white/60 hover:bg-white/[0.08] hover:text-white"
                     }`}
                   >
                     {cat}
@@ -197,7 +197,7 @@ export default function NewScrapPage() {
                     className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                       selectedSubType === sub
                         ? "bg-brand-secondary/50 text-white border border-brand-accent/40"
-                        : "border border-white/[0.06] bg-white/[0.04] text-white/50 hover:bg-white/[0.08] hover:text-white"
+                        : "border border-[#262626] bg-[#1A1A1A] text-white/50 hover:bg-white/[0.08] hover:text-white"
                     }`}
                   >
                     {sub}
@@ -217,7 +217,7 @@ export default function NewScrapPage() {
                   min="0"
                   step="0.01"
                   required
-                  className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                  className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                 />
               </div>
               <div className="space-y-2">
@@ -226,10 +226,10 @@ export default function NewScrapPage() {
                   id="unit"
                   name="unit"
                   required
-                  className="flex h-10 w-full rounded-md border border-white/[0.06] bg-white/[0.04] px-3 py-2 text-sm text-white ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/50"
+                  className="flex h-10 w-full rounded-md border border-[#262626] bg-[#1A1A1A] px-3 py-2 text-sm text-white ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/50"
                 >
                   {units.map((u) => (
-                    <option key={u} value={u} className="bg-[#002a47] text-white">{u}</option>
+                    <option key={u} value={u} className="bg-card text-white">{u}</option>
                   ))}
                 </select>
               </div>
@@ -247,7 +247,7 @@ export default function NewScrapPage() {
                 min="0"
                 step="1"
                 placeholder="Recyclers will bid against this"
-                className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
               />
               <p className="text-xs text-white/30">This is a reference price. Recyclers submit their own bid offers.</p>
             </div>
@@ -259,7 +259,7 @@ export default function NewScrapPage() {
                 id="description"
                 name="description"
                 rows={3}
-                className="flex w-full rounded-md border border-white/[0.06] bg-white/[0.04] px-3 py-2 text-sm text-white ring-offset-background placeholder:text-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/50"
+                className="flex w-full rounded-md border border-[#262626] bg-[#1A1A1A] px-3 py-2 text-sm text-white ring-offset-background placeholder:text-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/50"
                 placeholder="Condition, grade, any relevant details..."
               />
             </div>
@@ -277,7 +277,7 @@ export default function NewScrapPage() {
             </div>
 
             {/* Pickup Location */}
-            <div className="border-t border-white/[0.06] pt-5">
+            <div className="border-t border-[#262626] pt-5">
               <p className="mb-3 text-xs font-medium uppercase tracking-wider text-white/30">Pickup Location</p>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -285,7 +285,7 @@ export default function NewScrapPage() {
                   <Input
                     id="address"
                     name="address"
-                    className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                   />
                 </div>
                 <div className="space-y-2">
@@ -294,7 +294,7 @@ export default function NewScrapPage() {
                     id="city"
                     name="city"
                     required
-                    className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                   />
                 </div>
               </div>
@@ -305,7 +305,7 @@ export default function NewScrapPage() {
                     id="state"
                     name="state"
                     required
-                    className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                   />
                 </div>
                 <div className="space-y-2">
@@ -314,7 +314,7 @@ export default function NewScrapPage() {
                     id="pincode"
                     name="pincode"
                     maxLength={6}
-                    className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                   />
                 </div>
               </div>

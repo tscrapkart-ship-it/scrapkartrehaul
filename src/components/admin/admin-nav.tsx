@@ -54,7 +54,7 @@ export function AdminNav() {
   return (
     <>
       {/* Desktop header */}
-      <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-brand-dark">
+      <header className="sticky top-0 z-40 border-b border-[#262626] bg-brand-dark">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-6">
             <Link href="/admin" className="flex items-center gap-2">
@@ -108,7 +108,7 @@ export function AdminNav() {
       </header>
 
       {/* Mobile bottom nav — show primary items */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/[0.06] bg-brand-dark md:hidden">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-[#262626] bg-brand-dark md:hidden">
         <div className="flex justify-around py-2 overflow-x-auto">
           {primaryItems.map((item) => {
             const Icon = item.icon;

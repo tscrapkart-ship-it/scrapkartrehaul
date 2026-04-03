@@ -103,7 +103,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="rounded-xl border border-white/[0.06] bg-[#002a47] p-5 space-y-3">
+            <div className="rounded-xl border border-[#262626] bg-card p-5 space-y-3">
               <h3 className="font-semibold text-white text-sm">Why ScrapKart?</h3>
               <ul className="space-y-2 text-sm text-white/50">
                 <li>✓ Verified recycler network across India</li>
@@ -124,7 +124,7 @@ export default function ContactPage() {
                   onChange={(e) => update("name", e.target.value)}
                   placeholder="Your full name"
                   required
-                  className="bg-[#002a47] border-white/[0.08] text-white placeholder:text-white/30"
+                  className="bg-card border-[#262626] text-white placeholder:text-white/30"
                 />
               </div>
               <div className="space-y-2">
@@ -135,7 +135,7 @@ export default function ContactPage() {
                   onChange={(e) => update("email", e.target.value)}
                   placeholder="you@company.com"
                   required
-                  className="bg-[#002a47] border-white/[0.08] text-white placeholder:text-white/30"
+                  className="bg-card border-[#262626] text-white placeholder:text-white/30"
                 />
               </div>
             </div>
@@ -147,7 +147,7 @@ export default function ContactPage() {
                   value={form.phone}
                   onChange={(e) => update("phone", e.target.value)}
                   placeholder="+91 98765 43210"
-                  className="bg-[#002a47] border-white/[0.08] text-white placeholder:text-white/30"
+                  className="bg-card border-[#262626] text-white placeholder:text-white/30"
                 />
               </div>
               <div className="space-y-2">
@@ -156,7 +156,7 @@ export default function ContactPage() {
                   value={form.subject}
                   onChange={(e) => update("subject", e.target.value)}
                   placeholder="How can we help?"
-                  className="bg-[#002a47] border-white/[0.08] text-white placeholder:text-white/30"
+                  className="bg-card border-[#262626] text-white placeholder:text-white/30"
                 />
               </div>
             </div>
@@ -169,7 +169,7 @@ export default function ContactPage() {
                 placeholder="Tell us more about your requirement..."
                 rows={5}
                 required
-                className="w-full rounded-md border border-white/[0.08] bg-[#002a47] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-brand-accent/50 resize-none"
+                className="w-full rounded-md border border-[#262626] bg-card px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-brand-accent/50 resize-none"
               />
             </div>
 

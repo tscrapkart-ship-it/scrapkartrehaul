@@ -130,7 +130,7 @@ export default function EditScrapPage() {
           Delete
         </Button>
       </div>
-      <Card className="border-white/[0.06] bg-white/[0.03]">
+      <Card className="border-[#262626] bg-[#141414]">
         <CardContent className="pt-6">
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
@@ -140,7 +140,7 @@ export default function EditScrapPage() {
                 name="title"
                 defaultValue={scrap.title}
                 required
-                className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
               />
             </div>
 
@@ -156,7 +156,7 @@ export default function EditScrapPage() {
                     className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
                       selectedCategory === cat
                         ? "bg-brand-accent text-brand-dark"
-                        : "border border-white/[0.06] bg-white/[0.04] text-white/60 hover:bg-white/[0.08] hover:text-white"
+                        : "border border-[#262626] bg-[#1A1A1A] text-white/60 hover:bg-white/[0.08] hover:text-white"
                     }`}
                   >
                     {cat}
@@ -176,7 +176,7 @@ export default function EditScrapPage() {
                   min="0"
                   step="0.01"
                   required
-                  className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                  className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                 />
               </div>
               <div className="space-y-2">
@@ -189,7 +189,7 @@ export default function EditScrapPage() {
                   min="0"
                   step="0.01"
                   required
-                  className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                  className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                 />
               </div>
             </div>
@@ -201,10 +201,10 @@ export default function EditScrapPage() {
                 name="unit"
                 defaultValue={scrap.unit}
                 required
-                className="flex h-10 w-full rounded-md border border-white/[0.06] bg-white/[0.04] px-3 py-2 text-sm text-white ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/50"
+                className="flex h-10 w-full rounded-md border border-[#262626] bg-[#1A1A1A] px-3 py-2 text-sm text-white ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/50"
               >
                 {units.map((u) => (
-                  <option key={u} value={u} className="bg-[#002a47] text-white">
+                  <option key={u} value={u} className="bg-card text-white">
                     {u}
                   </option>
                 ))}
@@ -218,7 +218,7 @@ export default function EditScrapPage() {
                 name="description"
                 rows={3}
                 defaultValue={scrap.description ?? ""}
-                className="flex w-full rounded-md border border-white/[0.06] bg-white/[0.04] px-3 py-2 text-sm text-white ring-offset-background placeholder:text-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/50"
+                className="flex w-full rounded-md border border-[#262626] bg-[#1A1A1A] px-3 py-2 text-sm text-white ring-offset-background placeholder:text-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/50"
               />
             </div>
 
@@ -233,7 +233,7 @@ export default function EditScrapPage() {
               />
             </div>
 
-            <div className="border-t border-white/[0.06] pt-5">
+            <div className="border-t border-[#262626] pt-5">
               <p className="mb-3 text-xs font-medium uppercase tracking-wider text-white/30">Pickup Location</p>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -242,7 +242,7 @@ export default function EditScrapPage() {
                     id="address"
                     name="address"
                     defaultValue={scrap.address ?? ""}
-                    className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                   />
                 </div>
                 <div className="space-y-2">
@@ -251,7 +251,7 @@ export default function EditScrapPage() {
                     id="city"
                     name="city"
                     defaultValue={scrap.city ?? ""}
-                    className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                   />
                 </div>
               </div>
@@ -262,7 +262,7 @@ export default function EditScrapPage() {
                     id="state"
                     name="state"
                     defaultValue={scrap.state ?? ""}
-                    className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                   />
                 </div>
                 <div className="space-y-2">
@@ -271,7 +271,7 @@ export default function EditScrapPage() {
                     id="pincode"
                     name="pincode"
                     defaultValue={scrap.pincode ?? ""}
-                    className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                   />
                 </div>
               </div>

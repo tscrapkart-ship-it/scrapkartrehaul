@@ -76,7 +76,7 @@ export function BookScrapDialog({
         <ShoppingBag className="mr-2 h-4 w-4" />
         Book Now
       </AlertDialogTrigger>
-      <AlertDialogContent className="border-white/[0.06] bg-brand-dark text-white">
+      <AlertDialogContent className="border-[#262626] bg-brand-dark text-white">
         <AlertDialogHeader>
           <AlertDialogTitle className="text-white">Confirm Booking</AlertDialogTitle>
           <AlertDialogDescription className="text-white/50">

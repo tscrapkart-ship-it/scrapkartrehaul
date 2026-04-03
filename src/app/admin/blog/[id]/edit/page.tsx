@@ -90,7 +90,7 @@ export default function EditBlogPage() {
     <div className="space-y-6 max-w-2xl">
       <div className="flex items-center gap-3">
         <Link href="/admin/blog">
-          <Button size="sm" variant="outline" className="border-white/[0.08] text-white/60 hover:bg-white/[0.06] h-8 px-3">
+          <Button size="sm" variant="outline" className="border-[#262626] text-white/60 hover:bg-white/[0.06] h-8 px-3">
             <ArrowLeft className="h-3.5 w-3.5" />
           </Button>
         </Link>
@@ -107,7 +107,7 @@ export default function EditBlogPage() {
             value={form.title}
             onChange={(e) => setForm((p) => ({ ...p, title: e.target.value }))}
             placeholder="Post title"
-            className="bg-[#002a47] border-white/[0.08] text-white placeholder:text-white/30"
+            className="bg-card border-[#262626] text-white placeholder:text-white/30"
           />
         </div>
 
@@ -117,7 +117,7 @@ export default function EditBlogPage() {
             value={form.slug}
             onChange={(e) => setForm((p) => ({ ...p, slug: e.target.value }))}
             placeholder="post-url-slug"
-            className="bg-[#002a47] border-white/[0.08] text-white placeholder:text-white/30 font-mono text-sm"
+            className="bg-card border-[#262626] text-white placeholder:text-white/30 font-mono text-sm"
           />
         </div>
 
@@ -128,7 +128,7 @@ export default function EditBlogPage() {
             onChange={(e) => setForm((p) => ({ ...p, excerpt: e.target.value }))}
             placeholder="Short summary shown in listings..."
             rows={2}
-            className="w-full rounded-md border border-white/[0.08] bg-[#002a47] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-brand-accent/50 resize-none"
+            className="w-full rounded-md border border-[#262626] bg-card px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-brand-accent/50 resize-none"
           />
         </div>
 
@@ -139,7 +139,7 @@ export default function EditBlogPage() {
             onChange={(e) => setForm((p) => ({ ...p, content: e.target.value }))}
             placeholder="Write your post content here..."
             rows={12}
-            className="w-full rounded-md border border-white/[0.08] bg-[#002a47] px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-brand-accent/50 resize-y font-mono"
+            className="w-full rounded-md border border-[#262626] bg-card px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-brand-accent/50 resize-y font-mono"
           />
         </div>
 
@@ -149,7 +149,7 @@ export default function EditBlogPage() {
             value={form.cover_image}
             onChange={(e) => setForm((p) => ({ ...p, cover_image: e.target.value }))}
             placeholder="https://..."
-            className="bg-[#002a47] border-white/[0.08] text-white placeholder:text-white/30"
+            className="bg-card border-[#262626] text-white placeholder:text-white/30"
           />
         </div>
 
@@ -159,7 +159,7 @@ export default function EditBlogPage() {
               type="checkbox"
               checked={form.is_featured}
               onChange={(e) => setForm((p) => ({ ...p, is_featured: e.target.checked }))}
-              className="rounded border-white/20 bg-[#002a47] accent-brand-accent"
+              className="rounded border-white/20 bg-card accent-brand-accent"
             />
             <span className="text-sm text-white/70">Featured post</span>
           </label>
@@ -168,7 +168,7 @@ export default function EditBlogPage() {
               type="checkbox"
               checked={form.is_published}
               onChange={(e) => setForm((p) => ({ ...p, is_published: e.target.checked }))}
-              className="rounded border-white/20 bg-[#002a47] accent-brand-accent"
+              className="rounded border-white/20 bg-card accent-brand-accent"
             />
             <span className="text-sm text-white/70">Published</span>
           </label>
@@ -184,7 +184,7 @@ export default function EditBlogPage() {
             Save Changes
           </Button>
           <Link href="/admin/blog">
-            <Button type="button" variant="outline" className="border-white/[0.08] text-white/60 hover:bg-white/[0.06]">
+            <Button type="button" variant="outline" className="border-[#262626] text-white/60 hover:bg-white/[0.06]">
               Cancel
             </Button>
           </Link>

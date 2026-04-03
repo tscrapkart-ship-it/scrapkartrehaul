@@ -65,7 +65,7 @@ export default function CompanySetupPage() {
           Set Up Your Company
         </h1>
       </div>
-      <Card className="border-white/[0.06] bg-white/[0.03]">
+      <Card className="border-[#262626] bg-[#141414]">
         <CardContent className="pt-6">
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
@@ -74,7 +74,7 @@ export default function CompanySetupPage() {
                 id="name"
                 name="name"
                 required
-                className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
               />
             </div>
             <div className="space-y-2">
@@ -83,7 +83,7 @@ export default function CompanySetupPage() {
                 id="industry_type"
                 name="industry_type"
                 placeholder="e.g., Manufacturing, Construction"
-                className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
               />
             </div>
             <div className="space-y-2">
@@ -102,12 +102,12 @@ export default function CompanySetupPage() {
                 id="description"
                 name="description"
                 rows={3}
-                className="flex w-full rounded-md border border-white/[0.06] bg-white/[0.04] px-3 py-2 text-sm text-white ring-offset-background placeholder:text-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/50"
+                className="flex w-full rounded-md border border-[#262626] bg-[#1A1A1A] px-3 py-2 text-sm text-white ring-offset-background placeholder:text-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/50"
                 placeholder="Brief description of your company"
               />
             </div>
 
-            <div className="border-t border-white/[0.06] pt-5">
+            <div className="border-t border-[#262626] pt-5">
               <p className="mb-3 text-xs font-medium uppercase tracking-wider text-white/30">Location</p>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -115,7 +115,7 @@ export default function CompanySetupPage() {
                   <Input
                     id="address"
                     name="address"
-                    className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                   />
                 </div>
                 <div className="space-y-2">
@@ -123,7 +123,7 @@ export default function CompanySetupPage() {
                   <Input
                     id="city"
                     name="city"
-                    className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                   />
                 </div>
               </div>
@@ -133,7 +133,7 @@ export default function CompanySetupPage() {
                   <Input
                     id="state"
                     name="state"
-                    className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                   />
                 </div>
                 <div className="space-y-2">
@@ -141,7 +141,7 @@ export default function CompanySetupPage() {
                   <Input
                     id="pincode"
                     name="pincode"
-                    className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                    className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
                   />
                 </div>
               </div>

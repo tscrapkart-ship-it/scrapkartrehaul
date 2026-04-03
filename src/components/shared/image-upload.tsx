@@ -1,9 +1,13 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import Image from "next/image";
-import { uploadImage } from "@/lib/supabase/storage";
+import { uploadImage, deleteImage } from "@/lib/supabase/storage";
 import { Upload, X } from "lucide-react";
+import { toast } from "sonner";
+
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
 
 interface ImageUploadProps {
   bucket: string;
@@ -23,27 +27,94 @@ export function ImageUpload({
   const [uploading, setUploading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
-    const files = e.target.files;
-    if (!files || files.length === 0) return;
+  function validateFile(file: File): string | null {
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      return `"${file.name}" is not a supported image format. Use JPEG, PNG, WebP, or GIF.`;
+    }
+    if (file.size > MAX_FILE_SIZE) {
+      return `"${file.name}" exceeds 5MB limit (${(file.size / 1024 / 1024).toFixed(1)}MB).`;
+    }
+    return null;
+  }
+
+  async function processFiles(files: FileList | File[]) {
+    const fileArray = Array.from(files);
+    if (fileArray.length === 0) return;
+
+    // Validate all files first
+    const errors: string[] = [];
+    const validFiles: File[] = [];
+    for (const file of fileArray) {
+      if (value.length + validFiles.length >= maxImages) {
+        errors.push(`Maximum ${maxImages} images allowed.`);
+        break;
+      }
+      const err = validateFile(file);
+      if (err) {
+        errors.push(err);
+      } else {
+        validFiles.push(file);
+      }
+    }
+
+    if (errors.length > 0) {
+      errors.forEach((e) => toast.error(e));
+    }
+
+    if (validFiles.length === 0) return;
 
     setUploading(true);
     const newUrls: string[] = [];
 
-    for (const file of Array.from(files)) {
-      if (value.length + newUrls.length >= maxImages) break;
+    for (const file of validFiles) {
       const url = await uploadImage(bucket, path, file);
-      if (url) newUrls.push(url);
+      if (url) {
+        newUrls.push(url);
+      } else {
+        toast.error(`Failed to upload "${file.name}". Please try again.`);
+      }
     }
 
-    onChange([...value, ...newUrls]);
+    if (newUrls.length > 0) {
+      onChange([...value, ...newUrls]);
+    }
     setUploading(false);
     if (inputRef.current) inputRef.current.value = "";
   }
 
-  function removeImage(index: number) {
-    onChange(value.filter((_, i) => i !== index));
+  async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const files = e.target.files;
+    if (!files) return;
+    await processFiles(files);
   }
+
+  async function removeImage(index: number) {
+    const url = value[index];
+    onChange(value.filter((_, i) => i !== index));
+    // Clean up from storage in background
+    deleteImage(bucket, url).catch(() => {
+      // Storage deletion is best-effort; image is already removed from form
+    });
+  }
+
+  // Drag-and-drop handlers
+  const handleDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  }, []);
+
+  const handleDrop = useCallback(
+    async (e: React.DragEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const files = e.dataTransfer.files;
+      if (files.length > 0) {
+        await processFiles(files);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [value, bucket, path, maxImages]
+  );
 
   return (
     <div className="space-y-3">
@@ -72,7 +143,7 @@ export function ImageUpload({
           <input
             ref={inputRef}
             type="file"
-            accept="image/*"
+            accept="image/jpeg,image/png,image/webp,image/gif"
             multiple
             onChange={handleUpload}
             className="hidden"
@@ -80,12 +151,17 @@ export function ImageUpload({
           <button
             type="button"
             onClick={() => inputRef.current?.click()}
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
             disabled={uploading}
             className="flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-white/10 bg-brand-dark px-6 py-8 transition-colors hover:border-brand-accent/30 hover:bg-brand-dark/80 disabled:cursor-not-allowed disabled:opacity-50"
           >
             <Upload className="h-6 w-6 text-white/30" />
             <span className="text-sm text-white/40">
               {uploading ? "Uploading..." : "Click or drag images here"}
+            </span>
+            <span className="text-xs text-white/25">
+              JPEG, PNG, WebP, GIF — max 5MB each
             </span>
           </button>
           <p className="mt-2 text-xs text-white/30">

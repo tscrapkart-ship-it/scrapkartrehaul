@@ -114,7 +114,7 @@ export default function Home() {
     <div ref={containerRef} className="min-h-screen bg-background">
 
       {/* ========== NAVBAR ========== */}
-      <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-brand-dark/90 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-[#262626] bg-[#0A0A0A]/95 backdrop-blur-md">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           {/* Logo */}
           <Link href="/" className="shrink-0">
@@ -133,7 +133,7 @@ export default function Home() {
               <a
                 key={item}
                 href={`#${item.toLowerCase().replace(/ /g, "-")}`}
-                className="rounded-lg px-4 py-2.5 text-base font-medium text-white/65 transition-colors hover:bg-white/5 hover:text-white"
+                className="rounded-lg px-4 py-2.5 text-sm font-medium text-[#A3A3A3] transition-all duration-200 hover:bg-[#1A1A1A] hover:text-white"
               >
                 {item}
               </a>
@@ -145,14 +145,14 @@ export default function Home() {
             <Link href="/login">
               <Button
                 variant="ghost"
-                className="h-11 px-5 text-base font-medium text-white/75 hover:bg-white/8 hover:text-white"
+                className="h-10 px-5 text-sm font-medium text-[#A3A3A3] hover:bg-[#1A1A1A] hover:text-white rounded-lg"
               >
                 Sign In
               </Button>
             </Link>
             <Link href="/signup">
               <Button
-                className="h-11 px-6 text-base font-semibold bg-brand-accent text-brand-dark hover:bg-brand-light transition-all hover:shadow-lg hover:shadow-brand-accent/20"
+                className="h-10 px-5 text-sm font-semibold bg-[#10B981] text-black hover:bg-[#059669] rounded-lg transition-all"
               >
                 Get Started
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -171,7 +171,7 @@ export default function Home() {
 
         {/* Mobile dropdown menu */}
         {mobileMenuOpen && (
-          <div className="border-t border-white/[0.06] bg-brand-dark/98 backdrop-blur-xl md:hidden">
+          <div className="border-t border-[#262626] bg-[#0A0A0A]/98 backdrop-blur-md md:hidden">
             <div className="space-y-1 px-4 py-4">
               {["How It Works", "Categories", "Features", "Testimonials"].map((item) => (
                 <a
@@ -183,7 +183,7 @@ export default function Home() {
                   {item}
                 </a>
               ))}
-              <div className="mt-4 flex flex-col gap-3 pt-4 border-t border-white/[0.06]">
+              <div className="mt-4 flex flex-col gap-3 pt-4 border-t border-[#262626]">
                 <Link href="/login">
                   <Button variant="ghost" className="w-full h-12 text-base text-white/70 hover:bg-white/5 hover:text-white">
                     Sign In
@@ -237,7 +237,7 @@ export default function Home() {
               <Link href="/signup">
                 <Button
                   size="lg"
-                  className="h-13 w-full px-8 text-base font-semibold bg-brand-accent text-brand-dark hover:bg-brand-light hover:shadow-xl hover:shadow-brand-accent/25 transition-all sm:w-auto"
+                  className="h-13 w-full px-8 text-base font-semibold bg-[#10B981] text-black hover:bg-[#059669] transition-all sm:w-auto rounded-xl"
                 >
                   Start Selling Scrap
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -247,7 +247,7 @@ export default function Home() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="h-13 w-full px-8 text-base border-white/20 text-white hover:bg-white/8 hover:border-white/30 sm:w-auto"
+                  className="h-13 w-full px-8 text-base border-[#262626] text-white hover:bg-[#1A1A1A] hover:border-[#404040] sm:w-auto rounded-xl"
                 >
                   Browse Marketplace
                 </Button>
@@ -259,7 +259,7 @@ export default function Home() {
 
       {/* ========== STATS BAR ========== */}
       <section className="relative z-10 -mt-8 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl rounded-2xl border border-white/[0.06] bg-[#002a47]/90 p-6 backdrop-blur-xl sm:p-10">
+        <div className="mx-auto max-w-4xl rounded-2xl border border-[#262626] bg-card p-6 sm:p-10">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
@@ -347,7 +347,7 @@ export default function Home() {
               return (
                 <div
                   key={cat.name}
-                  className="group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-[#002a47]/50 p-6 transition-all duration-300 hover:border-brand-accent/30 hover:bg-[#002a47]/80 hover:shadow-lg hover:shadow-brand-accent/5 hover:-translate-y-0.5"
+                  className="group relative overflow-hidden rounded-2xl border border-[#262626] bg-card/50 p-6 transition-all duration-300 hover:border-brand-accent/30 hover:bg-card/80 hover:shadow-lg hover:shadow-brand-accent/5 hover:-translate-y-0.5"
                 >
                   {/* Subtle bg icon — top-right, large, faint */}
                   <Icon className="absolute -right-3 -top-3 h-24 w-24 text-brand-accent/20 transition-all duration-300 group-hover:text-brand-accent/30" />
@@ -380,7 +380,7 @@ export default function Home() {
               return (
                 <div
                   key={feature.title}
-                  className="group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-[#002a47]/50 p-7 transition-all duration-300 hover:border-brand-accent/20 hover:bg-[#002a47]/80"
+                  className="group relative overflow-hidden rounded-2xl border border-[#262626] bg-card/50 p-7 transition-all duration-300 hover:border-brand-accent/20 hover:bg-card/80"
                 >
                   {/* Subtle bg icon — centered */}
                   <Icon className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 text-brand-accent/[0.12] transition-all duration-300 group-hover:text-brand-accent/20" />
@@ -411,7 +411,7 @@ export default function Home() {
             {testimonials.map((t) => (
               <div
                 key={t.author}
-                className="rounded-2xl border border-white/[0.06] bg-[#002a47]/50 p-7"
+                className="rounded-2xl border border-[#262626] bg-card/50 p-7"
               >
                 <Quote className="h-9 w-9 text-brand-accent/30" />
                 <p className="mt-5 text-base leading-relaxed text-white/65">
@@ -435,7 +435,7 @@ export default function Home() {
       {/* ========== CTA ========== */}
       <section className="py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl border border-white/[0.06] bg-gradient-to-br from-brand-secondary/30 to-brand-dark p-10 text-center sm:p-20">
+          <div className="rounded-3xl border border-[#262626] bg-gradient-to-br from-[#10B981]/5 to-background p-10 text-center sm:p-20">
             <h2 className="text-4xl font-bold text-white sm:text-5xl">
               Ready to trade smarter?
             </h2>
@@ -446,7 +446,7 @@ export default function Home() {
               <Link href="/signup">
                 <Button
                   size="lg"
-                  className="h-13 w-full px-8 text-base font-semibold bg-brand-accent text-brand-dark hover:bg-brand-light hover:shadow-xl hover:shadow-brand-accent/25 transition-all sm:w-auto"
+                  className="h-13 w-full px-8 text-base font-semibold bg-[#10B981] text-black hover:bg-[#059669] transition-all sm:w-auto rounded-xl"
                 >
                   Create Free Account
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -456,7 +456,7 @@ export default function Home() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="h-13 w-full px-8 text-base border-white/20 text-white hover:bg-white/8 hover:border-white/30 sm:w-auto"
+                  className="h-13 w-full px-8 text-base border-[#262626] text-white hover:bg-[#1A1A1A] hover:border-[#404040] sm:w-auto rounded-xl"
                 >
                   Explore Marketplace
                 </Button>
@@ -467,7 +467,7 @@ export default function Home() {
       </section>
 
       {/* ========== FOOTER ========== */}
-      <footer className="border-t border-white/[0.06] py-14">
+      <footer className="border-t border-[#262626] py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
             <div className="md:col-span-1">
@@ -506,7 +506,7 @@ export default function Home() {
               </ul>
             </div>
           </div>
-          <div className="mt-14 border-t border-white/[0.06] pt-7 text-center text-sm text-white/25">
+          <div className="mt-14 border-t border-[#262626] pt-7 text-center text-sm text-white/25">
             &copy; {new Date().getFullYear()} ScrapKart. All rights reserved.
           </div>
         </div>

@@ -58,11 +58,17 @@ export async function updateSession(request: NextRequest) {
   }
 
   if (user) {
-    const { data: profile } = await supabase
+    const { data: profile, error: profileError } = await supabase
       .from("users")
       .select("role, is_approved, onboarding_completed")
       .eq("id", user.id)
       .single();
+
+    // If profile query fails (no row, DB error), treat as no-role user
+    if (profileError && profileError.code !== "PGRST116") {
+      // PGRST116 = no rows — expected for brand-new users
+      console.error("Middleware profile query error:", profileError.message);
+    }
 
     const role = profile?.role;
     const isApproved = profile?.is_approved ?? false;
@@ -70,8 +76,12 @@ export async function updateSession(request: NextRequest) {
 
     // Already authenticated — redirect away from auth/landing pages
     if (path === "/login" || path === "/signup" || path === "/") {
-      if (!role) return supabaseResponse;
       const url = request.nextUrl.clone();
+      if (!role) {
+        // Authenticated but no role — always send to role selection
+        url.pathname = "/role-select";
+        return NextResponse.redirect(url);
+      }
       if (role === "admin") url.pathname = "/admin";
       else if (role === "waste_producer" || role === "both") url.pathname = "/dashboard";
       else url.pathname = "/marketplace";

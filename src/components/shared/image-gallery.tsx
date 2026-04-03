@@ -9,7 +9,7 @@ export function ImageGallery({ images }: { images: string[] }) {
 
   if (!images || images.length === 0) {
     return (
-      <div className="flex aspect-[4/3] flex-col items-center justify-center rounded-2xl border border-white/[0.06] bg-[#002a47]">
+      <div className="flex aspect-[4/3] flex-col items-center justify-center rounded-2xl border border-[#262626] bg-card">
         <ImageIcon className="h-10 w-10 text-white/20" />
         <p className="mt-2 text-sm text-white/30">No images</p>
       </div>
@@ -18,7 +18,7 @@ export function ImageGallery({ images }: { images: string[] }) {
 
   return (
     <div className="space-y-3">
-      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/[0.06] bg-[#002a47]">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-[#262626] bg-card">
         <Image
           src={images[selected]}
           alt={`Image ${selected + 1}`}

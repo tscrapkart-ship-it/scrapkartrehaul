@@ -29,7 +29,7 @@ export function ChatInput({
         onChange={(e) => setText(e.target.value)}
         placeholder="Type a message..."
         disabled={disabled}
-        className="flex-1 border-white/[0.06] bg-brand-dark text-white placeholder:text-white/30 focus-visible:ring-brand-accent/30"
+        className="flex-1 border-[#262626] bg-brand-dark text-white placeholder:text-white/30 focus-visible:ring-brand-accent/30"
       />
       <Button
         type="submit"

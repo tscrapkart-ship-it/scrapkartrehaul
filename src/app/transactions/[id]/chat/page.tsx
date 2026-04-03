@@ -41,7 +41,7 @@ export default async function TransactionChatPage({
         <div className="flex items-center gap-3">
           <Link
             href={`/transactions/${id}`}
-            className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.06] text-white/40 hover:bg-white/[0.06] hover:text-white transition-colors"
+            className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#262626] text-white/40 hover:bg-white/[0.06] hover:text-white transition-colors"
           >
             <ChevronLeft className="h-4 w-4" />
           </Link>

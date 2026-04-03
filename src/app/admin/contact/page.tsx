@@ -24,7 +24,7 @@ const statusColor: Record<string, string> = {
   new: "bg-brand-accent/10 text-brand-accent",
   read: "bg-white/[0.06] text-white/40",
   replied: "bg-green-500/10 text-green-400",
-  archived: "bg-white/[0.04] text-white/25",
+  archived: "bg-[#1A1A1A] text-white/25",
 };
 
 export default async function AdminContactPage({
@@ -64,7 +64,7 @@ export default async function AdminContactPage({
       </div>
 
       {submissions.length === 0 ? (
-        <div className="flex flex-col items-center gap-2 rounded-xl border border-dashed border-white/[0.06] py-16 text-center">
+        <div className="flex flex-col items-center gap-2 rounded-xl border border-dashed border-[#262626] py-16 text-center">
           <MessageSquare className="h-8 w-8 text-white/20" />
           <p className="text-sm text-white/40">No submissions yet</p>
         </div>
@@ -73,7 +73,7 @@ export default async function AdminContactPage({
           {submissions.map((sub: any) => (
             <div
               key={sub.id}
-              className={`rounded-xl border bg-[#002a47] p-5 space-y-3 ${sub.status === "new" ? "border-brand-accent/20" : "border-white/[0.06]"}`}
+              className={`rounded-xl border bg-card p-5 space-y-3 ${sub.status === "new" ? "border-brand-accent/20" : "border-[#262626]"}`}
             >
               <div className="flex items-start justify-between gap-3">
                 <div>

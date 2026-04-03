@@ -3,8 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTransition, useRef } from "react";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Search } from "lucide-react";
+import { Search, ArrowDownAZ, ArrowUpAZ, Clock } from "lucide-react";
 import type { ScrapCategory } from "@/types";
 
 const categories: (ScrapCategory | "All")[] = [
@@ -18,9 +17,9 @@ const categories: (ScrapCategory | "All")[] = [
 ];
 
 const sortOptions = [
-  { value: "newest", label: "Newest" },
-  { value: "price_asc", label: "Price: Low -> High" },
-  { value: "price_desc", label: "Price: High -> Low" },
+  { value: "newest", label: "Newest", icon: Clock },
+  { value: "price_asc", label: "Price: Low → High", icon: ArrowDownAZ },
+  { value: "price_desc", label: "Price: High → Low", icon: ArrowUpAZ },
 ];
 
 export function MarketplaceFilters({
@@ -57,55 +56,65 @@ export function MarketplaceFilters({
   }
 
   return (
-    <div className={`space-y-4 transition-opacity ${isPending ? "opacity-60" : "opacity-100"}`}>
-      <div className="relative max-w-md">
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/30" />
+    <div
+      className={`space-y-4 transition-opacity duration-200 ${
+        isPending ? "opacity-60" : "opacity-100"
+      }`}
+    >
+      {/* Search */}
+      <div className="relative max-w-lg">
+        <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#525252]" />
         <Input
-          placeholder="Search scrap listings..."
+          placeholder="Search by title, material, or location..."
           defaultValue={currentSearch}
           onChange={(e) => handleSearchChange(e.target.value)}
-          className="border-white/[0.06] bg-[#002a47] pl-10 text-white placeholder:text-white/30 focus-visible:ring-brand-accent/30"
+          className="h-11 rounded-xl border-[#262626] bg-[#141414] pl-10 text-[#F5F5F5] placeholder:text-[#525252] focus-visible:border-[#10B981]/40 focus-visible:ring-1 focus-visible:ring-[#10B981]/20"
         />
       </div>
-      <div className="flex flex-wrap gap-2">
-        {categories.map((cat) => {
-          const isActive = (currentCategory ?? "All") === cat;
-          return (
-            <button
-              key={cat}
-              disabled={isPending}
-              className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all ${
-                isActive
-                  ? "bg-brand-accent text-brand-dark"
-                  : "border border-white/10 bg-transparent text-white/60 hover:border-brand-accent/30 hover:text-white"
-              }`}
-              onClick={() => updateParams("category", cat)}
-            >
-              {cat}
-            </button>
-          );
-        })}
-      </div>
-      <div className="flex gap-2">
-        {sortOptions.map((opt) => {
-          const isActive = (currentSort ?? "newest") === opt.value;
-          return (
-            <Button
-              key={opt.value}
-              variant="ghost"
-              size="sm"
-              disabled={isPending}
-              className={
-                isActive
-                  ? "bg-brand-secondary/20 text-brand-accent hover:bg-brand-secondary/30"
-                  : "text-white/40 hover:bg-white/[0.06] hover:text-white"
-              }
-              onClick={() => updateParams("sort", opt.value)}
-            >
-              {opt.label}
-            </Button>
-          );
-        })}
+
+      {/* Category pills + Sort */}
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-wrap gap-1.5">
+          {categories.map((cat) => {
+            const isActive = (currentCategory ?? "All") === cat;
+            return (
+              <button
+                key={cat}
+                disabled={isPending}
+                className={`rounded-lg px-3.5 py-1.5 text-sm font-medium transition-all duration-200 ${
+                  isActive
+                    ? "bg-[#10B981] text-black shadow-sm"
+                    : "bg-[#141414] border border-[#262626] text-[#A3A3A3] hover:border-[#404040] hover:text-white"
+                }`}
+                onClick={() => updateParams("category", cat)}
+              >
+                {cat}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="flex gap-1">
+          {sortOptions.map((opt) => {
+            const Icon = opt.icon;
+            const isActive = (currentSort ?? "newest") === opt.value;
+            return (
+              <button
+                key={opt.value}
+                disabled={isPending}
+                className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-all duration-200 ${
+                  isActive
+                    ? "bg-[#10B981]/10 text-[#10B981]"
+                    : "text-[#737373] hover:bg-[#1A1A1A] hover:text-white"
+                }`}
+                onClick={() => updateParams("sort", opt.value)}
+              >
+                <Icon className="h-3.5 w-3.5" />
+                {opt.label}
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

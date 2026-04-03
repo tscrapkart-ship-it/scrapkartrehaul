@@ -97,7 +97,7 @@ export default function BuyerProfilePage() {
         </div>
       </div>
 
-      <Card className="border-white/[0.06] bg-[#002a47]">
+      <Card className="border-[#262626] bg-card">
         <CardContent className="pt-6">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
@@ -106,7 +106,7 @@ export default function BuyerProfilePage() {
                 id="email"
                 value={profile.email}
                 disabled
-                className="border-white/[0.06] bg-white/[0.03] text-white/50 disabled:opacity-60"
+                className="border-[#262626] bg-[#141414] text-white/50 disabled:opacity-60"
               />
             </div>
             <div className="space-y-2">
@@ -116,7 +116,7 @@ export default function BuyerProfilePage() {
                 name="name"
                 defaultValue={profile.name}
                 required
-                className="border-white/[0.06] bg-white/[0.03] text-white placeholder:text-white/20 focus:border-brand-accent focus:ring-brand-accent/20"
+                className="border-[#262626] bg-[#141414] text-white placeholder:text-white/20 focus:border-brand-accent focus:ring-brand-accent/20"
               />
             </div>
             <div className="space-y-2">
@@ -125,7 +125,7 @@ export default function BuyerProfilePage() {
                 id="phone"
                 name="phone"
                 defaultValue={profile.phone ?? ""}
-                className="border-white/[0.06] bg-white/[0.03] text-white placeholder:text-white/20 focus:border-brand-accent focus:ring-brand-accent/20"
+                className="border-[#262626] bg-[#141414] text-white placeholder:text-white/20 focus:border-brand-accent focus:ring-brand-accent/20"
               />
             </div>
             <div className="space-y-2">
@@ -135,7 +135,7 @@ export default function BuyerProfilePage() {
                   profile.role === "recycler" ? "Recycler (Buyer)" : "Waste Producer (Seller)"
                 }
                 disabled
-                className="border-white/[0.06] bg-white/[0.03] text-white/50 disabled:opacity-60"
+                className="border-[#262626] bg-[#141414] text-white/50 disabled:opacity-60"
               />
             </div>
             {error && <p className="text-sm text-red-400">{error}</p>}

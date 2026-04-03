@@ -13,7 +13,7 @@ export function MessageBubble({
         className={`max-w-[75%] rounded-2xl px-4 py-2 ${
           isOwn
             ? "rounded-br-md bg-gradient-to-br from-brand-accent to-brand-accent/80 text-brand-dark"
-            : "rounded-bl-md bg-[#002a47] text-white"
+            : "rounded-bl-md bg-card text-white"
         }`}
       >
         <p className="text-sm">{message.content}</p>

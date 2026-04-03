@@ -4,8 +4,8 @@
   "description": "B2B Industrial Scrap Marketplace — Connect waste producers with recyclers.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#001C30",
-  "theme_color": "#64CCC5",
+  "background_color": "#0A0A0A",
+  "theme_color": "#10B981",
   "orientation": "portrait-primary",
   "icons": [
     {

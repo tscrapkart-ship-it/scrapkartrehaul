@@ -32,7 +32,7 @@ export function ChatInterface({
   }
 
   return (
-    <div className="flex h-[calc(100vh-12rem)] flex-col rounded-2xl border border-white/[0.06] bg-[#002a47]">
+    <div className="flex h-[calc(100vh-12rem)] flex-col rounded-2xl border border-[#262626] bg-card">
       <ScrollArea className="flex-1 p-4">
         {loading ? (
           <div className="flex flex-col items-center justify-center py-16">
@@ -64,7 +64,7 @@ export function ChatInterface({
         )}
         <div ref={bottomRef} />
       </ScrollArea>
-      <div className="border-t border-white/[0.06] p-4">
+      <div className="border-t border-[#262626] p-4">
         <ChatInput onSend={handleSend} />
       </div>
     </div>

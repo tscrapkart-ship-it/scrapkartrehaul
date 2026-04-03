@@ -43,7 +43,7 @@ export default async function TransactionsPage() {
       </div>
 
       {transactions.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-white/[0.06] bg-[#002a47] py-16">
+        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-[#262626] bg-card py-16">
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/[0.06] mb-3">
             <ArrowLeftRight className="h-6 w-6 text-white/30" />
           </div>
@@ -68,7 +68,7 @@ export default async function TransactionsPage() {
 
             return (
               <Link key={tx.id} href={`/transactions/${tx.id}`}>
-                <Card className="border-white/[0.06] bg-white/[0.03] hover:border-white/[0.12] hover:bg-white/[0.05] transition-all cursor-pointer">
+                <Card className="border-[#262626] bg-[#141414] hover:border-[#333333] hover:bg-[#1A1A1A] transition-all cursor-pointer">
                   <CardContent className="pt-4 pb-4">
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex-1 min-w-0">

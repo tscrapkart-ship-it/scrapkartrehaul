@@ -7,7 +7,7 @@ const statusConfig: Record<string, string> = {
   pending: "bg-yellow-500/10 text-yellow-400 border border-yellow-500/20",
   accepted: "bg-green-500/10 text-green-400 border border-green-500/20",
   rejected: "bg-red-500/10 text-red-400 border border-red-500/20",
-  withdrawn: "bg-white/[0.06] text-white/40 border border-white/[0.06]",
+  withdrawn: "bg-white/[0.06] text-white/40 border border-[#262626]",
 };
 
 async function getMyBids() {
@@ -47,7 +47,7 @@ export default async function MyBidsPage() {
             { label: "Pending", value: pendingCount, class: "text-yellow-400" },
             { label: "Accepted", value: acceptedCount, class: "text-green-400" },
           ].map((stat) => (
-            <div key={stat.label} className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-4 text-center">
+            <div key={stat.label} className="rounded-xl border border-[#262626] bg-[#141414] p-4 text-center">
               <p className={`text-2xl font-bold ${stat.class}`}>{stat.value}</p>
               <p className="text-xs text-white/40 mt-1">{stat.label}</p>
             </div>
@@ -56,7 +56,7 @@ export default async function MyBidsPage() {
       )}
 
       {bids.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-white/[0.06] bg-[#002a47] py-16">
+        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-[#262626] bg-card py-16">
           <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/[0.06]">
             <Gavel className="h-6 w-6 text-white/30" />
           </div>
@@ -87,7 +87,7 @@ export default async function MyBidsPage() {
 
             return (
               <Link key={bid.id} href={`/marketplace/${scrap?.id ?? ""}`}>
-                <Card className="border-white/[0.06] bg-white/[0.03] hover:border-white/[0.12] hover:bg-white/[0.05] transition-all cursor-pointer">
+                <Card className="border-[#262626] bg-[#141414] hover:border-[#333333] hover:bg-[#1A1A1A] transition-all cursor-pointer">
                   <CardContent className="pt-4 pb-4">
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex-1 min-w-0">

@@ -32,7 +32,7 @@ export default async function AdminBlogPage() {
       </div>
 
       {blogs.length === 0 ? (
-        <div className="flex flex-col items-center gap-3 rounded-xl border border-dashed border-white/[0.06] py-16 text-center">
+        <div className="flex flex-col items-center gap-3 rounded-xl border border-dashed border-[#262626] py-16 text-center">
           <BookOpen className="h-8 w-8 text-white/20" />
           <p className="text-sm text-white/40">No blog posts yet</p>
           <Link href="/admin/blog/new">
@@ -40,10 +40,10 @@ export default async function AdminBlogPage() {
           </Link>
         </div>
       ) : (
-        <div className="rounded-xl border border-white/[0.06] bg-[#002a47] overflow-hidden">
+        <div className="rounded-xl border border-[#262626] bg-card overflow-hidden">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-white/[0.06]">
+              <tr className="border-b border-[#262626]">
                 <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Title</th>
                 <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Status</th>
                 <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Featured</th>
@@ -74,7 +74,7 @@ export default async function AdminBlogPage() {
                   <td className="px-5 py-4">
                     <div className="flex items-center gap-2">
                       <Link href={`/admin/blog/${blog.id}/edit`}>
-                        <Button size="sm" variant="outline" className="border-white/[0.08] text-white/60 hover:bg-white/[0.06] h-7 px-3 text-xs">
+                        <Button size="sm" variant="outline" className="border-[#262626] text-white/60 hover:bg-white/[0.06] h-7 px-3 text-xs">
                           Edit
                         </Button>
                       </Link>

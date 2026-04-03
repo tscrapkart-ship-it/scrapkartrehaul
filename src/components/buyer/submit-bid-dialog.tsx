@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -34,6 +35,7 @@ export function SubmitBidDialog({
   existingBid,
   listingStatus,
 }: SubmitBidDialogProps) {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -108,8 +110,7 @@ export function SubmitBidDialog({
 
     toast.success("Bid withdrawn.");
     setOpen(false);
-    // Reload to reflect new state
-    window.location.reload();
+    router.refresh();
   }
 
   // If listing is no longer live
@@ -117,7 +118,7 @@ export function SubmitBidDialog({
     return (
       <Button
         disabled
-        className="w-full bg-white/[0.06] text-white/40 border border-white/[0.06]"
+        className="w-full bg-white/[0.06] text-white/40 border border-[#262626]"
         size="lg"
       >
         {listingStatus === "matched" ? "Bid Accepted by Another Recycler" : "Listing Closed"}
@@ -160,7 +161,7 @@ export function SubmitBidDialog({
         {hasPendingBid ? "Revise Your Bid" : isWithdrawn ? "Re-submit Bid" : "Submit Bid"}
       </DialogTrigger>
 
-      <DialogContent className="border-white/[0.08] bg-[#002a47] text-white sm:max-w-md">
+      <DialogContent className="border-[#262626] bg-card text-white sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="text-white">
             {hasPendingBid ? "Revise Bid" : "Submit a Bid"}
@@ -180,7 +181,7 @@ export function SubmitBidDialog({
               The producer will review your offer. You&apos;ll be notified on acceptance.
             </p>
             <Button
-              onClick={() => { setOpen(false); setSuccess(false); window.location.reload(); }}
+              onClick={() => { setOpen(false); setSuccess(false); router.refresh(); }}
               className="bg-brand-accent text-brand-dark hover:bg-brand-accent/90"
             >
               Done
@@ -207,7 +208,7 @@ export function SubmitBidDialog({
                 onChange={(e) => setOfferedPrice(e.target.value)}
                 placeholder="e.g., 25000"
                 required
-                className="border-white/[0.06] bg-white/[0.04] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
+                className="border-[#262626] bg-[#1A1A1A] text-white placeholder:text-white/30 focus-visible:ring-brand-accent/50"
               />
             </div>
 
@@ -220,7 +221,7 @@ export function SubmitBidDialog({
                 type="date"
                 value={pickupDate}
                 onChange={(e) => setPickupDate(e.target.value)}
-                className="border-white/[0.06] bg-white/[0.04] text-white focus-visible:ring-brand-accent/50"
+                className="border-[#262626] bg-[#1A1A1A] text-white focus-visible:ring-brand-accent/50"
               />
             </div>
 
@@ -234,7 +235,7 @@ export function SubmitBidDialog({
                 onChange={(e) => setMessage(e.target.value)}
                 rows={3}
                 placeholder="Tell the producer why they should choose you..."
-                className="flex w-full rounded-md border border-white/[0.06] bg-white/[0.04] px-3 py-2 text-sm text-white placeholder:text-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/50"
+                className="flex w-full rounded-md border border-[#262626] bg-[#1A1A1A] px-3 py-2 text-sm text-white placeholder:text-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/50"
               />
             </div>
 

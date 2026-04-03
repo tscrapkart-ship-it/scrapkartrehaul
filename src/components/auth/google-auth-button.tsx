@@ -23,7 +23,7 @@ export function GoogleAuthButton({ label = "Continue with Google" }: { label?: s
       type="button"
       onClick={handleGoogleAuth}
       disabled={loading}
-      className="flex w-full items-center justify-center gap-3 h-11 rounded-xl border border-white/[0.10] bg-white/[0.04] px-4 text-sm font-medium text-white/80 transition-all hover:bg-white/[0.08] hover:border-white/20 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+      className="flex w-full items-center justify-center gap-3 h-11 rounded-xl border border-white/[0.10] bg-[#1A1A1A] px-4 text-sm font-medium text-white/80 transition-all hover:bg-white/[0.08] hover:border-white/20 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
     >
       {loading ? (
         <svg className="h-4 w-4 animate-spin text-white/40" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

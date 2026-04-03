@@ -42,7 +42,7 @@ export default async function SellerScrapsPage() {
       </div>
 
       {scraps.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-white/[0.06] py-16">
+        <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-[#262626] py-16">
           <Package className="h-12 w-12 text-white/20" />
           <p className="mt-4 text-lg font-medium text-white/60">
             No listings yet

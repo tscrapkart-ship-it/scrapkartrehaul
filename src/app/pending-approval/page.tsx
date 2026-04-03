@@ -41,9 +41,9 @@ export default function PendingApprovalPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#001C30] flex flex-col">
+    <div className="min-h-screen bg-[#0A0A0A] flex flex-col">
       {/* Header */}
-      <header className="border-b border-white/[0.06] px-6 py-4 flex items-center justify-between">
+      <header className="border-b border-[#262626] px-6 py-4 flex items-center justify-between">
         <Image
           src="/logos/ScrapKart White Logo.png"
           alt="ScrapKart"
@@ -71,7 +71,7 @@ export default function PendingApprovalPage() {
               <div className="flex h-20 w-20 items-center justify-center rounded-full bg-brand-accent/10 border border-brand-accent/20">
                 <Clock className="h-10 w-10 text-brand-accent" />
               </div>
-              <div className="absolute -bottom-1 -right-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#001C30] border border-white/[0.06]">
+              <div className="absolute -bottom-1 -right-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#0A0A0A] border border-[#262626]">
                 <CheckCircle className="h-5 w-5 text-green-400" />
               </div>
             </div>
@@ -96,7 +96,7 @@ export default function PendingApprovalPage() {
           </div>
 
           {/* What happens next */}
-          <div className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 text-left space-y-4">
+          <div className="rounded-xl border border-[#262626] bg-[#141414] p-5 text-left space-y-4">
             <h3 className="text-xs font-medium uppercase tracking-wider text-white/40">
               What happens next
             </h3>

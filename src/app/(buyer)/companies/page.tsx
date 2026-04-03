@@ -25,7 +25,7 @@ export default async function CompaniesPage() {
       </div>
 
       {companies.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-white/[0.06] bg-[#002a47] py-16">
+        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-[#262626] bg-card py-16">
           <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/[0.06]">
             <Building2 className="h-6 w-6 text-white/30" />
           </div>

@@ -26,7 +26,7 @@ export default async function AdminCompaniesPage() {
       </div>
 
       {companies.length === 0 ? (
-        <div className="flex flex-col items-center gap-2 rounded-xl border border-white/[0.06] bg-[#002a47] py-16 text-center">
+        <div className="flex flex-col items-center gap-2 rounded-xl border border-[#262626] bg-card py-16 text-center">
           <Building2 className="h-8 w-8 text-white/20" />
           <p className="text-sm text-white/40">No companies yet</p>
         </div>
@@ -35,7 +35,7 @@ export default async function AdminCompaniesPage() {
           {companies.map((company: any) => (
             <div
               key={company.id}
-              className="rounded-xl border border-white/[0.06] bg-[#002a47] p-5 space-y-3"
+              className="rounded-xl border border-[#262626] bg-card p-5 space-y-3"
             >
               <div className="flex items-start gap-3">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-accent/10 text-sm font-bold text-brand-accent">
@@ -51,7 +51,7 @@ export default async function AdminCompaniesPage() {
                 <p className="line-clamp-2 text-xs text-white/50">{company.description}</p>
               )}
 
-              <div className="flex items-center justify-between border-t border-white/[0.06] pt-3">
+              <div className="flex items-center justify-between border-t border-[#262626] pt-3">
                 <div>
                   <p className="text-xs font-medium text-white">{(company.owner as any)?.name ?? "—"}</p>
                   <p className="text-xs text-white/40">{(company.owner as any)?.email ?? ""}</p>

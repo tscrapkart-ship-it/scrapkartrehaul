@@ -49,7 +49,7 @@ export default async function CompanyDetailPage({
   return (
     <div className="mx-auto max-w-4xl space-y-8">
       {/* Company hero card */}
-      <Card className="overflow-hidden border-white/[0.06] bg-gradient-to-br from-[#002a47] to-[#001C30]">
+      <Card className="overflow-hidden border-[#262626] bg-gradient-to-br from-[#141414] to-[#0A0A0A]">
         <CardContent className="pt-6">
           <div className="flex items-start gap-5">
             {company.logo_url ? (
@@ -58,7 +58,7 @@ export default async function CompanyDetailPage({
                 alt={company.name}
                 width={80}
                 height={80}
-                className="rounded-xl border border-white/[0.06] object-cover"
+                className="rounded-xl border border-[#262626] object-cover"
               />
             ) : (
               <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl bg-brand-accent/10 text-2xl font-bold text-brand-accent">
@@ -85,7 +85,7 @@ export default async function CompanyDetailPage({
             </div>
           </div>
           {company.description && (
-            <p className="mt-5 text-sm leading-relaxed text-white/50 border-t border-white/[0.06] pt-5">
+            <p className="mt-5 text-sm leading-relaxed text-white/50 border-t border-[#262626] pt-5">
               {company.description}
             </p>
           )}
@@ -104,7 +104,7 @@ export default async function CompanyDetailPage({
           </span>
         </div>
         {scraps.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-white/[0.06] bg-[#002a47] py-12 text-center">
+          <div className="rounded-xl border border-dashed border-[#262626] bg-card py-12 text-center">
             <p className="text-sm text-white/40">
               No available listings from this company.
             </p>
