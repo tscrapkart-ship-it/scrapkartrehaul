@@ -43,7 +43,7 @@ export default async function AdminContactPage({
         <p className="mt-1 text-base text-white/40">Messages from the public contact form</p>
       </div>
 
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
         {[
           { value: "all", label: "All" },
           { value: "new", label: "Unread" },
@@ -75,18 +75,18 @@ export default async function AdminContactPage({
               key={sub.id}
               className={`rounded-xl border bg-card p-5 space-y-3 ${sub.status === "new" ? "border-brand-accent/20" : "border-[#262626]"}`}
             >
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-start justify-between gap-2">
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-2">
                     <p className="font-semibold text-white">{sub.name}</p>
-                    <span className={`rounded-full px-2.5 py-0.5 text-sm font-medium ${statusColor[sub.status]}`}>
+                    <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-sm font-medium ${statusColor[sub.status]}`}>
                       {sub.status}
                     </span>
                   </div>
-                  <p className="text-base text-white/50">{sub.email}{sub.phone ? ` · ${sub.phone}` : ""}</p>
+                  <p className="truncate text-base text-white/50">{sub.email}{sub.phone ? ` · ${sub.phone}` : ""}</p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <p className="text-sm text-white/30">
+                <div className="flex shrink-0 items-center gap-2">
+                  <p className="whitespace-nowrap text-sm text-white/30">
                     {new Date(sub.created_at).toLocaleDateString("en-IN", {
                       day: "numeric",
                       month: "short",

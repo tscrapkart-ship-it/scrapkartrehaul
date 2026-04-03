@@ -67,7 +67,7 @@ export default async function TransactionsPage() {
           <p className="text-xs font-medium uppercase tracking-widest text-[#525252]">
             Transactions
           </p>
-          <h1 className="mt-2 text-4xl font-bold text-white">My Deals</h1>
+          <h1 className="mt-2 text-3xl sm:text-4xl font-bold text-white">My Deals</h1>
           <p className="mt-2 text-base text-[#737373] max-w-md">
             All confirmed transactions from accepted bids. Track status, pickup dates, and payment details.
           </p>
@@ -75,7 +75,7 @@ export default async function TransactionsPage() {
 
         {/* Summary bar */}
         {transactions.length > 0 && (
-          <div className="flex items-center gap-6 animate-slide-up delay-1">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 animate-slide-up delay-1">
             <div className="flex items-center gap-2 text-base text-[#737373]">
               <div className="h-2 w-2 rounded-full bg-[#10B981]" />
               <span>{transactions.filter((t) => t.status === "completed").length} completed</span>

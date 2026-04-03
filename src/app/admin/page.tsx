@@ -249,13 +249,13 @@ export default async function AdminOverviewPage() {
               <p className="text-sm text-[#525252] text-center py-4">No listings yet</p>
             )}
             {activity.recentListings.map((s: any) => (
-              <div key={s.id} className="flex items-center justify-between py-1">
+              <div key={s.id} className="flex items-center justify-between gap-2 py-1">
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-base text-white">{s.title}</p>
-                  <p className="text-sm text-[#525252]">{(s.companies as any)?.name ?? "—"}</p>
+                  <p className="truncate text-sm text-[#525252]">{(s.companies as any)?.name ?? "—"}</p>
                 </div>
-                <div className="flex gap-1.5 ml-2 shrink-0">
-                  <span className="rounded-md bg-[#1A1A1A] px-1.5 py-0.5 text-xs font-medium text-[#737373]">{s.category}</span>
+                <div className="flex shrink-0 gap-1.5">
+                  <span className="hidden rounded-md bg-[#1A1A1A] px-1.5 py-0.5 text-xs font-medium text-[#737373] sm:inline-block lg:hidden xl:inline-block">{s.category}</span>
                   <span className={`inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-xs font-medium ${
                     s.status === "live" ? "bg-green-500/10 text-green-400" : "bg-[#1A1A1A] text-[#525252]"
                   }`}>

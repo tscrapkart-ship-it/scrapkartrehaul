@@ -83,7 +83,7 @@ export default function ContactPage() {
           <p className="text-xs font-medium uppercase tracking-widest text-[#525252] mb-3">
             Contact Us
           </p>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
             Get in Touch
           </h1>
           <p className="mt-4 text-[#737373] max-w-lg text-lg leading-relaxed">

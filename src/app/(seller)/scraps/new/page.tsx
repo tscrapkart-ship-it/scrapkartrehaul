@@ -140,12 +140,12 @@ export default function NewScrapPage() {
           <PackagePlus className="h-5 w-5 text-[#10B981]" />
         </div>
         <div>
-          <h1 className="text-3xl font-bold text-white">New Scrap Listing</h1>
+          <h1 className="text-2xl font-bold text-white sm:text-3xl">New Scrap Listing</h1>
           <p className="text-base text-[#737373]">Recyclers will bid on your listing.</p>
         </div>
       </div>
 
-      <div className="rounded-xl border border-[#262626] bg-[#141414] p-6">
+      <div className="rounded-xl border border-[#262626] bg-[#141414] p-4 sm:p-6">
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Section: Basic Info */}
           <div className="space-y-5">
@@ -216,7 +216,7 @@ export default function NewScrapPage() {
               Quantity & Price
             </p>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="quantity" className="text-[#A3A3A3] text-base">Quantity *</Label>
                 <Input
@@ -302,7 +302,7 @@ export default function NewScrapPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="address" className="text-[#A3A3A3] text-base">Address</Label>
                 <Input
@@ -321,7 +321,7 @@ export default function NewScrapPage() {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="state" className="text-[#A3A3A3] text-base">State *</Label>
                 <Input

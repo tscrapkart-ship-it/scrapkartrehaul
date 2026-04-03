@@ -51,12 +51,12 @@ export default async function AdminCompaniesPage() {
                 <p className="line-clamp-2 text-sm text-white/50">{company.description}</p>
               )}
 
-              <div className="flex items-center justify-between border-t border-[#262626] pt-3">
-                <div>
-                  <p className="text-sm font-medium text-white">{(company.owner as any)?.name ?? "—"}</p>
-                  <p className="text-sm text-white/40">{(company.owner as any)?.email ?? ""}</p>
+              <div className="flex items-center justify-between gap-2 border-t border-[#262626] pt-3">
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-sm font-medium text-white">{(company.owner as any)?.name ?? "—"}</p>
+                  <p className="truncate text-sm text-white/40">{(company.owner as any)?.email ?? ""}</p>
                 </div>
-                <span className="rounded-full bg-[#1A1A1A] px-2.5 py-1 text-sm text-white/50">
+                <span className="shrink-0 rounded-full bg-[#1A1A1A] px-2.5 py-1 text-sm text-white/50">
                   {company.city}, {company.state}
                 </span>
               </div>

@@ -231,7 +231,7 @@ export default function ProducerOnboardingPage() {
                 Contact Information
               </p>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label className="text-[#A3A3A3] text-base">Contact Person <span className="text-[#10B981]">*</span></Label>
                   <Input
@@ -315,7 +315,7 @@ export default function ProducerOnboardingPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label className="text-[#A3A3A3] text-base">City <span className="text-[#10B981]">*</span></Label>
                   <Input
@@ -364,7 +364,7 @@ export default function ProducerOnboardingPage() {
                 <h3 className="font-semibold text-white text-lg">What types of waste do you generate?</h3>
                 <p className="text-base text-[#737373] mt-1">Select all that apply. This helps recyclers find your listings.</p>
               </div>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {WASTE_CATEGORIES.map((cat) => {
                   const isSelected = selectedCategories.includes(cat);
                   return (

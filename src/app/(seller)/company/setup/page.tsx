@@ -62,12 +62,12 @@ export default function CompanySetupPage() {
           <Building2 className="h-5 w-5 text-[#10B981]" />
         </div>
         <div>
-          <h1 className="text-3xl font-bold text-white">Set Up Your Company</h1>
+          <h1 className="text-2xl font-bold text-white sm:text-3xl">Set Up Your Company</h1>
           <p className="text-base text-[#737373]">Create your company profile to start posting listings.</p>
         </div>
       </div>
 
-      <div className="rounded-xl border border-[#262626] bg-[#141414] p-6">
+      <div className="rounded-xl border border-[#262626] bg-[#141414] p-4 sm:p-6">
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Basic Info */}
           <div className="space-y-5">
@@ -128,7 +128,7 @@ export default function CompanySetupPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="address" className="text-[#A3A3A3] text-base">Address</Label>
                 <Input
@@ -146,7 +146,7 @@ export default function CompanySetupPage() {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="state" className="text-[#A3A3A3] text-base">State</Label>
                 <Input

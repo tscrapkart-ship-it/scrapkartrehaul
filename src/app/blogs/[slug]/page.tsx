@@ -52,9 +52,9 @@ export default async function BlogPostPage({
             </span>
           )}
 
-          <h1 className="text-4xl font-bold text-white leading-tight">{blog.title}</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight break-words">{blog.title}</h1>
 
-          <div className="flex items-center gap-3 text-base text-[#737373]">
+          <div className="flex flex-wrap items-center gap-3 text-base text-[#737373]">
             {(blog.author as any)?.name && (
               <span className="flex items-center gap-1.5">
                 <User className="h-3.5 w-3.5" />
@@ -86,7 +86,7 @@ export default async function BlogPostPage({
 
         {/* Content */}
         <div className="mt-8 animate-slide-up delay-2">
-          <div className="whitespace-pre-wrap text-[#D4D4D4] leading-relaxed text-lg">
+          <div className="whitespace-pre-wrap break-words text-[#D4D4D4] leading-relaxed text-lg">
             {blog.content}
           </div>
         </div>

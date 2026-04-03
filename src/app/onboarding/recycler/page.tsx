@@ -171,7 +171,7 @@ export default function RecyclerOnboardingPage() {
                 </p>
                 <h3 className="font-semibold text-white text-lg mb-1">Waste Types You Accept <span className="text-[#10B981]">*</span></h3>
                 <p className="text-base text-[#737373] mb-4">Select all material types you can process.</p>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {WASTE_TYPES.map((type) => {
                     const sel = wasteTypes.includes(type);
                     return (
@@ -242,7 +242,7 @@ export default function RecyclerOnboardingPage() {
                 <p className="text-xs font-medium uppercase tracking-widest text-[#525252] mb-4">
                   Operational Details
                 </p>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label className="text-[#A3A3A3] text-base">Service Radius (km)</Label>
                     <Input
@@ -269,7 +269,7 @@ export default function RecyclerOnboardingPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 mt-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
                   <div className="space-y-2">
                     <Label className="text-[#A3A3A3] text-base">Min Quantity (kg)</Label>
                     <Input

@@ -70,7 +70,7 @@ export default async function ScrapDetailPage({
           Marketplace
         </Link>
         <ChevronRight className="h-3.5 w-3.5" />
-        <span className="text-[#A3A3A3] truncate max-w-[300px] text-base">{scrap.title}</span>
+        <span className="text-[#A3A3A3] truncate max-w-[200px] sm:max-w-[300px] text-base">{scrap.title}</span>
       </nav>
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.2fr_1fr]">
@@ -82,7 +82,7 @@ export default async function ScrapDetailPage({
         {/* Right: Details */}
         <div className="lg:sticky lg:top-6 lg:self-start space-y-5 animate-slide-up delay-2">
           {/* Main details card */}
-          <div className="rounded-xl border border-[#262626] bg-[#141414] p-6 space-y-5">
+          <div className="rounded-xl border border-[#262626] bg-[#141414] p-4 sm:p-6 space-y-5">
             {/* Category + Status */}
             <div className="flex items-start justify-between gap-3">
               <div>
@@ -93,7 +93,7 @@ export default async function ScrapDetailPage({
                     {scrap.sub_type ? ` — ${scrap.sub_type}` : ""}
                   </span>
                 </div>
-                <h1 className="text-3xl font-bold text-white leading-tight">{scrap.title}</h1>
+                <h1 className="text-2xl sm:text-3xl font-bold text-white leading-tight break-words">{scrap.title}</h1>
               </div>
               <Badge className={`shrink-0 ${statusInfo.class}`}>{statusInfo.label}</Badge>
             </div>
@@ -101,7 +101,7 @@ export default async function ScrapDetailPage({
             {/* Price */}
             {(scrap.price_expectation || scrap.price) && (
               <div className="flex items-baseline gap-2 pb-1">
-                <span className="text-4xl font-bold text-[#10B981]">
+                <span className="text-3xl sm:text-4xl font-bold text-[#10B981]">
                   ₹{(scrap.price_expectation ?? scrap.price).toLocaleString("en-IN")}
                 </span>
                 <span className="text-base text-[#525252]">asking price</span>
@@ -116,7 +116,7 @@ export default async function ScrapDetailPage({
             )}
 
             {/* Details grid */}
-            <div className="grid grid-cols-2 gap-4 rounded-xl bg-[#0A0A0A] border border-[#1A1A1A] p-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-xl bg-[#0A0A0A] border border-[#1A1A1A] p-4">
               <div className="space-y-1">
                 <div className="flex items-center gap-1.5 text-[#525252]">
                   <Scale className="h-3.5 w-3.5" />

@@ -64,13 +64,13 @@ export default async function MarketplacePage({
     <div className="space-y-6 animate-fade-in">
       {/* Header */}
       <div className="flex items-start justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#10B981]/10 border border-[#10B981]/20">
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#10B981]/10 border border-[#10B981]/20">
             <Store className="h-5 w-5 text-[#10B981]" />
           </div>
-          <div>
-            <h1 className="text-3xl font-bold text-white">Marketplace</h1>
-            <p className="text-base text-[#737373]">
+          <div className="min-w-0">
+            <h1 className="text-2xl sm:text-3xl font-bold text-white">Marketplace</h1>
+            <p className="text-sm sm:text-base text-[#737373]">
               Browse available scrap materials from verified sellers
             </p>
           </div>

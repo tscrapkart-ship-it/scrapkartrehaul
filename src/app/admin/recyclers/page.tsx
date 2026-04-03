@@ -74,15 +74,15 @@ export default async function AdminRecyclersPage({
         <div className="space-y-4">
           {profiles.map((profile: any) => (
             <div key={profile.id} className="rounded-xl border border-[#262626] bg-card p-5 space-y-4">
-              <div className="flex items-start justify-between">
-                <div>
-                  <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-start justify-between gap-2">
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-2">
                     <p className="font-semibold text-white">{profile.users?.name ?? "Unknown"}</p>
-                    <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${statusColor[profile.verification_status]}`}>
+                    <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${statusColor[profile.verification_status]}`}>
                       {profile.verification_status}
                     </span>
                   </div>
-                  <p className="text-sm text-white/40">{profile.users?.email}</p>
+                  <p className="truncate text-sm text-white/40">{profile.users?.email}</p>
                 </div>
                 {profile.verification_status === "pending" && (
                   <VerifyRecyclerButton profileId={profile.id} userId={profile.user_id} />
@@ -102,7 +102,7 @@ export default async function AdminRecyclersPage({
                 </div>
               )}
 
-              <div className="grid grid-cols-2 gap-3 text-sm">
+              <div className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
                 {profile.service_radius_km && (
                   <div>
                     <p className="text-xs text-white/30">Service Radius</p>

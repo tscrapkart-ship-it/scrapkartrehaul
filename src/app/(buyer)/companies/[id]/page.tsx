@@ -54,24 +54,24 @@ export default async function CompanyDetailPage({
       </Link>
 
       {/* Company hero card */}
-      <div className="rounded-xl border border-[#262626] bg-[#141414] p-6 animate-slide-up delay-1">
-        <div className="flex items-start gap-5">
+      <div className="rounded-xl border border-[#262626] bg-[#141414] p-4 sm:p-6 animate-slide-up delay-1">
+        <div className="flex items-start gap-4 sm:gap-5">
           {company.logo_url ? (
             <Image
               src={company.logo_url}
               alt={company.name}
               width={80}
               height={80}
-              className="rounded-xl border border-[#262626] object-cover"
+              className="h-14 w-14 sm:h-20 sm:w-20 rounded-xl border border-[#262626] object-cover shrink-0"
             />
           ) : (
-            <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl bg-[#10B981]/10 border border-[#10B981]/20 text-2xl font-bold text-[#10B981]">
+            <div className="flex h-14 w-14 sm:h-20 sm:w-20 shrink-0 items-center justify-center rounded-xl bg-[#10B981]/10 border border-[#10B981]/20 text-xl sm:text-2xl font-bold text-[#10B981]">
               {company.name.charAt(0)}
             </div>
           )}
           <div className="min-w-0">
             <div className="flex items-center gap-2">
-              <h1 className="text-3xl font-bold text-white">
+              <h1 className="text-2xl sm:text-3xl font-bold text-white break-words">
                 {company.name}
               </h1>
               {company.verification_status === "verified" && (

@@ -35,7 +35,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#10B981" />
         <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
       </head>
-      <body className={`${jakarta.variable} antialiased`}>
+      <body className={`${jakarta.variable} antialiased overflow-x-hidden`}>
         {children}
         <Toaster />
       </body>

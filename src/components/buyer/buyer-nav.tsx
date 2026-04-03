@@ -111,7 +111,7 @@ export function BuyerNav({ userName }: { userName: string }) {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex flex-col items-center gap-0.5 rounded-lg px-3 py-1.5 text-[10px] font-medium transition-all ${
+                className={`flex flex-col items-center gap-0.5 rounded-lg px-1.5 py-1.5 text-[10px] font-medium transition-all ${
                   isActive
                     ? "text-[#10B981]"
                     : "text-[#525252] active:text-white"

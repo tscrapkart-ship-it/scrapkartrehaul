@@ -7,7 +7,7 @@ export default function BookingsLoading() {
       </div>
 
       {/* Stats skeleton */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {Array.from({ length: 3 }).map((_, i) => (
           <div key={i} className="rounded-xl border border-[#262626] bg-card p-4 animate-pulse">
             <div className="h-4 w-20 rounded bg-[#1A1A1A] mb-2" />
@@ -21,7 +21,7 @@ export default function BookingsLoading() {
         {Array.from({ length: 4 }).map((_, i) => (
           <div key={i} className="rounded-xl border border-[#262626] bg-card p-4 animate-pulse">
             <div className="flex justify-between mb-3">
-              <div className="h-5 w-48 rounded bg-[#1A1A1A]" />
+              <div className="h-5 w-full max-w-48 rounded bg-[#1A1A1A]" />
               <div className="h-5 w-20 rounded-full bg-[#1A1A1A]" />
             </div>
             <div className="flex gap-4">

@@ -448,8 +448,8 @@ export default function TransactionDetailPage() {
         </div>
 
         {/* Transaction metadata */}
-        <div className="flex items-center justify-between text-sm text-[#333] pt-2 animate-fade-in delay-6">
-          <span>Transaction ID: {tx.id.slice(0, 8)}...</span>
+        <div className="flex flex-wrap items-center justify-between gap-2 text-sm text-[#333] pt-2 animate-fade-in delay-6">
+          <span className="break-all">Transaction ID: {tx.id.slice(0, 8)}...</span>
           <span>
             Created{" "}
             {new Date(tx.created_at).toLocaleDateString("en-IN", {

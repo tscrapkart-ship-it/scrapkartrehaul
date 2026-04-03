@@ -5,7 +5,7 @@ export default function MarketplaceLoading() {
     <div className="space-y-6">
       <div>
         <div className="h-8 w-40 rounded-md bg-[#1A1A1A] animate-pulse" />
-        <div className="mt-2 h-4 w-72 rounded-md bg-[#1A1A1A] animate-pulse" />
+        <div className="mt-2 h-4 w-full max-w-72 rounded-md bg-[#1A1A1A] animate-pulse" />
       </div>
 
       {/* Filter skeleton */}
@@ -16,9 +16,9 @@ export default function MarketplaceLoading() {
             <div key={i} className="h-8 w-20 rounded-full bg-[#1A1A1A] animate-pulse" />
           ))}
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="h-8 w-32 rounded-md bg-[#1A1A1A] animate-pulse" />
+            <div key={i} className="h-8 w-24 sm:w-32 rounded-md bg-[#1A1A1A] animate-pulse" />
           ))}
         </div>
       </div>

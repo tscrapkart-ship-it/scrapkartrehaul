@@ -54,7 +54,7 @@ export default async function AdminUsersPage({
         </p>
       </div>
 
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
         {tabs.map((tab) => (
           <a
             key={tab.value}
@@ -78,30 +78,30 @@ export default async function AdminUsersPage({
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-base">
+            <table className="w-full min-w-[700px] text-base">
               <thead>
                 <tr className="border-b border-[#262626]">
-                  <th className="px-5 py-3 text-left text-sm font-medium text-white/40">Name</th>
-                  <th className="px-5 py-3 text-left text-sm font-medium text-white/40">Email</th>
-                  <th className="px-5 py-3 text-left text-sm font-medium text-white/40">Role</th>
-                  <th className="px-5 py-3 text-left text-sm font-medium text-white/40">Status</th>
-                  <th className="px-5 py-3 text-left text-sm font-medium text-white/40">Joined</th>
-                  <th className="px-5 py-3 text-left text-sm font-medium text-white/40">Action</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-white/40 sm:px-5">Name</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-white/40 sm:px-5">Email</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-white/40 sm:px-5">Role</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-white/40 sm:px-5">Status</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-white/40 sm:px-5">Joined</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-white/40 sm:px-5">Action</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/[0.04]">
                 {users.map((user: any) => (
                   <tr key={user.id} className="hover:bg-white/[0.02] transition-colors">
-                    <td className="px-5 py-4">
+                    <td className="px-4 py-4 sm:px-5">
                       <div className="flex items-center gap-3">
                         <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-accent/10 text-sm font-semibold text-brand-accent">
                           {user.name?.slice(0, 2).toUpperCase() ?? "??"}
                         </div>
-                        <span className="font-medium text-white">{user.name}</span>
+                        <span className="max-w-[120px] truncate font-medium text-white">{user.name}</span>
                       </div>
                     </td>
-                    <td className="px-5 py-4 text-white/60">{user.email}</td>
-                    <td className="px-5 py-4">
+                    <td className="max-w-[180px] truncate px-4 py-4 text-white/60 sm:px-5">{user.email}</td>
+                    <td className="whitespace-nowrap px-4 py-4 sm:px-5">
                       {user.role ? (
                         <span className={`rounded-full px-2.5 py-1 text-sm font-medium ${roleColor[user.role] ?? "bg-white/10 text-white/60"}`}>
                           {roleLabel[user.role] ?? user.role}
@@ -110,7 +110,7 @@ export default async function AdminUsersPage({
                         <span className="text-sm text-white/30">No role</span>
                       )}
                     </td>
-                    <td className="px-5 py-4">
+                    <td className="whitespace-nowrap px-4 py-4 sm:px-5">
                       {!user.onboarding_completed ? (
                         <span className="rounded-full bg-[#1A1A1A] px-2.5 py-1 text-sm text-white/40">Onboarding</span>
                       ) : user.is_approved ? (
@@ -119,14 +119,14 @@ export default async function AdminUsersPage({
                         <span className="rounded-full bg-yellow-500/10 px-2.5 py-1 text-sm text-yellow-400">Pending</span>
                       )}
                     </td>
-                    <td className="px-5 py-4 text-white/40">
+                    <td className="whitespace-nowrap px-4 py-4 text-white/40 sm:px-5">
                       {new Date(user.created_at).toLocaleDateString("en-IN", {
                         day: "numeric",
                         month: "short",
                         year: "numeric",
                       })}
                     </td>
-                    <td className="px-5 py-4">
+                    <td className="px-4 py-4 sm:px-5">
                       {!user.is_approved && user.onboarding_completed && (
                         <ApproveUserButton userId={user.id} />
                       )}

@@ -24,7 +24,7 @@ export default async function BlogsPage() {
             <BookOpen className="h-3.5 w-3.5" />
             Blog
           </div>
-          <h1 className="text-5xl font-bold text-white">ScrapKart Blog</h1>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">ScrapKart Blog</h1>
           <p className="mt-3 text-[#737373] max-w-lg mx-auto text-lg">
             Insights on industrial scrap, recycling, and the circular economy
           </p>

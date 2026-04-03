@@ -42,35 +42,35 @@ export default async function AdminTransactionsPage() {
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full min-w-[650px] text-sm">
               <thead>
                 <tr className="border-b border-[#262626]">
-                  <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Listing</th>
-                  <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Producer</th>
-                  <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Recycler</th>
-                  <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Price</th>
-                  <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Pickup</th>
-                  <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Status</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-white/40 sm:px-5">Listing</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-white/40 sm:px-5">Producer</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-white/40 sm:px-5">Recycler</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-white/40 sm:px-5">Price</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-white/40 sm:px-5">Pickup</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-white/40 sm:px-5">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/[0.04]">
                 {transactions.map((tx: any) => (
                   <tr key={tx.id} className="hover:bg-white/[0.02] transition-colors">
-                    <td className="px-5 py-4">
-                      <p className="font-medium text-white truncate max-w-[180px]">{tx.scraps?.title ?? "—"}</p>
+                    <td className="px-4 py-4 sm:px-5">
+                      <p className="max-w-[160px] truncate font-medium text-white">{tx.scraps?.title ?? "—"}</p>
                       <p className="text-xs text-white/40">{tx.scraps?.category}</p>
                     </td>
-                    <td className="px-5 py-4 text-white/70">{tx.producer?.name ?? "—"}</td>
-                    <td className="px-5 py-4 text-white/70">{tx.recycler?.name ?? "—"}</td>
-                    <td className="px-5 py-4 font-semibold text-brand-accent">
+                    <td className="max-w-[120px] truncate px-4 py-4 text-white/70 sm:px-5">{tx.producer?.name ?? "—"}</td>
+                    <td className="max-w-[120px] truncate px-4 py-4 text-white/70 sm:px-5">{tx.recycler?.name ?? "—"}</td>
+                    <td className="whitespace-nowrap px-4 py-4 font-semibold text-brand-accent sm:px-5">
                       ₹{tx.final_price?.toLocaleString("en-IN")}
                     </td>
-                    <td className="px-5 py-4 text-white/40">
+                    <td className="whitespace-nowrap px-4 py-4 text-white/40 sm:px-5">
                       {tx.pickup_date
                         ? new Date(tx.pickup_date).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })
                         : "—"}
                     </td>
-                    <td className="px-5 py-4">
+                    <td className="whitespace-nowrap px-4 py-4 sm:px-5">
                       <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${statusColor[tx.status] ?? "bg-white/10 text-white/50"}`}>
                         {tx.status?.replace("_", " ")}
                       </span>

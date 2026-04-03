@@ -31,22 +31,22 @@ export default async function SellerScrapsPage() {
 
   return (
     <div className="space-y-6 animate-fade-in">
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#10B981]/10 border border-[#10B981]/20">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#10B981]/10 border border-[#10B981]/20">
             <Layers className="h-5 w-5 text-[#10B981]" />
           </div>
-          <div>
-            <h1 className="text-3xl font-bold text-white">My Listings</h1>
-            <p className="text-base text-[#737373]">
+          <div className="min-w-0">
+            <h1 className="text-2xl font-bold text-white sm:text-3xl">My Listings</h1>
+            <p className="text-sm text-[#737373] sm:text-base">
               {scraps.length > 0
                 ? `${scraps.length} total · ${liveCount} live`
                 : "Create and manage your scrap listings"}
             </p>
           </div>
         </div>
-        <Link href="/scraps/new">
-          <Button className="bg-[#10B981] text-black hover:bg-[#059669] font-semibold h-10 px-5 transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+        <Link href="/scraps/new" className="shrink-0">
+          <Button className="bg-[#10B981] text-black hover:bg-[#059669] font-semibold h-10 px-4 sm:px-5 transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.2)]">
             <Plus className="mr-2 h-4 w-4" />
             New Listing
           </Button>

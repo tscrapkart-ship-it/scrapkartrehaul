@@ -29,7 +29,7 @@ export default async function SellerLayout({
   }
 
   return (
-    <div className="min-h-screen bg-brand-dark">
+    <div className="min-h-screen overflow-x-hidden bg-brand-dark">
       <SellerNav userName={userName} />
       <main className="mx-auto max-w-7xl px-4 py-6 pb-20 sm:px-6 md:pb-6 lg:px-8">
         {children}

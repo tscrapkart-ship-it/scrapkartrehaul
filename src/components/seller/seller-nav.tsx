@@ -48,13 +48,14 @@ export function SellerNav({ userName }: { userName: string }) {
       {/* Desktop header */}
       <header className="sticky top-0 z-40 border-b border-[#262626] bg-[#0A0A0A]/95 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-4 sm:gap-8">
             <Link href="/dashboard" className="shrink-0">
               <Image
                 src="/logos/ScrapKart White Logo.png"
                 alt="ScrapKart"
                 width={130}
                 height={37}
+                className="h-auto w-[100px] sm:w-[130px]"
                 priority
               />
             </Link>
@@ -113,7 +114,7 @@ export function SellerNav({ userName }: { userName: string }) {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex flex-col items-center gap-0.5 rounded-lg px-3 py-1.5 text-[10px] font-medium transition-all ${
+                className={`flex min-w-0 flex-1 flex-col items-center gap-0.5 rounded-lg px-1 py-1.5 text-[10px] font-medium transition-all ${
                   isActive
                     ? "text-[#10B981]"
                     : "text-[#525252] active:text-white"
@@ -126,7 +127,7 @@ export function SellerNav({ userName }: { userName: string }) {
                 >
                   <Icon className="h-5 w-5" />
                 </div>
-                {item.label}
+                <span className="truncate max-w-full">{item.label}</span>
               </Link>
             );
           })}

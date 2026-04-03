@@ -68,14 +68,14 @@ export function AdminNav() {
                 Admin
               </span>
             </Link>
-            <nav className="hidden items-center gap-0.5 md:flex">
+            <nav className="hidden items-center gap-0.5 overflow-x-auto md:flex">
               {navItems.map((item) => {
                 const active = isActive(item);
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`relative rounded-lg px-3 py-2 text-base font-medium transition-colors ${
+                    className={`relative shrink-0 rounded-lg px-2.5 py-2 text-sm font-medium transition-colors lg:px-3 lg:text-base ${
                       active
                         ? "text-[#10B981] bg-[#10B981]/[0.06]"
                         : "text-[#737373] hover:text-white hover:bg-[#1A1A1A]"

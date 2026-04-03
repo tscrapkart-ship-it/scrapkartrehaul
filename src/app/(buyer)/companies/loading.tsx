@@ -3,7 +3,7 @@ export default function CompaniesLoading() {
     <div className="space-y-6">
       <div>
         <div className="h-8 w-36 rounded-md bg-[#1A1A1A] animate-pulse" />
-        <div className="mt-2 h-4 w-64 rounded-md bg-[#1A1A1A] animate-pulse" />
+        <div className="mt-2 h-4 w-full max-w-64 rounded-md bg-[#1A1A1A] animate-pulse" />
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

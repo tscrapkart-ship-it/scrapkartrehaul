@@ -30,9 +30,9 @@ export default async function CompanyPage() {
 
   return (
     <div className="mx-auto max-w-2xl space-y-6 animate-fade-in">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-white">Company Profile</h1>
-        <Link href="/company/edit">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h1 className="text-2xl font-bold text-white sm:text-3xl">Company Profile</h1>
+        <Link href="/company/edit" className="shrink-0">
           <Button className="bg-[#10B981] text-black hover:bg-[#059669] font-semibold transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.2)]">
             <Pencil className="mr-2 h-4 w-4" />
             Edit
@@ -41,23 +41,23 @@ export default async function CompanyPage() {
       </div>
 
       {/* Company card */}
-      <div className="rounded-xl border border-[#262626] bg-[#141414] p-6">
-        <div className="flex items-start gap-4">
+      <div className="rounded-xl border border-[#262626] bg-[#141414] p-4 sm:p-6">
+        <div className="flex items-start gap-3 sm:gap-4">
           {company.logo_url ? (
             <Image
               src={company.logo_url}
               alt={company.name}
               width={80}
               height={80}
-              className="rounded-xl border border-[#262626] object-cover"
+              className="h-16 w-16 shrink-0 rounded-xl border border-[#262626] object-cover sm:h-20 sm:w-20"
             />
           ) : (
-            <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl bg-[#10B981]/10 border border-[#10B981]/20 text-2xl font-bold text-[#10B981]">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-[#10B981]/10 border border-[#10B981]/20 text-xl font-bold text-[#10B981] sm:h-20 sm:w-20 sm:text-2xl">
               {company.name.charAt(0)}
             </div>
           )}
           <div className="min-w-0">
-            <h2 className="text-2xl font-bold text-white">{company.name}</h2>
+            <h2 className="text-xl font-bold text-white truncate sm:text-2xl">{company.name}</h2>
             {company.industry_type && (
               <p className="mt-1 flex items-center gap-1.5 text-base text-[#10B981]">
                 <Factory className="h-3.5 w-3.5" />
@@ -94,29 +94,29 @@ export default async function CompanyPage() {
               <MapPin className="h-3.5 w-3.5" />
               <span className="text-xs font-medium uppercase tracking-wider">Location</span>
             </div>
-            <div className="grid grid-cols-2 gap-y-2.5 text-base">
+            <div className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-2.5 text-sm sm:text-base">
               {company.address && (
                 <>
-                  <span className="text-[#525252]">Address</span>
-                  <span className="text-[#D4D4D4]">{company.address}</span>
+                  <span className="text-[#525252] shrink-0">Address</span>
+                  <span className="text-[#D4D4D4] break-words">{company.address}</span>
                 </>
               )}
               {company.city && (
                 <>
-                  <span className="text-[#525252]">City</span>
-                  <span className="text-[#D4D4D4]">{company.city}</span>
+                  <span className="text-[#525252] shrink-0">City</span>
+                  <span className="text-[#D4D4D4] break-words">{company.city}</span>
                 </>
               )}
               {company.state && (
                 <>
-                  <span className="text-[#525252]">State</span>
-                  <span className="text-[#D4D4D4]">{company.state}</span>
+                  <span className="text-[#525252] shrink-0">State</span>
+                  <span className="text-[#D4D4D4] break-words">{company.state}</span>
                 </>
               )}
               {company.pincode && (
                 <>
-                  <span className="text-[#525252]">Pincode</span>
-                  <span className="text-[#D4D4D4]">{company.pincode}</span>
+                  <span className="text-[#525252] shrink-0">Pincode</span>
+                  <span className="text-[#D4D4D4] break-words">{company.pincode}</span>
                 </>
               )}
             </div>

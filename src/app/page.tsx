@@ -250,7 +250,7 @@ export default function Home() {
           <RevealOnScroll>
             <div className="text-center">
               <p className="text-sm font-semibold uppercase tracking-widest text-[#10B981]">How it works</p>
-              <h2 className="mt-3 text-4xl font-bold text-[#F5F5F5] sm:text-5xl">Four steps to close a deal</h2>
+              <h2 className="mt-3 text-3xl font-bold text-[#F5F5F5] sm:text-4xl lg:text-5xl">Four steps to close a deal</h2>
               <p className="mt-3 text-lg text-[#737373] sm:text-xl">Whether you&apos;re selling scrap or buying, the process is simple.</p>
             </div>
           </RevealOnScroll>
@@ -281,7 +281,7 @@ export default function Home() {
           <RevealOnScroll>
             <div className="text-center">
               <p className="text-sm font-semibold uppercase tracking-widest text-[#10B981]">Categories</p>
-              <h2 className="mt-3 text-4xl font-bold text-[#F5F5F5] sm:text-5xl">Trade across six material types</h2>
+              <h2 className="mt-3 text-3xl font-bold text-[#F5F5F5] sm:text-4xl lg:text-5xl">Trade across six material types</h2>
             </div>
           </RevealOnScroll>
 
@@ -315,7 +315,7 @@ export default function Home() {
           <RevealOnScroll>
             <div className="text-center">
               <p className="text-sm font-semibold uppercase tracking-widest text-[#10B981]">Features</p>
-              <h2 className="mt-3 text-4xl font-bold text-[#F5F5F5] sm:text-5xl">Built for industrial scrap trading</h2>
+              <h2 className="mt-3 text-3xl font-bold text-[#F5F5F5] sm:text-4xl lg:text-5xl">Built for industrial scrap trading</h2>
               <p className="mt-3 text-lg text-[#737373] sm:text-xl">Everything you need to trade efficiently, in one place.</p>
             </div>
           </RevealOnScroll>
@@ -345,7 +345,7 @@ export default function Home() {
           <RevealOnScroll>
             <div className="text-center">
               <p className="text-sm font-semibold uppercase tracking-widest text-[#10B981]">Testimonials</p>
-              <h2 className="mt-3 text-4xl font-bold text-[#F5F5F5] sm:text-5xl">Trusted by industry leaders</h2>
+              <h2 className="mt-3 text-3xl font-bold text-[#F5F5F5] sm:text-4xl lg:text-5xl">Trusted by industry leaders</h2>
             </div>
           </RevealOnScroll>
 
@@ -382,7 +382,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_#10B981_0%,_transparent_50%)] opacity-[0.04]" />
 
               <div className="relative">
-                <h2 className="text-4xl font-bold text-[#F5F5F5] sm:text-5xl">Ready to trade smarter?</h2>
+                <h2 className="text-3xl font-bold text-[#F5F5F5] sm:text-4xl lg:text-5xl">Ready to trade smarter?</h2>
                 <p className="mx-auto mt-4 max-w-lg text-lg text-[#737373]">
                   Join hundreds of businesses already using ScrapKart to buy and sell industrial scrap.
                 </p>
@@ -408,8 +408,8 @@ export default function Home() {
       {/* ========== FOOTER ========== */}
       <footer className="border-t border-[#1A1A1A] py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-            <div className="col-span-2 md:col-span-1">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
+            <div className="sm:col-span-2 md:col-span-1">
               <Image src="/logos/ScrapKart White Logo.png" alt="ScrapKart" width={130} height={37} />
               <p className="mt-4 text-base leading-relaxed text-[#525252]">
                 India&apos;s B2B marketplace for industrial scrap trading. Connecting waste producers with recyclers.
@@ -434,7 +434,7 @@ export default function Home() {
             <div>
               <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#525252]">Contact</h4>
               <ul className="space-y-2.5 text-base text-[#737373]">
-                <li className="flex items-center gap-2"><Mail className="h-3.5 w-3.5 shrink-0" /> hello@scrapkart.app</li>
+                <li className="flex items-center gap-2"><Mail className="h-3.5 w-3.5 shrink-0" /> <span className="break-all">hello@scrapkart.app</span></li>
                 <li className="flex items-center gap-2"><Phone className="h-3.5 w-3.5 shrink-0" /> +91 98765 43210</li>
                 <li className="flex items-center gap-2"><MapPin className="h-3.5 w-3.5 shrink-0" /> Bangalore, India</li>
               </ul>

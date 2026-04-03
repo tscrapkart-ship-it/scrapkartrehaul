@@ -7,7 +7,7 @@ export default function NotFound() {
       <div className="animate-fade-in relative max-w-md w-full space-y-8">
         {/* Large 404 background decoration */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none -top-16" aria-hidden="true">
-          <span className="text-[12rem] sm:text-[16rem] font-bold text-[#10B981]/10 leading-none tracking-tighter">
+          <span className="text-[8rem] sm:text-[12rem] md:text-[16rem] font-bold text-[#10B981]/10 leading-none tracking-tighter">
             404
           </span>
         </div>

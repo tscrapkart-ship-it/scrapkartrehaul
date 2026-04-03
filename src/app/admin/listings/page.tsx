@@ -82,45 +82,45 @@ export default async function AdminListingsPage({
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full min-w-[700px] text-sm">
               <thead>
                 <tr className="border-b border-[#262626]">
-                  <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Title</th>
-                  <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Category</th>
-                  <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Seller</th>
-                  <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Price/kg</th>
-                  <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Location</th>
-                  <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Status</th>
-                  <th className="px-5 py-3 text-left text-xs font-medium text-white/40">Action</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-white/40 sm:px-5">Title</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-white/40 sm:px-5">Category</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-white/40 sm:px-5">Seller</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-white/40 sm:px-5">Price/kg</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-white/40 sm:px-5">Location</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-white/40 sm:px-5">Status</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-white/40 sm:px-5">Action</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/[0.04]">
                 {listings.map((listing: any) => (
                   <tr key={listing.id} className="hover:bg-white/[0.02] transition-colors">
-                    <td className="px-5 py-4">
-                      <p className="max-w-[200px] truncate font-medium text-white">{listing.title}</p>
+                    <td className="px-4 py-4 sm:px-5">
+                      <p className="max-w-[180px] truncate font-medium text-white">{listing.title}</p>
                       <p className="text-xs text-white/40">{listing.quantity} {listing.unit}</p>
                     </td>
-                    <td className="px-5 py-4">
+                    <td className="whitespace-nowrap px-4 py-4 sm:px-5">
                       <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${categoryColor[listing.category] ?? "bg-white/10 text-white/60"}`}>
                         {listing.category}
                       </span>
                     </td>
-                    <td className="px-5 py-4 text-white/60">
+                    <td className="max-w-[140px] truncate px-4 py-4 text-white/60 sm:px-5">
                       {(listing.companies as any)?.name ?? "—"}
                     </td>
-                    <td className="px-5 py-4 text-white">
+                    <td className="whitespace-nowrap px-4 py-4 text-white sm:px-5">
                       ₹{listing.price.toLocaleString("en-IN")}
                     </td>
-                    <td className="px-5 py-4 text-white/60">
+                    <td className="whitespace-nowrap px-4 py-4 text-white/60 sm:px-5">
                       {listing.city}, {listing.state}
                     </td>
-                    <td className="px-5 py-4">
+                    <td className="whitespace-nowrap px-4 py-4 sm:px-5">
                       <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${statusColor[listing.status] ?? "bg-white/10 text-white/60"}`}>
                         {listing.status}
                       </span>
                     </td>
-                    <td className="px-5 py-4">
+                    <td className="px-4 py-4 sm:px-5">
                       <DeleteListingButton id={listing.id} />
                     </td>
                   </tr>

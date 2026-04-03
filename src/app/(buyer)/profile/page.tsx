@@ -103,10 +103,10 @@ export default function BuyerProfilePage() {
 
   return (
     <div className="mx-auto max-w-lg animate-fade-in">
-      <h1 className="mb-8 text-3xl font-bold text-white">Profile</h1>
+      <h1 className="mb-8 text-2xl sm:text-3xl font-bold text-white">Profile</h1>
 
       {/* Avatar + quick info */}
-      <div className="mb-6 flex items-center gap-4 rounded-xl border border-[#262626] bg-[#141414] p-5">
+      <div className="mb-6 flex items-center gap-3 sm:gap-4 rounded-xl border border-[#262626] bg-[#141414] p-4 sm:p-5">
         <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#10B981]/10 border border-[#10B981]/20 text-xl font-bold text-[#10B981] shrink-0">
           {initials}
         </div>
@@ -129,7 +129,7 @@ export default function BuyerProfilePage() {
       </div>
 
       {/* Account details */}
-      <div className="mb-6 grid grid-cols-2 gap-3">
+      <div className="mb-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div className="rounded-xl border border-[#262626] bg-[#141414] p-4">
           <div className="flex items-center gap-1.5 text-[#525252] mb-1">
             <Calendar className="h-3.5 w-3.5" />
@@ -152,7 +152,7 @@ export default function BuyerProfilePage() {
       </div>
 
       {/* Edit form */}
-      <div className="rounded-xl border border-[#262626] bg-[#141414] p-6">
+      <div className="rounded-xl border border-[#262626] bg-[#141414] p-4 sm:p-6">
         <h3 className="text-xs font-medium uppercase tracking-widest text-[#525252] mb-5">
           Edit Profile
         </h3>

@@ -9,7 +9,7 @@ export default function OnboardingLayout({
   return (
     <div className="min-h-screen bg-[#0A0A0A] flex flex-col">
       {/* Minimal header */}
-      <header className="border-b border-[#262626] px-6 h-16 flex items-center">
+      <header className="border-b border-[#262626] px-4 sm:px-6 h-16 flex items-center">
         <Link href="/" className="flex items-center gap-3 group">
           <Image
             src="/logos/ScrapKart White Logo.png"

@@ -133,7 +133,7 @@ export default function NewBlogPage() {
           />
         </div>
 
-        <div className="flex items-center gap-6">
+        <div className="flex flex-wrap items-center gap-4 sm:gap-6">
           <label className="flex items-center gap-2 cursor-pointer">
             <input
               type="checkbox"

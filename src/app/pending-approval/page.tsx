@@ -43,7 +43,7 @@ export default function PendingApprovalPage() {
   return (
     <div className="min-h-screen bg-[#0A0A0A] flex flex-col">
       {/* Header */}
-      <header className="border-b border-[#262626] px-6 py-4 flex items-center justify-between">
+      <header className="border-b border-[#262626] px-4 sm:px-6 py-4 flex items-center justify-between">
         <Image
           src="/logos/ScrapKart White Logo.png"
           alt="ScrapKart"
@@ -85,7 +85,7 @@ export default function PendingApprovalPage() {
             <p className="text-xs font-medium uppercase tracking-widest text-[#525252]">
               Account under review
             </p>
-            <h1 className="text-4xl font-bold text-white">
+            <h1 className="text-3xl sm:text-4xl font-bold text-white">
               {userName ? `Thanks, ${userName.split(" ")[0]}!` : "We're on it"}
             </h1>
             <p className="text-[#A3A3A3] leading-relaxed max-w-sm mx-auto">

@@ -94,7 +94,7 @@ export function MarketplaceFilters({
           })}
         </div>
 
-        <div className="flex gap-1">
+        <div className="flex flex-wrap gap-1">
           {sortOptions.map((opt) => {
             const Icon = opt.icon;
             const isActive = (currentSort ?? "newest") === opt.value;

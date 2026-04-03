@@ -32,9 +32,9 @@ export default async function MyBidsPage() {
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="flex items-start justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-bold text-white">My Bids</h1>
-          <p className="mt-1 text-base text-[#737373]">
+        <div className="min-w-0">
+          <h1 className="text-2xl sm:text-3xl font-bold text-white">My Bids</h1>
+          <p className="mt-1 text-sm sm:text-base text-[#737373]">
             Track all bids you&apos;ve submitted across listings
           </p>
         </div>
@@ -48,7 +48,7 @@ export default async function MyBidsPage() {
 
       {/* Summary stats */}
       {bids.length > 0 && (
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             { label: "Total Bids", value: bids.length, color: "text-white", border: "border-[#262626]" },
             { label: "Pending", value: pendingCount, color: "text-yellow-400", border: pendingCount > 0 ? "border-yellow-500/15" : "border-[#262626]" },
@@ -96,16 +96,16 @@ export default async function MyBidsPage() {
 
             return (
               <Link key={bid.id} href={`/marketplace/${scrap?.id ?? ""}`}>
-                <div className={`animate-slide-up delay-${Math.min(i + 1, 6)} group rounded-xl border border-[#262626] bg-[#141414] p-5 transition-all hover:border-[#333] hover:bg-[#1A1A1A] cursor-pointer`}>
+                <div className={`animate-slide-up delay-${Math.min(i + 1, 6)} group rounded-xl border border-[#262626] bg-[#141414] p-4 sm:p-5 transition-all hover:border-[#333] hover:bg-[#1A1A1A] cursor-pointer`}>
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1.5">
-                        <span className="inline-flex items-center gap-1.5 rounded-md bg-[#10B981]/10 px-2.5 py-0.5 text-sm font-medium text-[#10B981]">
+                      <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                        <span className="inline-flex items-center gap-1.5 rounded-md bg-[#10B981]/10 px-2.5 py-0.5 text-sm font-medium text-[#10B981] shrink-0">
                           <span className="h-1.5 w-1.5 rounded-full bg-[#10B981]" />
                           {scrap?.category}
                         </span>
                         {scrap?.companies?.name && (
-                          <span className="text-sm text-[#525252] truncate">
+                          <span className="text-sm text-[#525252] truncate max-w-[180px]">
                             by {scrap.companies.name}
                           </span>
                         )}

@@ -202,7 +202,7 @@ export function BidsList({
                           {bid.users?.name ?? "Recycler"}
                         </span>
                       </div>
-                      <p className="text-sm text-white/30">{bid.users?.email}</p>
+                      <p className="text-sm text-white/30 truncate max-w-[180px] sm:max-w-none">{bid.users?.email}</p>
                     </div>
                   </div>
                   <Badge className={statusConfig[bid.status] ?? "bg-[#1A1A1A] text-white/40"}>
@@ -210,10 +210,10 @@ export function BidsList({
                   </Badge>
                 </div>
 
-                <div className="flex flex-wrap gap-4 text-sm">
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
                   <div className="flex items-center gap-1.5">
                     <IndianRupee className="h-3.5 w-3.5 text-brand-accent" />
-                    <span className="text-2xl font-bold text-brand-accent">
+                    <span className="text-xl sm:text-2xl font-bold text-brand-accent">
                       ₹{bid.offered_price.toLocaleString("en-IN")}
                     </span>
                   </div>

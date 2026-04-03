@@ -18,7 +18,7 @@ export default async function AdminBlogPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="text-3xl font-bold text-white">Blog</h1>
           <p className="mt-1 text-base text-white/40">Create and manage published blog posts</p>
@@ -41,50 +41,52 @@ export default async function AdminBlogPage() {
         </div>
       ) : (
         <div className="rounded-xl border border-[#262626] bg-card overflow-hidden">
-          <table className="w-full text-base">
-            <thead>
-              <tr className="border-b border-[#262626]">
-                <th className="px-5 py-3 text-left text-sm font-medium text-white/40">Title</th>
-                <th className="px-5 py-3 text-left text-sm font-medium text-white/40">Status</th>
-                <th className="px-5 py-3 text-left text-sm font-medium text-white/40">Featured</th>
-                <th className="px-5 py-3 text-left text-sm font-medium text-white/40">Created</th>
-                <th className="px-5 py-3 text-left text-sm font-medium text-white/40">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-white/[0.04]">
-              {blogs.map((blog: any) => (
-                <tr key={blog.id} className="hover:bg-white/[0.02] transition-colors">
-                  <td className="px-5 py-4">
-                    <p className="font-medium text-white">{blog.title}</p>
-                    <p className="text-sm text-white/30">/{blog.slug}</p>
-                  </td>
-                  <td className="px-5 py-4">
-                    <span className={`rounded-full px-2.5 py-1 text-sm font-medium ${blog.is_published ? "bg-green-500/10 text-green-400" : "bg-[#1A1A1A] text-white/40"}`}>
-                      {blog.is_published ? "Published" : "Draft"}
-                    </span>
-                  </td>
-                  <td className="px-5 py-4">
-                    {blog.is_featured && (
-                      <span className="rounded-full bg-brand-accent/10 px-2.5 py-1 text-sm text-brand-accent">Featured</span>
-                    )}
-                  </td>
-                  <td className="px-5 py-4 text-white/40">
-                    {new Date(blog.created_at).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}
-                  </td>
-                  <td className="px-5 py-4">
-                    <div className="flex items-center gap-2">
-                      <Link href={`/admin/blog/${blog.id}/edit`}>
-                        <Button size="sm" variant="outline" className="border-[#262626] text-white/60 hover:bg-[#1A1A1A] h-7 px-3 text-sm">
-                          Edit
-                        </Button>
-                      </Link>
-                      <DeleteBlogButton blogId={blog.id} />
-                    </div>
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[600px] text-base">
+              <thead>
+                <tr className="border-b border-[#262626]">
+                  <th className="px-4 py-3 text-left text-sm font-medium text-white/40 sm:px-5">Title</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-white/40 sm:px-5">Status</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-white/40 sm:px-5">Featured</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-white/40 sm:px-5">Created</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-white/40 sm:px-5">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-white/[0.04]">
+                {blogs.map((blog: any) => (
+                  <tr key={blog.id} className="hover:bg-white/[0.02] transition-colors">
+                    <td className="px-4 py-4 sm:px-5">
+                      <p className="max-w-[200px] truncate font-medium text-white">{blog.title}</p>
+                      <p className="max-w-[200px] truncate text-sm text-white/30">/{blog.slug}</p>
+                    </td>
+                    <td className="px-4 py-4 sm:px-5">
+                      <span className={`whitespace-nowrap rounded-full px-2.5 py-1 text-sm font-medium ${blog.is_published ? "bg-green-500/10 text-green-400" : "bg-[#1A1A1A] text-white/40"}`}>
+                        {blog.is_published ? "Published" : "Draft"}
+                      </span>
+                    </td>
+                    <td className="px-4 py-4 sm:px-5">
+                      {blog.is_featured && (
+                        <span className="whitespace-nowrap rounded-full bg-brand-accent/10 px-2.5 py-1 text-sm text-brand-accent">Featured</span>
+                      )}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-4 text-white/40 sm:px-5">
+                      {new Date(blog.created_at).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}
+                    </td>
+                    <td className="px-4 py-4 sm:px-5">
+                      <div className="flex items-center gap-2">
+                        <Link href={`/admin/blog/${blog.id}/edit`}>
+                          <Button size="sm" variant="outline" className="border-[#262626] text-white/60 hover:bg-[#1A1A1A] h-7 px-3 text-sm">
+                            Edit
+                          </Button>
+                        </Link>
+                        <DeleteBlogButton blogId={blog.id} />
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>

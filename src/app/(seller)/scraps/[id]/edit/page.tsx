@@ -112,28 +112,28 @@ export default function EditScrapPage() {
 
   return (
     <div className="mx-auto max-w-2xl animate-fade-in">
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#10B981]/10 border border-[#10B981]/20">
+      <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#10B981]/10 border border-[#10B981]/20">
             <Pencil className="h-5 w-5 text-[#10B981]" />
           </div>
-          <div>
-            <h1 className="text-3xl font-bold text-white">Edit Listing</h1>
-            <p className="text-base text-[#737373]">Update your scrap listing details</p>
+          <div className="min-w-0">
+            <h1 className="text-2xl font-bold text-white sm:text-3xl">Edit Listing</h1>
+            <p className="text-sm text-[#737373] sm:text-base">Update your scrap listing details</p>
           </div>
         </div>
         <Button
           variant="destructive"
           size="sm"
           onClick={handleDelete}
-          className="bg-red-500/10 text-red-400 hover:bg-red-500/20 border border-red-500/20"
+          className="shrink-0 bg-red-500/10 text-red-400 hover:bg-red-500/20 border border-red-500/20"
         >
           <Trash2 className="mr-2 h-4 w-4" />
           Delete
         </Button>
       </div>
 
-      <div className="rounded-xl border border-[#262626] bg-[#141414] p-6">
+      <div className="rounded-xl border border-[#262626] bg-[#141414] p-4 sm:p-6">
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Basic Info */}
           <div className="space-y-5">
@@ -180,7 +180,7 @@ export default function EditScrapPage() {
               Quantity & Price
             </p>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="price" className="text-[#A3A3A3] text-base">Price (₹) *</Label>
                 <Input
@@ -265,7 +265,7 @@ export default function EditScrapPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="address" className="text-[#A3A3A3] text-base">Address</Label>
                 <Input
@@ -285,7 +285,7 @@ export default function EditScrapPage() {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="state" className="text-[#A3A3A3] text-base">State</Label>
                 <Input
