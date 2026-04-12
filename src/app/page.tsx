@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -11,6 +11,7 @@ import {
   StaggerItem,
   AnimatedCounter,
 } from "@/components/shared/motion";
+import { createClient } from "@/lib/supabase/client";
 import {
   ShieldCheck,
   MessageSquare,
@@ -35,6 +36,9 @@ import {
   TrendingUp,
   Users,
   BarChart3,
+  User,
+  LogOut,
+  LayoutDashboard,
 } from "lucide-react";
 
 const stats = [
@@ -77,6 +81,38 @@ const testimonials = [
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [authUser, setAuthUser] = useState<{ name: string; role: string | null; dashboardUrl: string } | null>(null);
+  const [profileOpen, setProfileOpen] = useState(false);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(async ({ data: { user } }) => {
+      if (!user) return;
+      const { data: profile } = await supabase
+        .from("users")
+        .select("name, role")
+        .eq("id", user.id)
+        .single();
+      if (profile) {
+        const role = profile.role;
+        let dashboardUrl = "/marketplace";
+        if (role === "admin") dashboardUrl = "/admin";
+        else if (role === "waste_producer" || role === "both") dashboardUrl = "/dashboard";
+        setAuthUser({
+          name: profile.name || user.email?.split("@")[0] || "User",
+          role,
+          dashboardUrl,
+        });
+      }
+    });
+  }, []);
+
+  const handleSignOut = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    setAuthUser(null);
+    setProfileOpen(false);
+  };
 
   return (
     <div className="min-h-screen bg-[#0A0A0A]">
@@ -100,16 +136,53 @@ export default function Home() {
           </nav>
 
           <div className="hidden items-center gap-2 md:flex">
-            <Link href="/login">
-              <Button variant="ghost" className="h-9 px-4 text-base text-[#A3A3A3] hover:bg-[#141414] hover:text-white rounded-lg">
-                Sign In
-              </Button>
-            </Link>
-            <Link href="/signup">
-              <Button className="h-9 px-4 text-base font-semibold bg-[#10B981] text-black hover:bg-[#059669] rounded-lg">
-                Get Started <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
-              </Button>
-            </Link>
+            {authUser ? (
+              <div className="relative">
+                <button
+                  onClick={() => setProfileOpen(!profileOpen)}
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-[#10B981] text-sm font-bold text-black transition-all hover:bg-[#059669] hover:ring-2 hover:ring-[#10B981]/30"
+                >
+                  {authUser.name.charAt(0).toUpperCase()}
+                </button>
+                {profileOpen && (
+                  <>
+                    <div className="fixed inset-0 z-40" onClick={() => setProfileOpen(false)} />
+                    <div className="absolute right-0 top-12 z-50 w-56 rounded-xl border border-[#262626] bg-[#141414] p-2 shadow-xl">
+                      <div className="px-3 py-2 border-b border-[#262626] mb-1">
+                        <p className="text-sm font-semibold text-[#F5F5F5] truncate">{authUser.name}</p>
+                        <p className="text-xs text-[#737373] capitalize">{authUser.role?.replace("_", " ") || "No role"}</p>
+                      </div>
+                      <Link
+                        href={authUser.dashboardUrl}
+                        onClick={() => setProfileOpen(false)}
+                        className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-[#A3A3A3] hover:bg-[#1A1A1A] hover:text-white transition-colors"
+                      >
+                        <LayoutDashboard className="h-4 w-4" /> Dashboard
+                      </Link>
+                      <button
+                        onClick={handleSignOut}
+                        className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-[#A3A3A3] hover:bg-[#1A1A1A] hover:text-red-400 transition-colors"
+                      >
+                        <LogOut className="h-4 w-4" /> Sign Out
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
+            ) : (
+              <>
+                <Link href="/login">
+                  <Button variant="ghost" className="h-9 px-4 text-base text-[#A3A3A3] hover:bg-[#141414] hover:text-white rounded-lg">
+                    Sign In
+                  </Button>
+                </Link>
+                <Link href="/signup">
+                  <Button className="h-9 px-4 text-base font-semibold bg-[#10B981] text-black hover:bg-[#059669] rounded-lg">
+                    Get Started <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
 
           <button className="rounded-lg p-2 text-[#A3A3A3] hover:bg-[#141414] md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
@@ -133,8 +206,32 @@ export default function Home() {
                   </a>
                 ))}
                 <div className="flex flex-col gap-2 pt-3 border-t border-[#1A1A1A]">
-                  <Link href="/login"><Button variant="ghost" className="w-full h-10 text-base text-[#A3A3A3]">Sign In</Button></Link>
-                  <Link href="/signup"><Button className="w-full h-10 text-base font-semibold bg-[#10B981] text-black">Get Started</Button></Link>
+                  {authUser ? (
+                    <>
+                      <div className="flex items-center gap-3 px-3 py-2">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#10B981] text-sm font-bold text-black">
+                          {authUser.name.charAt(0).toUpperCase()}
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-[#F5F5F5]">{authUser.name}</p>
+                          <p className="text-xs text-[#737373] capitalize">{authUser.role?.replace("_", " ") || "No role"}</p>
+                        </div>
+                      </div>
+                      <Link href={authUser.dashboardUrl} onClick={() => setMobileMenuOpen(false)}>
+                        <Button variant="ghost" className="w-full h-10 text-base text-[#A3A3A3] justify-start gap-2">
+                          <LayoutDashboard className="h-4 w-4" /> Dashboard
+                        </Button>
+                      </Link>
+                      <Button variant="ghost" onClick={handleSignOut} className="w-full h-10 text-base text-[#A3A3A3] justify-start gap-2 hover:text-red-400">
+                        <LogOut className="h-4 w-4" /> Sign Out
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Link href="/login"><Button variant="ghost" className="w-full h-10 text-base text-[#A3A3A3]">Sign In</Button></Link>
+                      <Link href="/signup"><Button className="w-full h-10 text-base font-semibold bg-[#10B981] text-black">Get Started</Button></Link>
+                    </>
+                  )}
                 </div>
               </div>
             </motion.div>

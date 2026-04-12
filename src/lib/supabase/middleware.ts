@@ -74,11 +74,10 @@ export async function updateSession(request: NextRequest) {
     const isApproved = profile?.is_approved ?? false;
     const onboardingCompleted = profile?.onboarding_completed ?? false;
 
-    // Already authenticated — redirect away from auth/landing pages
-    if (path === "/login" || path === "/signup" || path === "/") {
+    // Already authenticated — redirect away from auth pages (but NOT landing page)
+    if (path === "/login" || path === "/signup") {
       const url = request.nextUrl.clone();
       if (!role) {
-        // Authenticated but no role — always send to role selection
         url.pathname = "/role-select";
         return NextResponse.redirect(url);
       }
