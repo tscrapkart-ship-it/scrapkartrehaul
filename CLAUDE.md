@@ -28,6 +28,27 @@ The user is **vibe coding** this entire project — building it end-to-end throu
 
 **All phases complete including admin dashboard and seed data. App is live on Vercel.** Full product context, domain model, user journeys, and feature scope are documented in `SCRAPKART.md`.
 
+### 🚧 ACTIVE: Business-Flow Rehaul (Phase 20 — in progress, NOT yet finalized)
+A major rebuild of the B2B business flow is the current focus. The live site (`b2b.scrapkart.app`) still reflects the OLD flow — full identity exposure, free-text messaging. **Source-of-truth (team-approved direction):** `business decision.md` at the b2b side root. Read it first.
+
+Two parallel workstreams:
+
+**A. Disintermediation / platform lock-in (founder-confirmed: commission model).**
+The problem: buyers + sellers currently see each other's company name + email and can free-text contacts, so they meet once via us then deal directly. We want Upwork-style stickiness. Key insight: scrap is physical (they meet at pickup), so identity-masking only protects the *first* deal — the durable lock-in is economic (money + deal record flow through ScrapKart). Four stacking pathways, lightest → strongest:
+1. **Masked Marketplace** (build first; no payments needed) — alias + verified badge + rating instead of company name; structured bids (no free-text message box); first-names + fixed pickup time-slots + canned messages (no open chat) after acceptance; money still direct.
+2. **Commission on every deal** — platform charges a fee on close (needs basic payments).
+3. **Escrow** — buyer prepays into ScrapKart, released to seller on OTP-verified pickup, commission skimmed (needs full payments + KYC).
+4. **Managed pickup** — ScrapKart arranges logistics so parties may never meet (long-term, heavy ops).
+Trust substitute while names are hidden: ScrapKart-verified badge (GST/licence/KYC) + rating/deal history.
+
+**B. Service-type dimension** (separate workstream, from a recycler's feedback via Muzammil; not built yet): seller picks intended service per listing — **Recycle / Refurbish / Resell** (refurbishers quote higher); buyers carry a capability and filter the marketplace by service type so e.g. a pure recycler quotes only on non-refurbish items. Note `recycler_profiles.processing_types` already exists in schema (includes "Refurbishment") as partial scaffolding.
+
+**Current code touchpoints the rehaul will change (verify before editing — code evolves):**
+- Identity leaks today: `transactions/[id]/page.tsx:~320` (counterpart name + email in plaintext) · `/transactions/[id]/chat` (free chat) · `submit-bid-dialog.tsx` (free-text bid `message`) · `seller_response_message` (free-text seller reply) · `(public-browse)/marketplace/[id]/page.tsx` + company profile (company name public).
+- Service-type: new field on `scraps` (backend) + posting form `(seller)/scraps/new` + `marketplace-filters.tsx` + buyer capability (`recycler_profiles.processing_types` / onboarding).
+
+**Status & decisions still open** (in `business decision.md`): how far to go (mask-only → escrow → managed), commission % and who pays, whether to hide the company name (and whether to show a UID/seller code). **Flow is NOT finalized** — do not start implementation until the direction is locked. Both workstreams require **backend changes** (RLS, new columns, possibly new tables) → must be authorized per the backend-untouched rule before applying.
+
 ### What's been built
 | Phase | Scope | Status |
 |---|---|---|
